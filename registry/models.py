@@ -208,7 +208,7 @@ class Aircraft(models.Model):
     photo = models.URLField(blank=True, null=True)
     photo_small = models.URLField(blank=True, null=True)
     identification_photo = models.URLField(blank=True, null=True)
-    identificationiphoto_small = models.URLField(blank=True, null=True)
+    identification_photo_small = models.URLField(blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
