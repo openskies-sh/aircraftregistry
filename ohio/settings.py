@@ -18,6 +18,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 import json
 from six.moves.urllib import request
 
+import json
+from six.moves.urllib import request
+
+from cryptography.x509 import load_pem_x509_certificate
+from cryptography.hazmat.backends import default_backend
+from dotenv import load_dotenv, find_dotenv
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -62,13 +68,43 @@ AUTHENTICATION_BACKENDS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+}
+
+
+ENV_FILE = find_dotenv()
+
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+JWT_AUDIENCE = None
+if os.environ.get('AUTH0_AUDIENCE'):
+    JWT_AUDIENCE = os.environ.get('AUTH0_AUDIENCE')
+
+AUTH_AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
+
+
+jsonurl = request.urlopen("https://"+AUTH_AUTH0_DOMAIN +"/.well-known/jwks.json")
+jwks = json.loads(jsonurl.read())
+cert = '-----BEGIN CERTIFICATE-----\n' + jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
+
+certificate = load_pem_x509_certificate(str.encode(cert), default_backend())
+publickey = certificate.public_key()
+
+JWT_AUTH = {
+    'JWT_PAYLOAD_GET_USERNAME_HANDLER':
+        'auth0authorization.user.jwt_get_username_from_payload_handler',
+    'JWT_PUBLIC_KEY': publickey,
+    'JWT_ALGORITHM': 'RS256',
+    'JWT_AUDIENCE': JWT_AUDIENCE,
+    'JWT_ISSUER': AUTH_AUTH0_DOMAIN,
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
 
 ROOT_URLCONF = 'ohio.urls'
