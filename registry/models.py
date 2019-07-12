@@ -182,7 +182,7 @@ class Manufacturer(models.Model):
   
 class Aircraft(models.Model):
     AIRCRAFT_CATEGORY = ((0, _('Other')),(1, _('FIXED WING')),(2, _('ROTORCRAFT')),(3, _('LIGHTER-THAN-AIR')),(4, _('HYBRID LIFT')),)
-    AIRCRAFT_SUB_CATEGORY = ((0, _('Other')),(1, _('AIRPLANE')),(2, _('NONPOWERED GLIDER')),(3, _('POWERED GLIDER')),(4, _('HELICOPTER')),(5, _('GYROPLANE')),(6, _('BALLOON')),(6, _('AIRSHIP')),(7, _('UAV')),)
+    AIRCRAFT_SUB_CATEGORY = ((0, _('Other')),(1, _('AIRPLANE')),(2, _('NONPOWERED GLIDER')),(3, _('POWERED GLIDER')),(4, _('HELICOPTER')),(5, _('GYROPLANE')),(6, _('BALLOON')),(6, _('AIRSHIP')),(7, _('UAV')),(8, _('Multirotor')),(9, _('Hybrid')),)
     STATUS_CHOICES = ((0, _('Inactive')),(1, _('Active')),)
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -199,7 +199,8 @@ class Aircraft(models.Model):
     sub_category = models.IntegerField(choices=AIRCRAFT_SUB_CATEGORY, default = 7)
     icao_aircraft_type_designator = models.CharField(max_length =4, default = '0000')
     max_certified_takeoff_weight = models.DecimalField(decimal_places = 3, max_digits=10, default = 0.00)
-    begin_date = models.DateTimeField(blank= True, null= True)
+    commission_date = models.DateTimeField(blank= True, null= True)
+    operating_frequencies = models.TextField(null=True, blank=True)
     type_certificate = models.ForeignKey(TypeCertificate, models.CASCADE, blank= True, null= True)
     model = models.CharField(max_length = 280)
     esn = models.CharField(max_length = 48, default='000000000000000000000000000000000000000000000000')
