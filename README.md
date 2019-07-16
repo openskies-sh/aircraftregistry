@@ -1,4 +1,4 @@
-**Update July 2019**: **This is a maintained fork of the [GUTMA Registry](https://github.com/gutma-org/droneregistry) that uses OAuth Tokens to protect the endpoints**
+**Update July 2019**: **This is a fork of the [GUTMA Registry](https://github.com/gutma-org/droneregistry) that uses OAuth Tokens to protect the endpoints and updated API**
 
 ## Aircraft Registry Sandbox
 
