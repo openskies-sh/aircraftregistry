@@ -18,7 +18,7 @@ from rest_framework.views import APIView
 from registry.models import Activity, Authorization, Contact, Operator, Aircraft, Pilot, Test, TestValidity
 from registry.serializers import (ContactSerializer, OperatorSerializer, PilotSerializer, 
                                   PrivilagedContactSerializer, PrivilagedPilotSerializer,
-                                  PrivilagedOperatorSerializer, AircraftSerializer, AircraftESNSerializer)
+                                  PrivilagedOperatorSerializer, AircraftSerializer, AircraftDetailSerializer, AircraftESNSerializer)
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from six.moves.urllib import request as req
@@ -75,7 +75,6 @@ def requires_scope(required_scope):
     return require_scope
 
 
-@api_view(['GET'])
 class OperatorList(mixins.ListModelMixin,
 				  generics.GenericAPIView):
 	"""
@@ -89,7 +88,7 @@ class OperatorList(mixins.ListModelMixin,
 		return self.list(request, *args, **kwargs)
 
 
-@api_view(['GET', 'POST'])
+
 class OperatorDetail(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
@@ -117,27 +116,27 @@ class OperatorDetail(mixins.RetrieveModelMixin,
 
 
 
-@api_view(['GET', 'POST'])
+
 class AircraftDetail(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
                     generics.GenericAPIView):
 	"""
-	Retrieve, update or delete a Operator instance.
+	Retrieve, update or delete a Aircraft instance.
 	"""
 	# authentication_classes = (SessionAuthentication,TokenAuthentication)
 	# permission_classes = (IsAuthenticated,)
 
 	def get_Aircraft(self, pk):
 		try:
-			a =  Aircraft.objects.get(id=pk)
-		except Aircraft.DoesNotExist:
+			a = Aircraft.objects.get(id=pk)			
+		except Aircraft.DoesNotExist:					
 			raise Http404
 		else: 
 			return a
 
 	def get(self, request, pk,format=None):
-		aircraft = self.get_Aircraft(pk)
+		aircraft = self.get_Aircraft(pk)		
 		serializer = AircraftDetailSerializer(aircraft)
 		return Response(serializer.data)
 
@@ -151,7 +150,7 @@ class AircraftDetail(mixins.RetrieveModelMixin,
 	    return self.destroy(request, *args, **kwargs)
 
 
-@api_view(['GET'])
+
 class OperatorDetailPrivilaged(mixins.RetrieveModelMixin,
                     generics.GenericAPIView):
 	"""
@@ -165,7 +164,7 @@ class OperatorDetailPrivilaged(mixins.RetrieveModelMixin,
 	    return self.retrieve(request, *args, **kwargs)
 
 
-@api_view(['GET'])
+
 class OperatorAircraft(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
@@ -201,7 +200,7 @@ class OperatorAircraft(mixins.RetrieveModelMixin,
 	    return self.destroy(request, *args, **kwargs)
 
 
-@api_view(['GET'])
+
 class AircraftESNDetails(mixins.RetrieveModelMixin,
                     generics.GenericAPIView):
 
@@ -213,7 +212,7 @@ class AircraftESNDetails(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
 
 
-@api_view(['GET'])
+
 class ContactList(mixins.ListModelMixin,
 				  generics.GenericAPIView):
 	"""
@@ -227,7 +226,7 @@ class ContactList(mixins.ListModelMixin,
 		return self.list(request, *args, **kwargs)
 
 
-@api_view(['GET'])
+
 class ContactDetail(mixins.RetrieveModelMixin,
                     generics.GenericAPIView):
 	"""
@@ -242,7 +241,7 @@ class ContactDetail(mixins.RetrieveModelMixin,
 
 
 
-@api_view(['GET'])
+
 class ContactDetailPrivilaged(mixins.RetrieveModelMixin,
                     generics.GenericAPIView):
 	"""
@@ -256,7 +255,7 @@ class ContactDetailPrivilaged(mixins.RetrieveModelMixin,
 	    return self.retrieve(request, *args, **kwargs)
 
 
-@api_view(['GET'])
+
 class PilotList(mixins.ListModelMixin,
 				  generics.GenericAPIView):
 	"""
@@ -269,7 +268,7 @@ class PilotList(mixins.ListModelMixin,
 		return self.list(request, *args, **kwargs)
 
 
-@api_view(['GET','POST'])
+
 class PilotDetail(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
@@ -294,7 +293,7 @@ class PilotDetail(mixins.RetrieveModelMixin,
 
 
 
-@api_view(['GET', 'POST'])
+
 class PilotDetailPrivilaged(mixins.RetrieveModelMixin,
                     generics.GenericAPIView):
 	"""

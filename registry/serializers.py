@@ -217,7 +217,7 @@ class AircraftSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Aircraft
-        fields = ('id', 'mass', 'manufacturer', 'model','esn','maci_number','status','registration_mark', 'category','type_certificate', 'created_at','master_series', 'series','popular_name','manufacturer','registration_mark',"image", "image_small", 'sub_category', 'icao_aircraft_type_designator', 'max_certified_takeoff_weight','updated_at')
+        fields = ('id', 'mass', 'manufacturer', 'model','esn','maci_number','status','registration_mark', 'category','type_certificate', 'created_at','master_series', 'series','popular_name','manufacturer','registration_mark',"photo", "photo_small", 'sub_category', 'icao_aircraft_type_designator', 'max_certified_takeoff_weight','updated_at')
      
 class AircraftDetailSerializer(serializers.ModelSerializer):
     type_certificate = TypeCertificateSerializer(read_only= True)
@@ -232,7 +232,7 @@ class AircraftDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Aircraft
-        fields = ('id', 'mass', 'manufacturer', 'model','esn','maci_number','status','registration_mark', 'category','type_certificate', 'created_at','master_series', 'series','popular_name','manufacturer','registration_mark','sub_category', "image", "image_small",'icao_aircraft_type_designator', 'max_certified_takeoff_weight','updated_at')
+        fields = ('id', 'mass', 'manufacturer', 'model','esn','maci_number','status','registration_mark', 'category','type_certificate', 'created_at','master_series', 'series','popular_name','manufacturer','registration_mark','sub_category',"photo", "photo_small",'icao_aircraft_type_designator', 'max_certified_takeoff_weight','updated_at')
            
 
 class AircraftESNSerializer(serializers.ModelSerializer):
@@ -267,6 +267,10 @@ class PrivilagedContactSerializer(serializers.ModelSerializer):
     authorized_activities = serializers.SerializerMethodField()
     operational_authorizations = serializers.SerializerMethodField()
 
+    person = PersonSerializer(read_only=True)
+    address = AddressSerializer(read_only=True)
+    operator = OperatorSerializer(read_only=True)
+
     def get_authorized_activities(self, response):
         activities = []
         c = Contact.objects.get(id =response.id)
@@ -287,5 +291,4 @@ class PrivilagedContactSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Contact
-        fields = ('id', 'company_name', 'operator','website', 'email', 'operator_type', 'phone_number', 'address',
-                  'postcode', 'city', 'operational_authorizations', 'authorized_activities', 'created_at', 'updated_at')
+        fields = ('id', 'operator','address', 'person','operational_authorizations', 'authorized_activities', 'created_at', 'updated_at')
