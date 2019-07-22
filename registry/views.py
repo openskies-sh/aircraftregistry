@@ -36,45 +36,51 @@ from cryptography.hazmat.backends import default_backend
 
 
 def get_token_auth_header(request):
-    """Obtains the access token from the Authorization Header
-    """
-    auth = request.META.get("HTTP_AUTHORIZATION", None)
-    parts = auth.split()
-    token = parts[1]
+	auth = request.META.get("HTTP_AUTHORIZATION", None)
+	parts = auth.split()
 
-    return token
+	token = parts[1]
+	
+	return token
 
 
 def requires_scope(required_scope):
-    """Determines if the required scope is present in the access token
-    Args:
-        required_scope (str): The scope required to access the resource
-    """
-    def require_scope(f):
-        @wraps(f)
-        def decorated(*args, **kwargs):
-            token = get_token_auth_header(args[0])
-            AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
-            API_IDENTIFIER = os.environ.get('API_IDENTIFIER')
-            jsonurl = req.urlopen('https://' + AUTH0_DOMAIN + '/.well-known/jwks.json')
-            jwks = json.loads(jsonurl.read())
-            cert = '-----BEGIN CERTIFICATE-----\n' + jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
-            certificate = load_pem_x509_certificate(cert.encode('utf-8'), default_backend())
-            public_key = certificate.public_key()
-            decoded = jwt.decode(token, public_key, audience=API_IDENTIFIER, algorithms=['RS256'])
+	"""Determines if the required scope is present in the access token
+	Args:
+	    required_scope (str): The scope required to access the resource
+	"""
+	def require_scope(f):
+		@wraps(f)
+		def decorated(*args, **kwargs):
+			token = get_token_auth_header(args[0])
+			print(token)
+			AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
+			AUTH0_AUDIENCE = os.environ.get('AUTH0_AUDIENCE')
+			print(AUTH0_DOMAIN)
+			jsonurl = req.urlopen('https://' + AUTH0_DOMAIN + '/.well-known/jwks.json')
+			jwks = json.loads(jsonurl.read())
+			cert = '-----BEGIN CERTIFICATE-----\n' + jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
+			certificate = load_pem_x509_certificate(cert.encode('utf-8'), default_backend())
+			public_key = certificate.public_key()
+			try:
+				decoded = jwt.decode(token, public_key, audience=AUTH0_AUDIENCE, algorithms=['RS256'])
+			except Exception as e: 
+				raise PermissionDenied
+							
+			if decoded.get("scope"):
+				token_scopes = decoded["scope"].split()
+				print(token_scopes, required_scope)
+				for token_scope in token_scopes:
+					if token_scope == required_scope:
+						return f(*args, **kwargs)
+			response = JsonResponse({'message': 'You don\'t have access to this resource'})
+			response.status_code = 403
+			return response
+		return decorated
+	return require_scope
 
-            if decoded.get("scope"):
-                token_scopes = decoded["scope"].split()
-                for token_scope in token_scopes:
-                    if token_scope == required_scope:
-                        return f(*args, **kwargs)
-            response = JsonResponse({'message': 'You don\'t have access to this resource'})
-            response.status_code = 403
-            return response
-        return decorated
-    return require_scope
-
-
+@api_view(['GET'])
+@requires_scope('read:operator')
 class OperatorList(mixins.ListModelMixin,
 				  generics.GenericAPIView):
 	"""
