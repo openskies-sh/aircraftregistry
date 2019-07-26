@@ -26,14 +26,14 @@ from cryptography.hazmat.backends import default_backend
 from dotenv import load_dotenv, find_dotenv
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
-
+import textwrap
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '0o=aajzmkgwtb=in$6mn))k)krkf^_4o^@**xdj@z@2v@ro_e+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["local.test"]
 
 
 INSTALLED_APPS = [
@@ -43,11 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
-    'django_extensions',
-    'registry'
+    'rest_framework', 
+    'registry',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -66,46 +64,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.RemoteUserBackend',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-}
-
-
-ENV_FILE = find_dotenv()
-
-if ENV_FILE:
-    load_dotenv(ENV_FILE)
-
-JWT_AUDIENCE = None
-if os.environ.get('AUTH0_AUDIENCE'):
-    JWT_AUDIENCE = os.environ.get('AUTH0_AUDIENCE')
-
-AUTH_AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
-
-
-jsonurl = request.urlopen("https://"+AUTH_AUTH0_DOMAIN +"/.well-known/jwks.json")
-jwks = json.loads(jsonurl.read())
-cert = '-----BEGIN CERTIFICATE-----\n' + jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
-
-certificate = load_pem_x509_certificate(str.encode(cert), default_backend())
-publickey = certificate.public_key()
-
-JWT_AUTH = {
-    'JWT_PAYLOAD_GET_USERNAME_HANDLER':
-        'auth0authorization.user.jwt_get_username_from_payload_handler',
-    'JWT_PUBLIC_KEY': publickey,
-    'JWT_ALGORITHM': 'RS256',
-    'JWT_AUDIENCE': JWT_AUDIENCE,
-    'JWT_ISSUER': AUTH_AUTH0_DOMAIN,
-    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
-}
 
 ROOT_URLCONF = 'ohio.urls'
 
@@ -176,5 +134,51 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+CORS_ORIGIN_WHITELIST = [
+    'http://local.test:3010'
+]
+
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
+API_IDENTIFIER = os.environ.get('API_IDENTIFIER')
+PUBLIC_KEY = None
+JWT_ISSUER = None
+
+# If AUTH0_DOMAIN is defined, load the jwks.json
+if AUTH0_DOMAIN:
+    jsonurl = request.urlopen('https://' + AUTH0_DOMAIN + '/.well-known/jwks.json')
+    jwks = json.loads(jsonurl.read())
+    cert = '-----BEGIN CERTIFICATE-----\n' + jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
+    certificate = load_pem_x509_certificate(cert.encode('utf-8'), default_backend())
+    PUBLIC_KEY = certificate.public_key()
+    JWT_ISSUER = 'https://' + AUTH0_DOMAIN + '/'
+
+
+JWT_AUTH = {
+    'JWT_PAYLOAD_GET_USERNAME_HANDLER':
+        'auth0authorization.user.jwt_get_username_from_payload_handler',
+    'JWT_PUBLIC_KEY': PUBLIC_KEY,
+    'JWT_ALGORITHM': 'RS256',
+    'JWT_AUDIENCE': API_IDENTIFIER,
+    'JWT_ISSUER': JWT_ISSUER,
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+}
+
 
 django_heroku.settings(locals())
