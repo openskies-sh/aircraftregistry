@@ -125,6 +125,8 @@ Given the number of interested parties, there would be a set of information that
 
 In some cases, especially when the registry is large and complex with different actors, there might be a need to automate certain writing of data in the registry (e.g. insurance information). This information is received by third parties and then entered in the registry. Therefore, appropriate write privileges or roles should be built in the registry to ensure smooth operations. Regular audits and procedures to update databases must be established to ensure data consistency and error free dataset.
 
+### Authentication and Identity
+
 
 ### Information Transfer
 
@@ -150,6 +152,7 @@ We are thankful to Mr. Michael Rudolph ([michael.rudolph@dcaa.gov.ae](mailto:mic
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.6 | 5-August-2019 | Dr. Hrishikesh Ballal | Added Authenthication and Identity sections |
 | 0.5 | 4-June-2019 | Dr. Hrishikesh Ballal | Additions to field and integration comments from Fanni |
 | 0.4 | 15-December-2018 | Dr. Hrishikesh Ballal | Comments / Review from Fanni |
 | 0.3 | 28-June-2018 | Dr. Hrishikesh Ballal | Added section about registry entry, incorporated comments from external reviewss |
