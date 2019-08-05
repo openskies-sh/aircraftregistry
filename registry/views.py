@@ -41,10 +41,10 @@ def get_token_auth_header(request):
     return token
 
 
-def requires_scope(required_scope):
+def requires_scope(required_scopes):
     """Determines if the required scope is present in the access token
     Args:
-        required_scope (str): The scope required to access the resource
+        required_scopes (list): The scopes required to access the resource
     """
     def require_scope(f):
         @wraps(f)
@@ -60,9 +60,9 @@ def requires_scope(required_scope):
             decoded = jwt.decode(token, public_key, audience=API_IDENTIFIER, algorithms=['RS256'])           
             if decoded.get("scope"):
                 token_scopes = decoded["scope"].split()
-                for token_scope in token_scopes:
-                    if token_scope == required_scope:
-                        return f(*args, **kwargs)
+                token_scopes_set = set(token_scopes)
+                if set(required_scopes).issubset(token_scopes_set):
+	                return f(*args, **kwargs)
             response = JsonResponse({'message': 'You don\'t have access to this resource'})
             response.status_code = 403
             return response
@@ -71,7 +71,7 @@ def requires_scope(required_scope):
     return require_scope
 
 
-@method_decorator(requires_scope('read:operator'), name='dispatch')
+@method_decorator(requires_scope(['read:operator', 'read:operator:all']), name='dispatch')
 class OperatorList(mixins.ListModelMixin,
 				  generics.GenericAPIView):
 	"""
@@ -85,6 +85,7 @@ class OperatorList(mixins.ListModelMixin,
 		return self.list(request, *args, **kwargs)
 
 
+@method_decorator(requires_scope('read:operator'), name='dispatch')
 class OperatorDetail(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
