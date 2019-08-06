@@ -41,7 +41,7 @@ def get_token_auth_header(request):
     return token
 
 
-def requires_scope(required_scopes):
+def requires_scopes(required_scopes):
     """Determines if the required scope is present in the access token
     Args:
         required_scopes (list): The scopes required to access the resource
@@ -71,7 +71,7 @@ def requires_scope(required_scopes):
     return require_scope
 
 
-@method_decorator(requires_scope(['read:operator', 'read:operator:all']), name='dispatch')
+@method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
 class OperatorList(mixins.ListModelMixin,
 				  generics.GenericAPIView):
 	"""
@@ -85,7 +85,7 @@ class OperatorList(mixins.ListModelMixin,
 		return self.list(request, *args, **kwargs)
 
 
-@method_decorator(requires_scope('read:operator'), name='dispatch')
+@method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
 class OperatorDetail(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
@@ -145,6 +145,7 @@ class AircraftDetail(mixins.RetrieveModelMixin,
 	    return self.destroy(request, *args, **kwargs)
 
 
+@method_decorator(requires_scopes(['read:operator', 'read:operator:all', 'read:operator:privilaged']), name='dispatch')
 class OperatorDetailPrivilaged(mixins.RetrieveModelMixin,
                     generics.GenericAPIView):
 	"""
@@ -158,6 +159,7 @@ class OperatorDetailPrivilaged(mixins.RetrieveModelMixin,
 	    return self.retrieve(request, *args, **kwargs)
 
 
+@method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
 class OperatorAircraft(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
