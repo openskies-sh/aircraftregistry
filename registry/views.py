@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from registry.models import Activity, Authorization, Contact, Operator, Aircraft, Pilot, Test, TestValidity
-from registry.serializers import (ContactSerializer, OperatorSerializer, PilotSerializer, 
+from registry.serializers import (ContactSerializer, OperatorSerializer, PilotSerializer,
                                   PrivilagedContactSerializer, PrivilagedPilotSerializer,
                                   PrivilagedOperatorSerializer, AircraftSerializer, AircraftDetailSerializer, AircraftESNSerializer)
 from django.http import JsonResponse
@@ -25,6 +25,7 @@ from six.moves.urllib import request as req
 from functools import wraps
 import os
 import jwt
+from django.core.exceptions import PermissionDenied
 from functools import wraps
 from django.utils.decorators import method_decorator
 from cryptography.x509 import load_pem_x509_certificate
@@ -32,14 +33,18 @@ from cryptography.hazmat.backends import default_backend
 
 # Create your views here.
 
+
 def get_token_auth_header(request):
     """Obtains the access token from the Authorization Header
     """
-    auth = request.META.get("HTTP_AUTHORIZATION", None)
-    parts = auth.split()
-    token = parts[1]
-    return token
 
+    auth = request.META.get("HTTP_AUTHORIZATION", None)
+    if auth:
+        parts = auth.split()
+        token = parts[1]
+    else: 
+        raise PermissionDenied
+    return token
 
 def requires_scopes(required_scopes):
     """Determines if the required scope is present in the access token
@@ -54,15 +59,16 @@ def requires_scopes(required_scopes):
             API_IDENTIFIER = os.environ.get('API_IDENTIFIER')
             jsonurl = req.urlopen('https://' + AUTH0_DOMAIN + '/.well-known/jwks.json')
             jwks = json.loads(jsonurl.read())
-            cert = '-----BEGIN CERTIFICATE-----\n' + jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
+            cert = '-----BEGIN CERTIFICATE-----\n' + \
+                jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
             certificate = load_pem_x509_certificate(cert.encode('utf-8'), default_backend())
             public_key = certificate.public_key()
-            decoded = jwt.decode(token, public_key, audience=API_IDENTIFIER, algorithms=['RS256'])           
+            decoded = jwt.decode(token, public_key, audience=API_IDENTIFIER, algorithms=['RS256'])
             if decoded.get("scope"):
                 token_scopes = decoded["scope"].split()
                 token_scopes_set = set(token_scopes)
                 if set(required_scopes).issubset(token_scopes_set):
-	                return f(*args, **kwargs)
+                    return f(*args, **kwargs)
             response = JsonResponse({'message': 'You don\'t have access to this resource'})
             response.status_code = 403
             return response
@@ -73,230 +79,229 @@ def requires_scopes(required_scopes):
 
 @method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
 class OperatorList(mixins.ListModelMixin,
-				  generics.GenericAPIView):
-	"""
-	List all operators, or create a new operator.
-	"""
+                   generics.GenericAPIView):
+    """
+    List all operators, or create a new operator.
+    """
 
-	queryset = Operator.objects.all()
-	serializer_class = OperatorSerializer
+    queryset = Operator.objects.all()
+    serializer_class = OperatorSerializer
 
-	def get(self, request, *args, **kwargs):
-		return self.list(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
 @method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
 class OperatorDetail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
-	"""
-	Retrieve, update or delete a Operator instance.
-	"""
-	# authentication_classes = (SessionAuthentication,TokenAuthentication)
-	# permission_classes = (IsAuthenticated,)
+                     mixins.UpdateModelMixin,
+                     mixins.DestroyModelMixin,
+                     generics.GenericAPIView):
+    """
+    Retrieve, update or delete a Operator instance.
+    """
+    # authentication_classes = (SessionAuthentication,TokenAuthentication)
+    # permission_classes = (IsAuthenticated,)
 
-	queryset = Operator.objects.all()
-	serializer_class = OperatorSerializer
+    queryset = Operator.objects.all()
+    serializer_class = OperatorSerializer
 
-	def get(self, request, *args, **kwargs):
-	    return self.retrieve(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
-	def put(self, request, *args, **kwargs):
-		return self.update(request, *args, **kwargs)
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
-	def post(self, request, *args, **kwargs):
-		return self.create(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
-	def delete(self, request, *args, **kwargs):
-	    return self.destroy(request, *args, **kwargs)
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 
 class AircraftDetail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
-	"""
-	Retrieve, update or delete a Aircraft instance.
-	"""
-	# authentication_classes = (SessionAuthentication,TokenAuthentication)
-	# permission_classes = (IsAuthenticated,)
+                     mixins.UpdateModelMixin,
+                     mixins.DestroyModelMixin,
+                     generics.GenericAPIView):
+    """
+    Retrieve, update or delete a Aircraft instance.
+    """
+    # authentication_classes = (SessionAuthentication,TokenAuthentication)
+    # permission_classes = (IsAuthenticated,)
 
-	def get_Aircraft(self, pk):
-		try:
-			a = Aircraft.objects.get(id=pk)			
-		except Aircraft.DoesNotExist:					
-			raise Http404
-		else: 
-			return a
+    def get_Aircraft(self, pk):
+        try:
+            a = Aircraft.objects.get(id=pk)
+        except Aircraft.DoesNotExist:
+            raise Http404
+        else:
+            return a
 
-	def get(self, request, pk,format=None):
-		aircraft = self.get_Aircraft(pk)		
-		serializer = AircraftDetailSerializer(aircraft)
-		return Response(serializer.data)
+    def get(self, request, pk, format=None):
+        aircraft = self.get_Aircraft(pk)
+        serializer = AircraftDetailSerializer(aircraft)
+        return Response(serializer.data)
 
-	def put(self, request, *args, **kwargs):
-		return self.update(request, *args, **kwargs)
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
-	def post(self, request, *args, **kwargs):
-		return self.create(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
-	def delete(self, request, *args, **kwargs):
-	    return self.destroy(request, *args, **kwargs)
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 
 @method_decorator(requires_scopes(['read:operator', 'read:operator:all', 'read:operator:privilaged']), name='dispatch')
 class OperatorDetailPrivilaged(mixins.RetrieveModelMixin,
-                    generics.GenericAPIView):
-	"""
-	Retrieve, update or delete a Operator instance.
-	"""
-	
-	queryset = Operator.objects.all()
-	serializer_class = PrivilagedOperatorSerializer
+                               generics.GenericAPIView):
+    """
+    Retrieve, update or delete a Operator instance.
+    """
 
-	def get(self, request, *args, **kwargs):
-	    return self.retrieve(request, *args, **kwargs)
+    queryset = Operator.objects.all()
+    serializer_class = PrivilagedOperatorSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
 
 @method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
 class OperatorAircraft(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
-	"""
-	Retrieve, update or delete a Operator instance.
-	"""
-	
-	queryset = Aircraft.objects.all()
-	serializer_class = AircraftSerializer
+                       mixins.UpdateModelMixin,
+                       mixins.DestroyModelMixin,
+                       generics.GenericAPIView):
+    """
+    Retrieve, update or delete a Operator instance.
+    """
 
-	def get_Aircraft(self, pk):
-		try:
-			o =  Operator.objects.get(id=pk)
-		except Operator.DoesNotExist:
-			raise Http404
-		else: 
-			return Aircraft.objects.filter(operator = o)
+    queryset = Aircraft.objects.all()
+    serializer_class = AircraftSerializer
 
-	def get(self, request, pk,format=None):
-		aircraft = self.get_Aircraft(pk)
-		serializer = AircraftSerializer(aircraft, many=True)
+    def get_Aircraft(self, pk):
+        try:
+            o = Operator.objects.get(id=pk)
+        except Operator.DoesNotExist:
+            raise Http404
+        else:
+            return Aircraft.objects.filter(operator=o)
 
-		return Response(serializer.data)
+    def get(self, request, pk, format=None):
+        aircraft = self.get_Aircraft(pk)
+        serializer = AircraftSerializer(aircraft, many=True)
 
-	def post(self, request, *args, **kwargs):
-		return self.create(request, *args, **kwargs)
+        return Response(serializer.data)
 
-	def put(self, request, *args, **kwargs):
-	    return self.update(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
-	def delete(self, request, *args, **kwargs):
-	    return self.destroy(request, *args, **kwargs)
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 
 class AircraftESNDetails(mixins.RetrieveModelMixin,
-                    generics.GenericAPIView):
+                         generics.GenericAPIView):
 
     queryset = Aircraft.objects.all()
     serializer_class = AircraftESNSerializer
     lookup_field = 'esn'
-	
+
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
 
 class ContactList(mixins.ListModelMixin,
-				  generics.GenericAPIView):
-	"""
-	List all contacts in the database
-	"""
+                  generics.GenericAPIView):
+    """
+    List all contacts in the database
+    """
 
-	queryset = Contact.objects.all()
-	serializer_class = ContactSerializer
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
 
-	def get(self, request, *args, **kwargs):
-		return self.list(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
 class ContactDetail(mixins.RetrieveModelMixin,
                     generics.GenericAPIView):
-	"""
-	Retrieve, update or delete a Contact instance.
-	"""
-	
-	queryset = Contact.objects.all()
-	serializer_class = ContactSerializer
+    """
+    Retrieve, update or delete a Contact instance.
+    """
 
-	def get(self, request, *args, **kwargs):
-	    return self.retrieve(request, *args, **kwargs)
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
 
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
 
 class ContactDetailPrivilaged(mixins.RetrieveModelMixin,
-                    generics.GenericAPIView):
-	"""
-	Retrieve, update or delete a Contact instance.
-	"""
-	
-	queryset = Contact.objects.all()
-	serializer_class = PrivilagedContactSerializer
+                              generics.GenericAPIView):
+    """
+    Retrieve, update or delete a Contact instance.
+    """
 
-	def get(self, request, *args, **kwargs):
-	    return self.retrieve(request, *args, **kwargs)
+    queryset = Contact.objects.all()
+    serializer_class = PrivilagedContactSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
 
 class PilotList(mixins.ListModelMixin,
-				  generics.GenericAPIView):
-	"""
-	List all pilots in the database
-	"""
-	queryset = Pilot.objects.all()
-	serializer_class = PilotSerializer
+                generics.GenericAPIView):
+    """
+    List all pilots in the database
+    """
+    queryset = Pilot.objects.all()
+    serializer_class = PilotSerializer
 
-	def get(self, request, *args, **kwargs):
-		return self.list(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
 class PilotDetail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
-	"""
-	Retrieve, update or delete a Pilot instance.
-	"""
-	# authentication_classes = (SessionAuthentication,TokenAuthentication)
-	# permission_classes = (IsAuthenticated,)
+                  mixins.UpdateModelMixin,
+                  mixins.DestroyModelMixin,
+                  generics.GenericAPIView):
+    """
+    Retrieve, update or delete a Pilot instance.
+    """
+    # authentication_classes = (SessionAuthentication,TokenAuthentication)
+    # permission_classes = (IsAuthenticated,)
 
-	queryset = Pilot.objects.all()
-	serializer_class = PilotSerializer
+    queryset = Pilot.objects.all()
+    serializer_class = PilotSerializer
 
-	def get(self, request, *args, **kwargs):
-	    return self.retrieve(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
-	def put(self, request, *args, **kwargs):
-	    return self.update(request, *args, **kwargs)
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
-	def delete(self, request, *args, **kwargs):
-	    return self.destroy(request, *args, **kwargs)
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
 
 
 class PilotDetailPrivilaged(mixins.RetrieveModelMixin,
-                    generics.GenericAPIView):
-	"""
-	Retrieve, update or delete a Pilot instance.
-	"""
-	
+                            generics.GenericAPIView):
+    """
+    Retrieve, update or delete a Pilot instance.
+    """
 
-	queryset = Pilot.objects.all()
-	serializer_class = PrivilagedPilotSerializer
+    queryset = Pilot.objects.all()
+    serializer_class = PrivilagedPilotSerializer
 
-	def get(self, request, *args, **kwargs):
-	    return self.retrieve(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
 
 class HomeView(TemplateView):
-    template_name ='registry/index.html'
+    template_name = 'registry/index.html'
+
 
 class APIView(TemplateView):
-    template_name ='registry/api.html'
+    template_name = 'registry/api.html'
