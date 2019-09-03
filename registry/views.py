@@ -37,7 +37,6 @@ from cryptography.hazmat.backends import default_backend
 def get_token_auth_header(request):
     """Obtains the access token from the Authorization Header
     """
-
     auth = request.META.get("HTTP_AUTHORIZATION", None)
     if auth:
         parts = auth.split()
