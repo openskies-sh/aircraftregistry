@@ -48,7 +48,7 @@ def requires_scopes(required_scopes):
                 parts = auth.split()
                 token = parts[1]            
             else:             
-                response = JsonResponse({'message': 'You don\'t have access to this resource'})
+                response = JsonResponse({'detail': 'Authentication credentials were not provided'})
                 response.status_code = 403
                 return response
 
