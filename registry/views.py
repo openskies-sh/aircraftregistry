@@ -34,17 +34,6 @@ from cryptography.hazmat.backends import default_backend
 # Create your views here.
 
 
-def get_token_auth_header(request):
-    """Obtains the access token from the Authorization Header
-    """
-    auth = request.META.get("HTTP_AUTHORIZATION", None)
-    if auth:
-        parts = auth.split()
-        token = parts[1]
-    else: 
-        raise PermissionDenied
-    return token
-
 def requires_scopes(required_scopes):
     """Determines if the required scope is present in the access token
     Args:
@@ -53,7 +42,16 @@ def requires_scopes(required_scopes):
     def require_scope(f):
         @wraps(f)
         def decorated(*args, **kwargs):            
-            token = get_token_auth_header(args[0])
+            request = args[0]
+            auth = request.META.get("HTTP_AUTHORIZATION", None)
+            if auth:
+                parts = auth.split()
+                token = parts[1]            
+            else:             
+                response = JsonResponse({'message': 'You don\'t have access to this resource'})
+                response.status_code = 403
+                return response
+
             AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
             API_IDENTIFIER = os.environ.get('API_IDENTIFIER')
             jsonurl = req.urlopen('https://' + AUTH0_DOMAIN + '/.well-known/jwks.json')
