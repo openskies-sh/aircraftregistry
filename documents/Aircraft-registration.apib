@@ -112,7 +112,7 @@ Adds a new person (Contact or Pilot) to the database
 
 ### Add new address [POST]
 
-***Scope write:address write:privilaged***
+***Scope write:address write:address:privilaged***
 
 
 Adds a entry in the address database
@@ -331,7 +331,7 @@ Returns a list of operators in the registry
 
 ### Get a single operator [GET]
 
-***Scope read:operator***
+***Scope read:operator read:operator:all***
 
 
 Returns all the details of a single operator available in the database. The operator id is the unique ID assoicated with the operator that is in the form of a uuid.
@@ -521,7 +521,7 @@ Resources related to Contacts with in the Registration in the API
 
 ### List all contacts [GET]
 
-***Scope read:contact***
+***Scope read:contact read:operator:all read:person***
 
 Returns a list of contact people in the registry
     
@@ -583,7 +583,7 @@ Returns a list of contact people in the registry
 
 ### Get a single contact [GET]
 
-***Scope read:contact***
+***Scope read:contact read:person***
 
 Returns all the details of a single contact and basic information about the contact person available in the database. The contact id is the unique ID assoicated with a contact person for the operator that is in the form of a uuid.
 
@@ -637,7 +637,7 @@ Returns all the details of a single contact and basic information about the cont
 
 ### Get a single contact [GET]
 
-***Scope read:contact read:contact:all read:contact:privilaged***
+***Scope read:contact read:contact:all read:contact:privilaged read:address:all read:person:all***
 
 Returns all the details of a single contact and basic information about the contact person available in the database. The contact id is the unique ID assoicated with a contact person for the operator that is in the form of a uuid.
 
@@ -770,7 +770,7 @@ Resources related to Pilots with in the Registration in the API
 
 ### List all pilots [GET]
 
-***Scope read:pilot read:pilot:privilaged***
+***Scope read:pilot read:pilot:privilaged read:person:privilaged read:address:privilaged***
 
 
 Returns a list of pilots in the registry
@@ -896,7 +896,7 @@ Returns all the details of a single pilot and basic information about the pilot 
 
 ### Get a single pilot [GET]
 
-***Scope read:pilot read:pilot:all read:pilot:privilaged***
+***Scope read:pilot read:pilot:all read:pilot:privilaged read:person:privilaged read:address:privilaged***
 
 Returns all the details of a single pilot and basic information about the pilot available in the database. The pilot id is the unique ID assoicated with a pilot for the operator that is in the form of a uuid.
 
