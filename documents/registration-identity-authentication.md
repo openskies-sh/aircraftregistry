@@ -6,6 +6,7 @@ In this document, we will detail the roles and scopes implemented in the registr
 
 ## API End point scopes
 The list below details the registry endpoints as depicted in the API blue print and the associated scopes with it. 
+
 | [End point](https://droneregistry.herokuapp.com/api/v1/) |   | Scopes required |
 | --- | --- | --- |
 | [/person/add/](https://aircraftregistry.herokuapp.com/api/v1/#person-and-address-api-add-a-new-person-post) | POST | write:person write:person:privilaged |

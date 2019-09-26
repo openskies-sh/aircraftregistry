@@ -75,7 +75,8 @@ It should be expected that there would be many ways to identify and authenticate
 
 In some cases, the NAA might issue licenses, badges based on the registration data (e.g. in Dubai). In that case, additional data, such as a photo ID (i.e. driver's license, identity card or passport) might need to be linked to the registry. Also, in Dubai, a standardized QR-code is issued and the QR code contains information about the RPAS including its operator with its contact details, manufacturer, type, commission date and unique identifier.
 
-For more technical details about how scopes and roles are implemented in the sandbox registry, please review the Identity and Authentication document. 
+For more technical details about how scopes and roles are implemented in the sandbox registry, please review the [Identity and Authentication document](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md
+).
 
 ## Registry Data
 
