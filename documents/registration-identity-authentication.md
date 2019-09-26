@@ -5,7 +5,7 @@ In this document, we will detail the roles and scopes implemented in the registr
 
 
 ## API End point scopes
-The list below details the registry endpoints as depicted in the API blue print and the associated scopes with it. 
+The list below details the registry endpoints as depicted in the API blue print and the associated scopes with it.
 
 | [End point](https://droneregistry.herokuapp.com/api/v1/) |   | Scopes required |
 | --- | --- | --- |
@@ -35,6 +35,7 @@ Users will log into the regitry using a number of methods, it could be using the
 
 ## Roles
 Below are roles listed as they are developed in the registry. In addition, a link to the entites  
+
 | Name | Applicable Party | Description |
 | --- | --- | --- |
 | Drone Pilot | USS, Operator | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment. |
