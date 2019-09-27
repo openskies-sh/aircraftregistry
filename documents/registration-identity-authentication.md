@@ -29,14 +29,14 @@ The list below details the registry endpoints as depicted in the API blue print 
 | [/operators/{operatorid}/aircraft/update/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-update-registered-equipment-post) | POST | write:aircraft write:aircraft:privilaged |
 
 ## Identity / Login method
-Users will log into the regitry using a number of methods, it could be using their phone, email or corporate identity. Broadly, they will login and the get a JWT credentials. The credentials are decoded / de-encrypted on the registry server and return the data back. Broadly the flow looks like the following.
+Users will log into the regitry using a number of methods, it could be using their phone, email or corporate identity. Broadly, they will login and the get a JWT credentials. The credentials are decoded / de-encrypted on the registry server and return the data back. Broadly the flow looks like the following. 
 
 <img src="https://i.imgur.com/4rMHnJH.jpg" height="400">
 
 ## Roles
 Below are roles listed as they are developed in the registry. In the coming weeks, more roles will be developed as per individual and professional roles in the different organizations mentioned in the [Interested Parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md) section.
 
-| Name | Applicable Party | Description |
+| Name | Applicable Interested Party | Description |
 | --- | --- | --- |
 | Drone Pilot | USS, Operator | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment. |
 | Regulator Employee | ANSP, CAA | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry. |
