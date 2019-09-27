@@ -34,7 +34,7 @@ Users will log into the regitry using a number of methods, it could be using the
 <img src="https://i.imgur.com/4rMHnJH.jpg" height="400">
 
 ## Roles
-Below are roles listed as they are developed in the registry. In addition, a link to the entites  
+Below are roles listed as they are developed in the registry. In the coming weeks, more roles will be developed as per individual and professional roles in the different organizations mentioned in the [Interested Parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md) section.
 
 | Name | Applicable Party | Description |
 | --- | --- | --- |
