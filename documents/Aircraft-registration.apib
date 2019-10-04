@@ -1100,21 +1100,48 @@ List all aircraft in the registry
     + Headers
 
             Authorization: Token ABC123
+            
+    + Body
 
+            {
+              "manufacturer": "DJI",
+              "model": "Parrot",
+              "mass": "300",
+              "esn": "5G6532640000000000000000823050083171098833641055",
+              "maci_number": "3d9-23",
+              "status": "active"
+            }
+
+    + Schema
+
+            {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "type": "object",
+              "properties": {
+                "manufacturer": {
+                  "type": "string"
+                },
+                "model": {
+                  "type": "string"
+                },
+                "mass": {
+                  "type": "number"
+                },
+                "esn": {
+                  "type": "string"
+                },
+                "maci_number": {
+                  "type": "string"
+                }
+              }
+            }
+            
 + Response 200 (application/json)
 
-            [
-                {
-                    "id": "0797d9ef-02d9-41cf-93ff-439aaf1609ae",
-                    "registration_mark": null,
-                    "updated_at": "2018-09-04T12:20:30Z"
-                },
-                {
-                    "id": "0450852f-856e-4ecb-beb6-01ccded8529d",
-                    "registration_mark": null,
-                    "updated_at": "2018-09-04T12:20:30Z"
-                }
-            ]    
+            {
+              "equipment_id": "26bc3e7710ea"
+            }
+    
 
 ## Single Aircraft Details [/aircraft/{aircraftid}]
 
@@ -1166,39 +1193,17 @@ Get information about a Aircraft by looking up its ESN
 + Response 200 (application/json)
 
             {
-                "id": "0450852f-856e-4ecb-beb6-01ccded8529d",
-                "mass": 700,
-                "manufacturer": {
-                    "id": "4effcea2-e9d4-4696-891f-52d350d68a9f",
-                    "full_name": "Sensefly Drones Inc",
-                    "common_name": "Sensefly",
-                    "address": null,
-                    "role": "Manufacturer"
-                },
-                "model": "eBee",
+                "equipment_id": "26bc3e7710ea",
+                "manufacturer": "DJI",
+                "model": "Parrot",
+                "mass": "300",
                 "esn": "5G6532640000000000000000823050083171098833641055",
-                "maci_number": "eb30-4fb4-b12d",
-                "status": 1,
-                "registration_mark": null,
-                "category": "FIXED WING",
-                "type_certificate": {
-                    "id": "75f358c6-e8d3-46aa-a3de-172bdcea469d",
-                    "type_certificate_id": "1dc42b2a-7e3f-4e87-b23d-353ec8a06705",
-                    "type_certificate_issuing_country": "IRE",
-                    "type_certificate_holder": "Agro Products Inc.",
-                    "type_certificate_holder_country": "IRE"
-                },
-                "created_at": "2018-09-04T12:20:30Z",
-                "master_series": null,
-                "series": null,
-                "popular_name": null,
-                "sub_category": "UAV",
-                "photo": null,
-                "photo_small": null,
-                "icao_aircraft_type_designator": "STRM",
-                "max_certified_takeoff_weight": "0.000",
-                "updated_at": "2018-09-04T12:20:30Z"
+                "maci_number": "3d9-23",
+                "status": "active",
+                "created_at": "2011-04-10T20:09:31Z",
+                "updated_at": "2014-03-03T18:58:10Z"
             }
+    
 
 ## Update registered Aircraft [/operators/{operatorid}/aircraft/update/{aircraftid}]
 
