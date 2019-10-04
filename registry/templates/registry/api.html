@@ -766,18 +766,36 @@
 <p>Updates a pilot entry in the operator database with modified details.</p>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>pilotid</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>4f140e59</span></span><p>98c3-4bc2-bf30-eec982c132ad (string) - The ID of a pilot in the form of an string</p>
 </dd></dl></div></div></div><hr class="split"><div class="middle"><section id="aircraft-api" class="resource-group"><h2 class="group-heading">Aircraft API <a href="#aircraft-api" class="permalink">&para;</a></h2><p>Resources related to Aircraft with in the Registration in the API</p>
-</section></div><div class="middle"><div id="aircraft-api-all-aircraft" class="resource"><h3 class="resource-heading">All Aircraft <a href="#aircraft-api-all-aircraft" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://www.caa.com/api/v1</span>/aircrafts/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Token ABC123</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
-  {
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"0797d9ef-02d9-41cf-93ff-439aaf1609ae"</span></span>,
-    "<span class="hljs-attribute">registration_mark</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-    "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
-  </span>},
-  {
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"0450852f-856e-4ecb-beb6-01ccded8529d"</span></span>,
-    "<span class="hljs-attribute">registration_mark</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-    "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
+</section></div><div class="middle"><div id="aircraft-api-all-aircraft" class="resource"><h3 class="resource-heading">All Aircraft <a href="#aircraft-api-all-aircraft" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://www.caa.com/api/v1</span>/aircrafts/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Token ABC123</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">manufacturer</span>": <span class="hljs-value"><span class="hljs-string">"DJI"</span></span>,
+  "<span class="hljs-attribute">model</span>": <span class="hljs-value"><span class="hljs-string">"Parrot"</span></span>,
+  "<span class="hljs-attribute">mass</span>": <span class="hljs-value"><span class="hljs-string">"300"</span></span>,
+  "<span class="hljs-attribute">esn</span>": <span class="hljs-value"><span class="hljs-string">"5G6532640000000000000000823050083171098833641055"</span></span>,
+  "<span class="hljs-attribute">maci_number</span>": <span class="hljs-value"><span class="hljs-string">"3d9-23"</span></span>,
+  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"active"</span>
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">manufacturer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">model</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">mass</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">esn</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">maci_number</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+    </span>}
   </span>}
-]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="aircraft-api-all-aircraft-get" class="action get"><h4 class="action-heading"><div class="name">List all Aircraft</div><a href="#aircraft-api-all-aircraft-get" class="method get">GET</a><code class="uri">/aircrafts/</code></h4><p><strong><em>Scope read:aircraft</em></strong></p>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">equipment_id</span>": <span class="hljs-value"><span class="hljs-string">"26bc3e7710ea"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="aircraft-api-all-aircraft-get" class="action get"><h4 class="action-heading"><div class="name">List all Aircraft</div><a href="#aircraft-api-all-aircraft-get" class="method get">GET</a><code class="uri">/aircrafts/</code></h4><p><strong><em>Scope read:aircraft</em></strong></p>
 <p>List all aircraft in the registry</p>
 </div></div><hr class="split"><div class="middle"><div id="aircraft-api-single-aircraft-details" class="resource"><h3 class="resource-heading">Single Aircraft Details <a href="#aircraft-api-single-aircraft-details" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://www.caa.com/api/v1</span>/aircraft/<span class="hljs-attribute" title="aircraftid">4D4652310000000000000000313233343436373839414243</span></span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Token ABC123</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"inactive"</span>
@@ -802,38 +820,15 @@
     </span>}
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"0450852f-856e-4ecb-beb6-01ccded8529d"</span></span>,
-  "<span class="hljs-attribute">mass</span>": <span class="hljs-value"><span class="hljs-number">700</span></span>,
-  "<span class="hljs-attribute">manufacturer</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"4effcea2-e9d4-4696-891f-52d350d68a9f"</span></span>,
-    "<span class="hljs-attribute">full_name</span>": <span class="hljs-value"><span class="hljs-string">"Sensefly Drones Inc"</span></span>,
-    "<span class="hljs-attribute">common_name</span>": <span class="hljs-value"><span class="hljs-string">"Sensefly"</span></span>,
-    "<span class="hljs-attribute">address</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-    "<span class="hljs-attribute">role</span>": <span class="hljs-value"><span class="hljs-string">"Manufacturer"</span>
-  </span>}</span>,
-  "<span class="hljs-attribute">model</span>": <span class="hljs-value"><span class="hljs-string">"eBee"</span></span>,
+  "<span class="hljs-attribute">equipment_id</span>": <span class="hljs-value"><span class="hljs-string">"26bc3e7710ea"</span></span>,
+  "<span class="hljs-attribute">manufacturer</span>": <span class="hljs-value"><span class="hljs-string">"DJI"</span></span>,
+  "<span class="hljs-attribute">model</span>": <span class="hljs-value"><span class="hljs-string">"Parrot"</span></span>,
+  "<span class="hljs-attribute">mass</span>": <span class="hljs-value"><span class="hljs-string">"300"</span></span>,
   "<span class="hljs-attribute">esn</span>": <span class="hljs-value"><span class="hljs-string">"5G6532640000000000000000823050083171098833641055"</span></span>,
-  "<span class="hljs-attribute">maci_number</span>": <span class="hljs-value"><span class="hljs-string">"eb30-4fb4-b12d"</span></span>,
-  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-  "<span class="hljs-attribute">registration_mark</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-  "<span class="hljs-attribute">category</span>": <span class="hljs-value"><span class="hljs-string">"FIXED WING"</span></span>,
-  "<span class="hljs-attribute">type_certificate</span>": <span class="hljs-value">{
-    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"75f358c6-e8d3-46aa-a3de-172bdcea469d"</span></span>,
-    "<span class="hljs-attribute">type_certificate_id</span>": <span class="hljs-value"><span class="hljs-string">"1dc42b2a-7e3f-4e87-b23d-353ec8a06705"</span></span>,
-    "<span class="hljs-attribute">type_certificate_issuing_country</span>": <span class="hljs-value"><span class="hljs-string">"IRE"</span></span>,
-    "<span class="hljs-attribute">type_certificate_holder</span>": <span class="hljs-value"><span class="hljs-string">"Agro Products Inc."</span></span>,
-    "<span class="hljs-attribute">type_certificate_holder_country</span>": <span class="hljs-value"><span class="hljs-string">"IRE"</span>
-  </span>}</span>,
-  "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span></span>,
-  "<span class="hljs-attribute">master_series</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-  "<span class="hljs-attribute">series</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-  "<span class="hljs-attribute">popular_name</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-  "<span class="hljs-attribute">sub_category</span>": <span class="hljs-value"><span class="hljs-string">"UAV"</span></span>,
-  "<span class="hljs-attribute">photo</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-  "<span class="hljs-attribute">photo_small</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-  "<span class="hljs-attribute">icao_aircraft_type_designator</span>": <span class="hljs-value"><span class="hljs-string">"STRM"</span></span>,
-  "<span class="hljs-attribute">max_certified_takeoff_weight</span>": <span class="hljs-value"><span class="hljs-string">"0.000"</span></span>,
-  "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
+  "<span class="hljs-attribute">maci_number</span>": <span class="hljs-value"><span class="hljs-string">"3d9-23"</span></span>,
+  "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"active"</span></span>,
+  "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2011-04-10T20:09:31Z"</span></span>,
+  "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2014-03-03T18:58:10Z"</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="aircraft-api-single-aircraft-details-get" class="action get"><h4 class="action-heading"><div class="name">Get a single Aircraft</div><a href="#aircraft-api-single-aircraft-details-get" class="method get">GET</a><code class="uri">/aircraft/{aircraftid}</code></h4><p><strong><em>Scope read:aircraft read:aircraft:all read:aircraft:privilaged</em></strong></p>
 <p>Get information about a Aircraft by looking up its ESN</p>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>aircraftid</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>4D4652310000000000000000313233343436373839414243</span></span><p>ESN of Aircraft, ESN = [Manufacturer’s Code] [Serial Number] [IMEISV] [Performative Characteristics]</p>
