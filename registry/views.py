@@ -114,7 +114,7 @@ class OperatorDetail(mixins.RetrieveModelMixin,
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-
+@method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privilaged']), name='dispatch')
 class AircraftDetail(mixins.RetrieveModelMixin,
                      mixins.UpdateModelMixin,
                      mixins.DestroyModelMixin,
@@ -198,6 +198,7 @@ class OperatorAircraft(mixins.RetrieveModelMixin,
         return self.destroy(request, *args, **kwargs)
 
 
+@method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privilaged']), name='dispatch')
 class AircraftESNDetails(mixins.RetrieveModelMixin,
                          generics.GenericAPIView):
 
@@ -209,6 +210,7 @@ class AircraftESNDetails(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
 
 
+@method_decorator(requires_scopes(['read:contact','read:operator:all','read:person']), name='dispatch')
 class ContactList(mixins.ListModelMixin,
                   generics.GenericAPIView):
     """
@@ -221,7 +223,7 @@ class ContactList(mixins.ListModelMixin,
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
-
+@method_decorator(requires_scopes(['read:contact','read:person']), name='dispatch')
 class ContactDetail(mixins.RetrieveModelMixin,
                     generics.GenericAPIView):
     """
@@ -234,7 +236,7 @@ class ContactDetail(mixins.RetrieveModelMixin,
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-
+@method_decorator(requires_scopes(['read:contact','read:contact:all','read:contact:privilaged', 'read:address:all','read:person:all']), name='dispatch')
 class ContactDetailPrivilaged(mixins.RetrieveModelMixin,
                               generics.GenericAPIView):
     """
@@ -247,7 +249,7 @@ class ContactDetailPrivilaged(mixins.RetrieveModelMixin,
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-
+@method_decorator(requires_scopes(['read:pilot','read:person']), name='dispatch')
 class PilotList(mixins.ListModelMixin,
                 generics.GenericAPIView):
     """
@@ -260,6 +262,7 @@ class PilotList(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
 
+@method_decorator(requires_scopes(['read:pilot','read:person','read:pilot:privilaged','read:person:privilaged','read:address:privilaged']), name='dispatch')
 class PilotDetail(mixins.RetrieveModelMixin,
                   mixins.UpdateModelMixin,
                   mixins.DestroyModelMixin,
@@ -282,7 +285,7 @@ class PilotDetail(mixins.RetrieveModelMixin,
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-
+@method_decorator(requires_scopes(['read:pilot','read:person','read:address']), name='dispatch')
 class PilotDetailPrivilaged(mixins.RetrieveModelMixin,
                             generics.GenericAPIView):
     """
