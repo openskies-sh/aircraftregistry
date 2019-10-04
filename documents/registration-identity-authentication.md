@@ -1,4 +1,4 @@
-# Registration Identity and Authentication
+# Registry Identity and Authentication
 
 This document details the technical implementation of identity and authentication for the registry. We detail the roles, privilages and the permissions required to access data in the registry. The goal of this document is to propose standard roles and privilages associated with API end points to ensure registry interoperability and queries.
 
@@ -19,7 +19,6 @@ The registry by its nature will store personally identifiable information (PII) 
 
 ## Rate limits
 In the [API Specification](https://aircraftregistry.herokuapp.com/api/v1/), we have a section for rate limits for queries arising out of the registries. We acknowledge that rate limits is a vast topic in itself and for certain types of users (e.g. law enforcement), rate limits may need to be disabled. This is a decision that needs to be taken at the implementation level to ensure that the throttling is turned off. The section below makes note of such exception (see Notes column)
-
 
 ## API End point scopes
 The list below details the registry endpoints as depicted in the API blue print and the associated scopes with it.
