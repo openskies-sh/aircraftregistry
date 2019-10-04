@@ -881,13 +881,9 @@ Returns all the details of a single pilot and basic information about the pilot 
             
 + Response 200 (application/json)
 
-    + Attributes (object)
-        + id: 250FF (string, required)        
-        + tests: Modesta (array) - Array of tests for a pilot
-
-       
     + Body
-        
+
+    
             {
                 "id": "d4b8aa2c-0a52-4adc-806a-f363deb6a1e0",
                 "is_active": true,
@@ -904,7 +900,7 @@ Returns all the details of a single pilot and basic information about the pilot 
                     "updated_at": "2018-09-04T12:20:30Z"
                 }
             }
-
+            
 
 ## Privilaged Single Pilot Details [/pilots/{pilotid}/privilaged]
 
@@ -924,16 +920,6 @@ Returns all the details of a single pilot and basic information about the pilot 
             
 + Response 200 (application/json)
 
-    + Attributes (object)
-        + id: 250FF (string, required)
-        + operator: 250FF (string)- Registered name of the operator
-        + first_name: Modesta (string) - First Name of the pilot
-        + last_name: Strauss (string) - Last Name of the pilot
-        + phone_number: +499122992107 (string) - Phone number of the pilot
-        + email: dludgrove7@posterous.com (string) - email of the pilot
-
-            A valid email address per [IETF](https://tools.ietf.org/html/rfc5322)
-       
     + Body
 
             {
@@ -1213,6 +1199,3 @@ Updates a entry in the operator database with modified details.
                 "created_at": "2011-04-10T20:09:31Z",
                 "updated_at": "2014-03-03T18:58:10Z"
             }
-
-
-
