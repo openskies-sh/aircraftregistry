@@ -6,10 +6,10 @@
 <h4 id="header-pagination">Pagination <a class="permalink" href="#header-pagination" aria-hidden="true">¶</a></h4>
 <p>API responses are paginated. The default page size is 20; you can alter this by adding the <code>page_size</code> parameter to your request.</p>
 <h4 id="header-limits">Limits <a class="permalink" href="#header-limits" aria-hidden="true">¶</a></h4>
-<p>The API system throttles reqests to 1000 per hour for a particular token after which it will deny repeated requests for 30 minutes. If you require unthrottled access, please contact us using the <a href="https://www.caa.com/accounts/privilaged/">Special Access request</a></p>
+<p>The API system throttles reqests to 1000 per hour for a particular token after which it will deny repeated requests for 30 minutes. If you require unthrottled access, please contact us using the <a href="https://www.caa.com/accounts/privilaged/">Special Access request</a>. For more information please review <a href="https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md">Identity and Authentication</a> document.</p>
 <h4 id="header-response-codes">Response Codes <a class="permalink" href="#header-response-codes" aria-hidden="true">¶</a></h4>
 <p>The API uses standard HTTP response codes to communicate the status of the request. In general, 2xx codes signify success and 4xx codes signify failure, and these codes are generally associated with an invalid parameter being provided in the request. A 5xx code is a general server failure on our side. Please contact our support team if you encounter 5xx errors. Please refer to the Wikipedia page on <a href="https://www.wikipedia.org/HTTP_Respose_Codes/">HTTP request codes</a> for more information</p>
-</div><div class="middle"><section id="person-and-address-api" class="resource-group"><h2 class="group-heading">Person and Address API <a href="#person-and-address-api" class="permalink">&para;</a></h2><p>Resources related to adding person and addresses in the API</p>
+</div><div class="middle"><section id="person-and-address-api" class="resource-group"><h2 class="group-heading">Person and Address API <a href="#person-and-address-api" class="permalink">&para;</a></h2><p>Resources related to adding person and addresses in the Registration API</p>
 </section></div><div class="middle"><div id="person-and-address-api-add-a-new-person" class="resource"><h3 class="resource-heading">Add a new Person <a href="#person-and-address-api-add-a-new-person" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://www.caa.com/api/v1</span>/person/add/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Token ABC123</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Jeanie"</span></span>,
   "<span class="hljs-attribute">middle_name</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
@@ -62,16 +62,16 @@
   "<span class="hljs-attribute">date_of_birth</span>": <span class="hljs-value"><span class="hljs-string">"27-02-1989"</span></span>,
   "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-03-03T18:58:10Z"</span></span>,
   "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-03-03T18:58:10Z"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="person-and-address-api-add-a-new-person-post" class="action post"><h4 class="action-heading"><div class="name">Add new person</div><a href="#person-and-address-api-add-a-new-person-post" class="method post">POST</a><code class="uri">/person/add/</code></h4><p><strong><em>Scope write:person write:privilaged</em></strong></p>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="person-and-address-api-add-a-new-person-post" class="action post"><h4 class="action-heading"><div class="name">Add new person</div><a href="#person-and-address-api-add-a-new-person-post" class="method post">POST</a><code class="uri">/person/add/</code></h4><p><strong><em>Scope write:person write:person:privilaged</em></strong></p>
 <p>Adds a new person (Contact or Pilot) to the database</p>
 </div></div><hr class="split"><div class="middle"><div id="person-and-address-api-add-a-new-address" class="resource"><h3 class="resource-heading">Add a new Address <a href="#person-and-address-api-add-a-new-address" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://www.caa.com/api/v1</span>/address/add/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Token ABC123</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">address_line_1</span>": <span class="hljs-value"><span class="hljs-string">"107  West Lane, DALMICHY"</span></span>,
   "<span class="hljs-attribute">address_line_2</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
-  "<span class="hljs-attribute">address_line_3</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>, 
-  "<span class="hljs-attribute">postcode</span>": <span class="hljs-value"><span class="hljs-string">"D02 DH42"</span></span>, 
-  "<span class="hljs-attribute">city</span>": <span class="hljs-value"><span class="hljs-string">"SHARRINGTON"</span></span>, 
-  "<span class="hljs-attribute">country</span>": <span class="hljs-value"><span class="hljs-string">"GB"</span></span>, 
-}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">address_line_3</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+  "<span class="hljs-attribute">postcode</span>": <span class="hljs-value"><span class="hljs-string">"D02 DH42"</span></span>,
+  "<span class="hljs-attribute">city</span>": <span class="hljs-value"><span class="hljs-string">"SHARRINGTON"</span></span>,
+  "<span class="hljs-attribute">country</span>": <span class="hljs-value"><span class="hljs-string">"GB"</span>
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
@@ -112,16 +112,25 @@
 </section></div><div class="middle"><div id="operator-api-add-a-new-operator" class="resource"><h3 class="resource-heading">Add a new Operator <a href="#operator-api-add-a-new-operator" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://www.caa.com/api/v1</span>/operators/add/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Token ABC123</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">company_name</span>": <span class="hljs-value"><span class="hljs-string">"Aalto-korkeakoulusäätiö"</span></span>,
   "<span class="hljs-attribute">website</span>": <span class="hljs-value"><span class="hljs-string">"aalto.fi"</span></span>,
-  "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"mikko.raskinen@aalto.fi"</span></span>, 
-  "<span class="hljs-attribute">telephone</span>": <span class="hljs-value"><span class="hljs-string">"0505270032"</span></span>, 
-  "<span class="hljs-attribute">address</span>": <span class="hljs-value"><span class="hljs-string">"6249a5b0-d052-499e-8bcc-0c1f49e7b3b6"</span></span>, 
-  "<span class="hljs-attribute">type</span>":<span class="hljs-value"><span class="hljs-string">"open"</span></span>,
-  "<span class="hljs-attribute">operational_authorizations</span>": <span class="hljs-value">[<span class="hljs-string">"SORA"</span>]</span>,
-  "<span class="hljs-attribute">authorized_applications</span>": <span class="hljs-value">[<span class="hljs-string">"Photographing, videotaping"</span>,<span class="hljs-string">"Press, media"</span>,<span class="hljs-string">"Inspection of buildings or roofs"</span>,<span class="hljs-string">"Inspection of other constructions, e.g. bridges"</span>,<span class="hljs-string">"Measurement of mobile phone networks or other telecommunication networks"</span>,<span class="hljs-string">"RPAS flight training"</span>]</span>,
-  "<span class="hljs-attribute">vat_number</span>":<span class="hljs-value"><span class="hljs-string">"DE5396483F"</span></span>,
-  "<span class="hljs-attribute">company_number</span>":<span class="hljs-value"><span class="hljs-string">"45321"</span></span>,
-  "<span class="hljs-attribute">country</span>":<span class="hljs-value"><span class="hljs-string">"GB"</span>
-  <span class="hljs-string">"insurance_number"</span>:<span class="hljs-string">"349453EF"</span>
+  "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"mikko.raskinen@aalto.fi"</span></span>,
+  "<span class="hljs-attribute">telephone</span>": <span class="hljs-value"><span class="hljs-string">"0505270032"</span></span>,
+  "<span class="hljs-attribute">address</span>": <span class="hljs-value"><span class="hljs-string">"6249a5b0-d052-499e-8bcc-0c1f49e7b3b6"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"open"</span></span>,
+  "<span class="hljs-attribute">operational_authorizations</span>": <span class="hljs-value">[
+    <span class="hljs-string">"SORA"</span>
+  ]</span>,
+  "<span class="hljs-attribute">authorized_applications</span>": <span class="hljs-value">[
+    <span class="hljs-string">"Photographing, videotaping"</span>,
+    <span class="hljs-string">"Press, media"</span>,
+    <span class="hljs-string">"Inspection of buildings or roofs"</span>,
+    <span class="hljs-string">"Inspection of other constructions, e.g. bridges"</span>,
+    <span class="hljs-string">"Measurement of mobile phone networks or other telecommunication networks"</span>,
+    <span class="hljs-string">"RPAS flight training"</span>
+  ]</span>,
+  "<span class="hljs-attribute">vat_number</span>": <span class="hljs-value"><span class="hljs-string">"DE5396483F"</span></span>,
+  "<span class="hljs-attribute">company_number</span>": <span class="hljs-value"><span class="hljs-string">"45321"</span></span>,
+  "<span class="hljs-attribute">country</span>": <span class="hljs-value"><span class="hljs-string">"GB"</span></span>,
+  "<span class="hljs-attribute">insurance_number</span>": <span class="hljs-value"><span class="hljs-string">"349453EF"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -805,7 +814,7 @@
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="aircraft-api-single-aircraft-details-get" class="action get"><h4 class="action-heading"><div class="name">Get a single Aircraft</div><a href="#aircraft-api-single-aircraft-details-get" class="method get">GET</a><code class="uri">/aircraft/{aircraftid}</code></h4><p><strong><em>Scope read:aircraft</em></strong></p>
 <p>Get information about a Aircraft by looking up its ESN</p>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>aircraftid</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>4D4652310000000000000000313233343436373839414243</span></span><p>ESN of Aircraft, ESN = [Manufacturer’s Code] [Serial Number] [IMEISV] [Performative Characteristics]</p>
-</dd></dl></div></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 17 Sep 2019</p></div></div></div></div><script>/* eslint-env browser */
+</dd></dl></div></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 04 Oct 2019</p></div></div></div></div><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 

@@ -18,7 +18,7 @@ API responses are paginated. The default page size is 20; you can alter this by 
 
 
 #### Limits
-The API system throttles reqests to 1000 per hour for a particular token after which it will deny repeated requests for 30 minutes. If you require unthrottled access, please contact us using the [Special Access request](https://www.caa.com/accounts/privilaged/) 
+The API system throttles reqests to 1000 per hour for a particular token after which it will deny repeated requests for 30 minutes. If you require unthrottled access, please contact us using the [Special Access request](https://www.caa.com/accounts/privilaged/). For more information please review [Identity and Authentication](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md) document.
 
 
 #### Response Codes
@@ -26,7 +26,7 @@ The API uses standard HTTP response codes to communicate the status of the reque
 
 
 ## Group Person and Address API
-Resources related to adding person and addresses in the API
+Resources related to adding person and addresses in the Registration API
 
 
 ## Add a new Person [/person/add/]
@@ -130,7 +130,7 @@ Adds a entry in the address database
               "address_line_3": "", 
               "postcode": "D02 DH42", 
               "city": "SHARRINGTON", 
-              "country": "GB", 
+              "country": "GB"
             }
 
     + Schema
@@ -209,7 +209,7 @@ Adds a entry in the operator database
               "authorized_applications": ["Photographing, videotaping","Press, media","Inspection of buildings or roofs","Inspection of other constructions, e.g. bridges","Measurement of mobile phone networks or other telecommunication networks","RPAS flight training"],
               "vat_number":"DE5396483F",
               "company_number":"45321",
-              "country":"GB"
+              "country":"GB",
               "insurance_number":"349453EF"
             }
 
