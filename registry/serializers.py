@@ -213,19 +213,10 @@ class PilotDetailSerializer(serializers.ModelSerializer):
 
 
 class AircraftSerializer(serializers.ModelSerializer):
-    type_certificate = TypeCertificateSerializer(read_only= True)
     
-    category = serializers.SerializerMethodField()    
-    sub_category = serializers.SerializerMethodField()
-    def get_category(self, obj):
-        return obj.get_category_display()
-
-    def get_sub_category(self, obj):
-        return obj.get_sub_category_display()
-
     class Meta:
         model = Aircraft
-        fields = ('id', 'mass', 'manufacturer', 'model','esn','maci_number','status','registration_mark', 'category','type_certificate', 'created_at','master_series', 'series','popular_name','manufacturer','registration_mark',"photo", "photo_small", 'sub_category', 'icao_aircraft_type_designator', 'max_certified_takeoff_weight','updated_at')
+        fields = ('id', 'registration_mark','updated_at')
      
 class AircraftDetailSerializer(serializers.ModelSerializer):
     type_certificate = TypeCertificateSerializer(read_only= True)

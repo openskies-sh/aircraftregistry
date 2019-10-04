@@ -958,9 +958,9 @@ Returns all the details of a single pilot and basic information about the pilot 
                 },
             }
             
-## Single Pilot Details [/pilots/{pilotid}/privilaged]
+## Privilaged Single Pilot Details [/pilots/{pilotid}/privilaged]
 
-### Get a single pilot [GET]
+### Get a single pilot (Privilaged) [GET]
 
 ***Scope read:pilot read:pilot:all read:pilot:privilaged read:person:privilaged read:address:privilaged***
 
@@ -1083,68 +1083,50 @@ Updates a pilot entry in the operator database with modified details.
                 "phone_number": "+499122992107",
                 "updated_at": "2018-09-04T12:20:30Z"
             }
- 
 
 ## Group Aircraft API
-
-## Equipment registered by a Operator [/operators/{operatorid}/aircraft/]
-
-### List equipment registered [GET]
-
-***Scope read:aircraft read:aircraft:all read:aircraft:privilaged***
+Resources related to Aircraft with in the Registration in the API
 
 
-Returns a list of all the equipment active and inactive that are registered by the operator
+## All Aircraft [/aircrafts/]
 
-+ Parameters
-    + operatorid: 4f140e59-98c3-4bc2-bf30-eec982c132ad (string) - The ID of a operator in the form of an string
+### List all Aircraft [GET]
 
-+ Request
+***Scope read:aircraft***
+
+List all aircraft in the registry
+
++ Request (application/json)
     + Headers
 
             Authorization: Token ABC123
-            
+
 + Response 200 (application/json)
 
             [
                 {
                     "id": "0797d9ef-02d9-41cf-93ff-439aaf1609ae",
-                    "mass": 300,
-                    "manufacturer": "6f9cd973-15b9-4066-b4d0-1e8bbd0f279d",
-                    "model": "Parrot",
-                    "esn": "4D4652310000000000000000313233343436373839414243",
-                    "maci_number": "86ac-42dc-8d19",
-                    "status": 1,
                     "registration_mark": null,
-                    "category": "FIXED WING",
-                    "type_certificate": {
-                        "id": "75f358c6-e8d3-46aa-a3de-172bdcea469d",
-                        "type_certificate_id": "1dc42b2a-7e3f-4e87-b23d-353ec8a06705",
-                        "type_certificate_issuing_country": "IRE",
-                        "type_certificate_holder": "Agro Products Inc.",
-                        "type_certificate_holder_country": "IRE"
-                    },
-                    "created_at": "2018-09-04T12:20:30Z",
-                    "master_series": null,
-                    "series": null,
-                    "popular_name": "Parrot 2",
-                    "photo": null,
-                    "photo_small": null,
-                    "sub_category": "UAV",
-                    "icao_aircraft_type_designator": "HS20",
-                    "max_certified_takeoff_weight": "0.000",
+                    "updated_at": "2018-09-04T12:20:30Z"
+                },
+                {
+                    "id": "0450852f-856e-4ecb-beb6-01ccded8529d",
+                    "registration_mark": null,
                     "updated_at": "2018-09-04T12:20:30Z"
                 }
-            ]
+            ]    
 
-### Add a new Aircraft equipment [POST]
+## Single Aircraft Details [/aircraft/{aircraftid}]
 
-***Scope write:aircraft write:aircraft:privilaged***
+### Get a single Aircraft [GET]
 
-Add a new Aircraft assigned to the operator
+***Scope read:aircraft read:aircraft:all read:aircraft:privilaged***
+
+Get information about a Aircraft by looking up its ESN
 
 + Parameters
-    + operatorid: 4f140e59-98c3-4bc2-bf30-eec982c132ad (string) - The ID of a operator in the form of an string
+    + aircraftid: 4D4652310000000000000000313233343436373839414243 (string) - ESN of Aircraft, ESN = [Manufacturer’s Code] [Serial Number] [IMEISV] [Performative Characteristics]
+
     
 + Request (application/json)
     + Headers
@@ -1154,12 +1136,7 @@ Add a new Aircraft assigned to the operator
     + Body
 
             {
-              "manufacturer": "DJI",
-              "model": "Parrot",
-              "mass": "300",
-              "esn": "5G6532640000000000000000823050083171098833641055",
-              "maci_number": "3d9-23",
-              "status": "active"
+              "status": "inactive"
             }
 
     + Schema
@@ -1189,10 +1166,41 @@ Add a new Aircraft assigned to the operator
 + Response 200 (application/json)
 
             {
-              "equipment_id": "26bc3e7710ea"
+                "id": "0450852f-856e-4ecb-beb6-01ccded8529d",
+                "mass": 700,
+                "manufacturer": {
+                    "id": "4effcea2-e9d4-4696-891f-52d350d68a9f",
+                    "full_name": "Sensefly Drones Inc",
+                    "common_name": "Sensefly",
+                    "address": null,
+                    "role": "Manufacturer"
+                },
+                "model": "eBee",
+                "esn": "5G6532640000000000000000823050083171098833641055",
+                "maci_number": "eb30-4fb4-b12d",
+                "status": 1,
+                "registration_mark": null,
+                "category": "FIXED WING",
+                "type_certificate": {
+                    "id": "75f358c6-e8d3-46aa-a3de-172bdcea469d",
+                    "type_certificate_id": "1dc42b2a-7e3f-4e87-b23d-353ec8a06705",
+                    "type_certificate_issuing_country": "IRE",
+                    "type_certificate_holder": "Agro Products Inc.",
+                    "type_certificate_holder_country": "IRE"
+                },
+                "created_at": "2018-09-04T12:20:30Z",
+                "master_series": null,
+                "series": null,
+                "popular_name": null,
+                "sub_category": "UAV",
+                "photo": null,
+                "photo_small": null,
+                "icao_aircraft_type_designator": "STRM",
+                "max_certified_takeoff_weight": "0.000",
+                "updated_at": "2018-09-04T12:20:30Z"
             }
-    
-## Update registered equipment [/operators/{operatorid}/aircraft/update/{aircraftid}]
+
+## Update registered Aircraft [/operators/{operatorid}/aircraft/update/{aircraftid}]
 
 ### Update a existing Aircraft Detail [POST]
 
@@ -1254,65 +1262,4 @@ Updates a entry in the operator database with modified details.
             }
 
 
-
-## Single Aircraft Details [/aircraft/{aircraftid}]
-
-### Get a single Aircraft [GET]
-
-***Scope read:aircraft***
-
-Get information about a Aircraft by looking up its ESN
-
-+ Parameters
-    + aircraftid: 4D4652310000000000000000313233343436373839414243 (string) - ESN of Aircraft, ESN = [Manufacturer’s Code] [Serial Number] [IMEISV] [Performative Characteristics]
-
-    
-+ Request (application/json)
-    + Headers
-
-            Authorization: Token ABC123
-            
-    + Body
-
-            {
-              "status": "inactive"
-            }
-
-    + Schema
-
-            {
-              "$schema": "http://json-schema.org/draft-07/schema#",
-              "type": "object",
-              "properties": {
-                "manufacturer": {
-                  "type": "string"
-                },
-                "model": {
-                  "type": "string"
-                },
-                "mass": {
-                  "type": "number"
-                },
-                "esn": {
-                  "type": "string"
-                },
-                "maci_number": {
-                  "type": "string"
-                }
-              }
-            }
-            
-+ Response 200 (application/json)
-
-            {
-                "equipment_id": "26bc3e7710ea",
-                "manufacturer": "DJI",
-                "model": "Parrot",
-                "mass": "300",
-                "esn": "5G6532640000000000000000823050083171098833641055",
-                "maci_number": "3d9-23",
-                "status": "active",
-                "created_at": "2011-04-10T20:09:31Z",
-                "updated_at": "2014-03-03T18:58:10Z"
-            }
 

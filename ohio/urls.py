@@ -33,8 +33,9 @@ urlpatterns = [
     path('api/v1/operators/<uuid:pk>', registryviews.OperatorDetail.as_view()),    
     path('api/v1/operators/<uuid:pk>/privilaged', registryviews.OperatorDetailPrivilaged.as_view()),    
     path('api/v1/operators/<uuid:pk>/aircraft', registryviews.OperatorAircraft.as_view()),
-    
-    path('api/v1/aircraft/<esn>', registryviews.AircraftESNDetails.as_view()),    
+
+    path('api/v1/aircrafts', registryviews.AircraftList.as_view()),        
+    # path('api/v1/aircraft/<esn>', registryviews.AircraftESNDetails.as_view()),    
     path('api/v1/aircraft/<uuid:pk>', registryviews.AircraftDetail.as_view()),
     
     path('api/v1/contacts', registryviews.ContactList.as_view()),

@@ -17,7 +17,7 @@ from rest_framework.views import APIView
 
 from registry.models import Activity, Authorization, Contact, Operator, Aircraft, Pilot, Test, TestValidity
 from registry.serializers import (ContactSerializer, OperatorSerializer, PilotSerializer, PilotDetailSerializer,
-                                  PrivilagedContactSerializer, PrivilagedPilotSerializer,
+                                  PrivilagedContactSerializer, PrivilagedPilotSerializer, 
                                   PrivilagedOperatorSerializer, AircraftSerializer, AircraftDetailSerializer, AircraftESNSerializer)
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -113,6 +113,21 @@ class OperatorDetail(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+
+@method_decorator(requires_scopes(['read:aircraft']), name='dispatch')
+class AircraftList(mixins.ListModelMixin,
+                  generics.GenericAPIView):
+    """
+    List all aircrafts in the database
+    """
+
+    queryset = Aircraft.objects.all()
+    serializer_class = AircraftSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
 
 @method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privilaged']), name='dispatch')
 class AircraftDetail(mixins.RetrieveModelMixin,
