@@ -590,79 +590,21 @@
 </section></div><div class="middle"><div id="pilot-api-all-pilots" class="resource"><h3 class="resource-heading">All Pilots <a href="#pilot-api-all-pilots" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://www.caa.com/api/v1</span>/pilots/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Token ABC123</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
   {
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"d4b8aa2c-0a52-4adc-806a-f363deb6a1e0"</span></span>,
-    "<span class="hljs-attribute">operator</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"566d63bb-cb1c-42dc-9a51-baef0d0a8d04"</span></span>,
-      "<span class="hljs-attribute">company_name</span>": <span class="hljs-value"><span class="hljs-string">"Electric Inspection"</span></span>,
-      "<span class="hljs-attribute">website</span>": <span class="hljs-value"><span class="hljs-string">"electricinspection.com"</span></span>,
-      "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"contact@electricinspection.com"</span></span>,
-      "<span class="hljs-attribute">phone_number</span>": <span class="hljs-value"><span class="hljs-string">"+4930292487"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">is_active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">tests</span>": <span class="hljs-value">[]</span>,
-    "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"28b2f84c-6798-49b9-9114-97d1d14f49f2"</span></span>,
-      "<span class="hljs-attribute">address_line_1</span>": <span class="hljs-value"><span class="hljs-string">"8 Biscay Rd, Sorrento"</span></span>,
-      "<span class="hljs-attribute">address_line_2</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
-      "<span class="hljs-attribute">address_line_3</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
-      "<span class="hljs-attribute">postcode</span>": <span class="hljs-value"><span class="hljs-string">"NR24 7DZ"</span></span>,
-      "<span class="hljs-attribute">city</span>": <span class="hljs-value"><span class="hljs-string">"SHARRINGTON"</span></span>,
-      "<span class="hljs-attribute">country</span>": <span class="hljs-value"><span class="hljs-string">"GB"</span></span>,
-      "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span></span>,
-      "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">person</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"32153c3b-663b-41e4-afc2-47127a713704"</span></span>,
-      "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Mickey"</span></span>,
-      "<span class="hljs-attribute">middle_name</span>": <span class="hljs-value"><span class="hljs-string">"Richard"</span></span>,
-      "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Matheny"</span></span>,
-      "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"MickeyRMatheny@teleworm.us"</span></span>,
-      "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span></span>,
-      "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span></span>,
-    "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span></span>,
+    "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
   </span>},
   {
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"2f15a395-65a3-4a73-a492-57c7c470d527"</span></span>,
-    "<span class="hljs-attribute">operator</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"41174c3f-e86c-4e5a-a629-32d4d9da6011"</span></span>,
-      "<span class="hljs-attribute">company_name</span>": <span class="hljs-value"><span class="hljs-string">"A.J. August Photography"</span></span>,
-      "<span class="hljs-attribute">website</span>": <span class="hljs-value"><span class="hljs-string">"august.com"</span></span>,
-      "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"aj@august.com"</span></span>,
-      "<span class="hljs-attribute">phone_number</span>": <span class="hljs-value"><span class="hljs-string">"+497221816880"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">is_active</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
-    "<span class="hljs-attribute">tests</span>": <span class="hljs-value">[]</span>,
-    "<span class="hljs-attribute">address</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"1888d6a4-166c-47b3-b519-d78a5ca7b25d"</span></span>,
-      "<span class="hljs-attribute">address_line_1</span>": <span class="hljs-value"><span class="hljs-string">"107  West Lane, DALMICHY"</span></span>,
-      "<span class="hljs-attribute">address_line_2</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
-      "<span class="hljs-attribute">address_line_3</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
-      "<span class="hljs-attribute">postcode</span>": <span class="hljs-value"><span class="hljs-string">"D02 DH42"</span></span>,
-      "<span class="hljs-attribute">city</span>": <span class="hljs-value"><span class="hljs-string">"DALMICHY"</span></span>,
-      "<span class="hljs-attribute">country</span>": <span class="hljs-value"><span class="hljs-string">"CH"</span></span>,
-      "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span></span>,
-      "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">person</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"5434e29a-d7e6-4462-ab30-73c7a074915c"</span></span>,
-      "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Modesta"</span></span>,
-      "<span class="hljs-attribute">middle_name</span>": <span class="hljs-value"><span class="hljs-string">"Jeanie"</span></span>,
-      "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Strauss"</span></span>,
-      "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"dludgrove7@posterous.com"</span></span>,
-      "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span></span>,
-      "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span></span>,
-    "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span></span>,
+    "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2018-09-04T12:20:30Z"</span>
   </span>}
 ]</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="pilot-api-all-pilots-get" class="action get"><h4 class="action-heading"><div class="name">List all pilots</div><a href="#pilot-api-all-pilots-get" class="method get">GET</a><code class="uri">/pilots/</code></h4><p><strong><em>Scope read:pilot read:pilot:privilaged read:person:privilaged read:address:privilaged</em></strong></p>
 <p>Returns a list of pilots in the registry</p>
 </div></div><hr class="split"><div class="middle"><div id="pilot-api-single-pilot-details" class="resource"><h3 class="resource-heading">Single Pilot Details <a href="#pilot-api-single-pilot-details" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://www.caa.com/api/v1</span>/pilots/<span class="hljs-attribute" title="pilotid">4f140e59</span></span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Token ABC123</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"250FF"</span></span>,
-  "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Modesta"</span></span>,
-  "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Strauss"</span></span>,
-  "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"dludgrove7@posterous.com"</span>
+  "<span class="hljs-attribute">tests</span>": <span class="hljs-value">[
+    <span class="hljs-string">"Modesta"</span>
+  ]
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -670,23 +612,15 @@
     "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
     </span>}</span>,
-    "<span class="hljs-attribute">first_name</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"First Name of the pilot"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">last_name</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Last Name of the pilot"</span>
-    </span>}</span>,
-    "<span class="hljs-attribute">email</span>": <span class="hljs-value">{
-      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
-      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"email of the pilot\n\nA valid email address per [IETF](https://tools.ietf.org/html/rfc5322)"</span>
+    "<span class="hljs-attribute">tests</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Array of tests for a pilot"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
     <span class="hljs-string">"id"</span>
   ]
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="pilot-api-single-pilot-details-get" class="action get"><h4 class="action-heading"><div class="name">Get a single pilot</div><a href="#pilot-api-single-pilot-details-get" class="method get">GET</a><code class="uri">/pilots/{pilotid}</code></h4><p><strong><em>Scope read:pilot</em></strong></p>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="pilot-api-single-pilot-details-get" class="action get"><h4 class="action-heading"><div class="name">Get a single pilot</div><a href="#pilot-api-single-pilot-details-get" class="method get">GET</a><code class="uri">/pilots/{pilotid}</code></h4><p><strong><em>Scope read:pilot read:person read:person:all</em></strong></p>
 <p>Returns all the details of a single pilot and basic information about the pilot available in the database. The pilot id is the unique ID assoicated with a pilot for the operator that is in the form of a uuid.</p>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>pilotid</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>4f140e59</span></span><p>98c3-4bc2-bf30-eec982c132ad (string) - The ID of a pilot for a operator in the form of an string</p>
 </dd></dl></div></div></div><hr class="split"><div class="middle"><div id="pilot-api-privilaged-single-pilot-details" class="resource"><h3 class="resource-heading">Privilaged Single Pilot Details <a href="#pilot-api-privilaged-single-pilot-details" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://www.caa.com/api/v1</span>/pilots/<span class="hljs-attribute" title="pilotid">4f140e59</span>/privilaged</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Token ABC123</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{

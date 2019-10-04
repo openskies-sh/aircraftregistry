@@ -191,6 +191,25 @@ class PilotSerializer(serializers.ModelSerializer):
 
 
 class PilotDetailSerializer(serializers.ModelSerializer):
+    tests = serializers.SerializerMethodField()
+    person = PersonSerializer(read_only=True)
+    def get_tests(self, response):
+        p = Pilot.objects.get(id=response.id)
+        tests_validity = TestValidity.objects.filter(pilot=p)
+        all_tests = []
+        for cur_test_validity in tests_validity:
+            test_serializer = TestsSerializer(cur_test_validity.test)
+            all_tests.append({'expiration': cur_test_validity.expiration, 'test_details': test_serializer.data})
+        return all_tests
+
+    class Meta:
+        model = Pilot
+        fields = ('id','is_active','tests','updated_at','created_at','person')
+
+
+
+class PrivilagedPilotDetailSerializer(serializers.ModelSerializer):
+    ''' This is the privilaged serializer for Pilot specially for law enforcement and other privilaged interested parties '''
     person = PersonSerializer(read_only=True)
     address = AddressSerializer(read_only=True)
     operator = OperatorSerializer(read_only=True)
@@ -208,6 +227,7 @@ class PilotDetailSerializer(serializers.ModelSerializer):
         model = Pilot
         fields = ('id', 'operator','is_active','tests', 'address', 'person','updated_at','created_at')
 
+ 
 
 
 
@@ -241,25 +261,7 @@ class AircraftESNSerializer(serializers.ModelSerializer):
         fields = ('id', 'mass', 'manufacturer', 'model','esn','maci_number','status','created_at','updated_at')
         lookup_field = 'esn'
         
-        
-class PrivilagedPilotSerializer(serializers.ModelSerializer):
-    ''' This is the privilaged serializer for Pilot specially for law enforcement and other privilaged interested parties '''
-    tests = serializers.SerializerMethodField()
-    operator_id = serializers.SerializerMethodField()
-	
-    def get_tests(self, response):
-        tests = []
-        p = Pilot.objects.get(id=response.id)
-        all_tests = p.tests.all()
-        for test in all_tests: 
-            tests.append(test.name)
-        return tests
-
-    class Meta:
-        model = Pilot
-        fields = ('id',  'operator', 'first_name','is_active', 'last_name', 'email','phone_number','tests', 'updated_at')
-
-
+    
 class PrivilagedContactSerializer(serializers.ModelSerializer):
     ''' This is the privilaged serializer for Contact model specially for law enforcement and other privilaged interested parties '''
 

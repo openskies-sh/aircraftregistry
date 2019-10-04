@@ -17,7 +17,7 @@ from rest_framework.views import APIView
 
 from registry.models import Activity, Authorization, Contact, Operator, Aircraft, Pilot, Test, TestValidity
 from registry.serializers import (ContactSerializer, OperatorSerializer, PilotSerializer, PilotDetailSerializer,
-                                  PrivilagedContactSerializer, PrivilagedPilotSerializer, 
+                                  PrivilagedContactSerializer, PrivilagedPilotDetailSerializer, 
                                   PrivilagedOperatorSerializer, AircraftSerializer, AircraftDetailSerializer, AircraftESNSerializer)
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -74,7 +74,7 @@ def requires_scopes(required_scopes):
     return require_scope
 
 
-# @method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
+@method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
 class OperatorList(mixins.ListModelMixin,
                    generics.GenericAPIView):
     """
@@ -264,7 +264,7 @@ class ContactDetailPrivilaged(mixins.RetrieveModelMixin,
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-@method_decorator(requires_scopes(['read:pilot','read:person']), name='dispatch')
+@method_decorator(requires_scopes(['read:pilot']), name='dispatch')
 class PilotList(mixins.ListModelMixin,
                 generics.GenericAPIView):
     """
@@ -277,7 +277,7 @@ class PilotList(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:pilot','read:person','read:pilot:privilaged','read:person:privilaged','read:address:privilaged']), name='dispatch')
+@method_decorator(requires_scopes(['read:pilot','read:person']), name='dispatch')
 class PilotDetail(mixins.RetrieveModelMixin,
                   mixins.UpdateModelMixin,
                   mixins.DestroyModelMixin,
@@ -300,7 +300,7 @@ class PilotDetail(mixins.RetrieveModelMixin,
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-@method_decorator(requires_scopes(['read:pilot','read:person','read:address']), name='dispatch')
+@method_decorator(requires_scopes(['read:pilot','read:person','read:pilot:privilaged','read:person:privilaged','read:address:privilaged']), name='dispatch')
 class PilotDetailPrivilaged(mixins.RetrieveModelMixin,
                             generics.GenericAPIView):
     """
@@ -308,7 +308,7 @@ class PilotDetailPrivilaged(mixins.RetrieveModelMixin,
     """
 
     queryset = Pilot.objects.all()
-    serializer_class = PrivilagedPilotSerializer
+    serializer_class = PrivilagedPilotDetailSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
