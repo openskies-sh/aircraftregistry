@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from registry.models import Activity, Authorization, Contact, Operator, Aircraft, Pilot, Test, TestValidity
-from registry.serializers import (ContactSerializer, OperatorSerializer, PilotSerializer,
+from registry.serializers import (ContactSerializer, OperatorSerializer, PilotSerializer, PilotDetailSerializer,
                                   PrivilagedContactSerializer, PrivilagedPilotSerializer,
                                   PrivilagedOperatorSerializer, AircraftSerializer, AircraftDetailSerializer, AircraftESNSerializer)
 from django.http import JsonResponse
@@ -74,7 +74,7 @@ def requires_scopes(required_scopes):
     return require_scope
 
 
-@method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
+# @method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
 class OperatorList(mixins.ListModelMixin,
                    generics.GenericAPIView):
     """
@@ -274,7 +274,7 @@ class PilotDetail(mixins.RetrieveModelMixin,
     # permission_classes = (IsAuthenticated,)
 
     queryset = Pilot.objects.all()
-    serializer_class = PilotSerializer
+    serializer_class = PilotDetailSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

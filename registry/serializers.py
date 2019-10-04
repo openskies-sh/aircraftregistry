@@ -182,7 +182,15 @@ class ContactSerializer(serializers.ModelSerializer):
         model = Contact
         fields = ('id', 'operator','person','role_type', 'updated_at')
 
+
 class PilotSerializer(serializers.ModelSerializer):
+    ''' This is the default serializer for Operator '''
+    class Meta:
+        model = Pilot
+        fields = ('id','created_at', 'updated_at')
+
+
+class PilotDetailSerializer(serializers.ModelSerializer):
     person = PersonSerializer(read_only=True)
     address = AddressSerializer(read_only=True)
     operator = OperatorSerializer(read_only=True)
@@ -192,7 +200,7 @@ class PilotSerializer(serializers.ModelSerializer):
         tests_validity = TestValidity.objects.filter(pilot=p)
         all_tests = []
         for cur_test_validity in tests_validity:
-            test_serializer = GutmaDemoTestsSerializer(cur_test_validity.test)
+            test_serializer = TestsSerializer(cur_test_validity.test)
             all_tests.append({'expiration': cur_test_validity.expiration, 'test_details': test_serializer.data})
         return all_tests
 
