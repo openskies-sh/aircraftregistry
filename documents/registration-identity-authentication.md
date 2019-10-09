@@ -20,6 +20,28 @@ The registry by its nature will store personally identifiable information (PII) 
 ## Rate limits
 In the [API Specification](https://aircraftregistry.herokuapp.com/api/v1/), we have a section for rate limits for queries arising out of the registries. We acknowledge that rate limits is a vast topic in itself and for certain types of users (e.g. law enforcement), rate limits may need to be disabled. This is a decision that needs to be taken at the implementation level to ensure that the throttling is turned off. The section below makes note of such exception (see Notes column)
 
+## Payload and scopes
+In this section we will describe the payload that will be used to query the registry. Below is a decrypted JWT token (sent as a Bearer Token with the request) to demonstrate the details of the token. Here the `scope` is the most important parameter since it details the privilages allocated to the role.
+
+``` JSON
+{
+  "iss": "https://authprovider.auth0.com/",
+  "sub": "auth0|823f58f0ad39c506",
+  "aud": [
+    "https://authprovider/registration",
+    "https://authprovider.us.auth0.com/userinfo"
+  ],
+  "iat": 8644995913,
+  "exp": 7333345260,
+  "azp": "hnhxSbRihoaBXOsLcgy2nbIIEIZNt01U",
+  "scope": "read:operator read:operator:all read:operator:privilaged openid profile",
+  "permissions": []
+}
+
+```
+
+The goal here is to demonstrate how the JWT token encapsulates the role and scopes associated with the login. Once these scopes are passed to the registry then the appropriate response is received. 
+
 ## API End point scopes
 The list below details the registry endpoints as depicted in the API blue print and the associated scopes with it.
 
@@ -59,5 +81,6 @@ Below are roles listed as they are developed in the registry. In the coming week
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.3 | 9-October-2019 | Dr. Hrishikesh Ballal | Added Payload and scope section |
 | 0.2 | 4-October-2019 | Dr. Hrishikesh Ballal | Added sections about PII, Rate Limits|
 | 0.1 | 26-September-2019 | Dr. Hrishikesh Ballal | First draft |
