@@ -25,23 +25,23 @@ The list below details the registry endpoints as depicted in the API blue print 
 
 | [End point](https://droneregistry.herokuapp.com/api/v1/) |   | Scopes required | Notes |
 | --- | --- | --- | --- |
-| [/person/add/](https://aircraftregistry.herokuapp.com/api/v1/#person-and-address-api-add-a-new-person-post) | POST | write:person write:person:privilaged |  PII Information |
-| [/address/add/](https://aircraftregistry.herokuapp.com/api/v1/#person-and-address-api-add-a-new-address-post) | POST | write:address write:address:privilaged | PII Information  |
-| [/operators/add/](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-add-a-new-operator-post) | POST | write:operator write:operator:privilaged | PII Information |
-| [/operators/](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) | GET | read:operator | PII Information  |
-| [/operators/{operatorid}/](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) | GET | read:operator read:operator:all |- |
-| [/operators/{operatorid}/privilaged/](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-privilaged-single-operator-details-get) | GET | read:operator read:operator:all read:operator:privilaged read:operator:unthrottled | Some calls may need to be unthrottled |
-| [/operators/update/{operatorid}/](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-update-existing-operator-details-post) | POST | write:operator write:operator:privilaged | - |
-| [/contacts/](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-all-contacts-get) | GET | read:contact read:operator:all read:person | - |
-| [/contacts/{contactid}/](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-single-contact-details-get) | GET | read:contact read:person | - |
+| [/person/add](https://aircraftregistry.herokuapp.com/api/v1/#person-and-address-api-add-a-new-person-post) | POST | write:person write:person:privilaged |  PII Information |
+| [/address/add](https://aircraftregistry.herokuapp.com/api/v1/#person-and-address-api-add-a-new-address-post) | POST | write:address write:address:privilaged | PII Information  |
+| [/operators/add](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-add-a-new-operator-post) | POST | write:operator write:operator:privilaged | PII Information |
+| [/operators](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) | GET | read:operator | PII Information  |
+| [/operators/{operatorid}](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) | GET | read:operator read:operator:all |- |
+| [/operators/{operatorid}/privilaged](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-privilaged-single-operator-details-get) | GET | read:operator read:operator:all read:operator:privilaged read:operator:unthrottled | Some calls may need to be unthrottled |
+| [/operators/{operatorid}/aircraft](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator-post) | POST | read:operator read:operator:all read:aircraft read:aircraft:all| - |
+| [/operators/update/{operatorid}](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-update-existing-operator-details-post) | POST | write:operator write:operator:privilaged | - |
+| [/contacts](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-all-contacts-get) | GET | read:contact read:operator:all read:person | - |
+| [/contacts/{contactid}](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-single-contact-details-get) | GET | read:contact read:person | - |
 | [/contacts/{contactid}/privilaged](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-privilaged-single-contact-details-get) | GET | read:contact read:contact:all read:contact:privilaged read:address:all read:person:all | Some calls may need to be unthrottled |
-| [/pilots/](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-all-pilots-get) | GET | read:pilot read:pilot:privilaged read:person:privilaged read:address:privilaged | - |
-| [/pilots/{pilotid}/](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get) | GET | read:person read:pilot | - |
+| [/pilots](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-all-pilots-get) | GET | read:pilot read:pilot:privilaged read:person:privilaged read:address:privilaged | - |
+| [/pilots/{pilotid}](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get) | GET | read:person read:pilot | - |
 | [/pilots/{pilotid}/privilaged](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get-1) | GET | read:pilot read:pilot:all read:pilot:privilaged read:person:privilaged read:address:privilaged | Some calls may need to be unthrottled |
-| [/contacts/update/{pilotid}/](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-update-existing-pilot-details-post) | POST | write:pilot write:pilot:privilaged | - |
-| [/operators/{operatorid}/aircraft/](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator) | GET | read:aircraft read:aircraft:all read:aircraft:privilaged | - |
+| [/contacts/update/{pilotid}](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-update-existing-pilot-details-post) | POST | write:pilot write:pilot:privilaged | - |
+| [/operators/{operatorid}/aircraft](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator) | GET | read:aircraft read:aircraft:all read:aircraft:privilaged | - |
 | [/aircraft/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-single-aircraft-details-get) | GET | read:aircraft | - |
-| [/operators/{operatorid}/aircraft/](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator-post) | POST | write:aircraft write:aircraft:privilaged | - |
 | [/operators/{operatorid}/aircraft/update/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-update-registered-equipment-post) | POST | write:aircraft write:aircraft:privilaged | - |
 
 ## Roles

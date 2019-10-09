@@ -177,7 +177,7 @@ class OperatorDetailPrivilaged(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
+@method_decorator(requires_scopes(['read:operator', 'read:operator:all','read:aircraft','read:aircraft:all']), name='dispatch')
 class OperatorAircraft(mixins.RetrieveModelMixin,
                        mixins.UpdateModelMixin,
                        mixins.DestroyModelMixin,
