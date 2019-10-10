@@ -63,11 +63,10 @@ The following is a list of interested parties that would be interested in using 
 | Insurance Companies | Private Company | As RPAS get more popular, insurance might become mandatory, the companies might need to communicate with the registry to provide their insurance number. In addition, the registry would be interesting for insurance companies as a marketing opportunity to identify operators who existing insurance is expiring |
 | Marketing Companies | Private Company | For e.g. in jurisdictions with loose privacy regulations,   |
 | RPAS and Equipment Retailers | Private Company | Both of these could be mandated or interested in submitting registration information and also might be interested in querying which operators have access to their particular RPAS or UA |
-| RPAS Manufacturers | Private Company |
-| Banks / Financial Institutions | Private Company / Public Private Entity | Property check for credit evaluation, etc. |
-| Statistical Office | Private Company / Public Private Entity | To make stats out of data. |
-| IT providers | Private Company | Developing, managing, installing, maintaining, etc. the registry system. |
-
+| RPAS Manufacturers | Private Company | In some jurisdictions the drone manufacturers might be obliged to send information about the drone including things like Cryptographic Public Key linked to the equipment to the registry. |
+| Banks / Financial Institutions | Private Company / Public Private Entity | Property check for credit evaluation of drone pilots. Financing expensive equipment may require these institutions to have access to the data in the registry. |
+| Statistical Office | Private Company / Public Private Entity | A statistical agency / entity may use the data, flight logs, flight declarations and build and present detailed stats out of data. |
+| IT service providers | Private Company | Developing, managing, installing, maintaining, etc. the registry system or parts / components of it. |
 
 ## Registry Identification / Authentication
 

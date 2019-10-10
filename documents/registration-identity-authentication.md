@@ -71,7 +71,7 @@ Below are roles listed as they are developed in the registry. In the coming week
 
 | Name | Applicable Interested Party | Description | Notes |
 | --- | --- | --- | --- |
-| Drone Pilot | USS, Operator | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment. | --- |
+| Drone Pilot | USS Operator | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment. | --- |
 | Regulator Employee | ANSP, CAA | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry. | --- |
 | Regulator Manager | ANSP, CAA | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry. | May need unthrottled privilages |
 | Law Enforcement "Standard" | Police | A regular employee in law enforcement at a local level (e.g. on patrol). | --- |
