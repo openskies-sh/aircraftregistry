@@ -3,15 +3,16 @@
 This document details the technical implementation of identity and authentication for the registry. We detail the roles, privilages and the permissions required to access data in the registry. The goal of this document is to propose standard roles and privilages associated with API end points to ensure registry interoperability and queries.
 
 ## Identity / Login method
-Users will log into the regitry using a number of methods, it could be using their phone, email or corporate identity. Broadly, they will login and the get a JWT credentials. The credentials are decoded / de-encrypted on the registry server and return the data back. Broadly the flow looks like the following. For a broader application and how this ties into the ICAO Trust Framework, please review the "intergration" and how this is used in the [broker whitepaper](https://github.com/openskies-sh/aircraftregistry-broker/blob/master/documents/registration-brokerage-specification.md#integration-with-icao-trust-framework).
-
+Users will log into the regitry using a number of methods, it could be using their phone, email or corporate identity. Conceptually,  they will verify their identity using these methods and get encrypted tokens back (JavaScript Web Tokens for this document). The credentials are decoded / de-encrypted on the registry server and depending on the scopes present and the API called relevant the data is sent back as a standard HTTP response. Broadly the flow looks like the following diagram:
 <img src="https://i.imgur.com/4rMHnJH.jpg" height="400">
+
+For a broader application and how this ties into the ICAO Trust Framework, please review the "intergration" and how this is used in the [broker whitepaper](https://github.com/openskies-sh/aircraftregistry-broker/blob/master/documents/registration-brokerage-specification.md#integration-with-icao-trust-framework).
 
 Security is a vast and deep topic, for the purpose of this document, we are not advocating a specific security mechanism or technology. At this time (October-2019) it is unclear which security technology or mechanism is the most suitable for unmanned aviation. In the community there is a debate about whether OAUTH that powers major internet sites is good enough or "aviation grade". It is clear that security in aviation is a open topic that needs more research and more importantly testing.
 
-However, it is the opinion of the author that being stuck in the technology mechanism prevents us from moving forward. We are more interested in developing the API, the scopes, identities and  roles and permissions and assume that any current or future technology can be used to communicate and transmit this information. For the sake of performance testing, we are using Auth0 a commercial service and also building our own fork of the popular [ory/hydra](https://github.com/openskies-sh/hydra) server that is OpenID and OpenID Connect compatible.
+However, it is the opinion of the author that being stuck in the technology mechanism prevents us from moving forward. We are more interested in developing the API, the scopes, identities and  roles and permissions and assume that any current or future technology can be used to communicate and transmit this information. For the sake of performance testing, we are using Auth0.com a commercial service and also building our own fork of the popular [ory/hydra](https://github.com/openskies-sh/hydra) server that is OpenID and OpenID Connect compatible.
 
-We are not advocating any of these products or technologies but the goal is to have security and identity backend that can be changed / upgraded as this field evolves.
+We are not advocating any of these products or technologies but the goal is to have security and identity backend that can be changed / upgraded as this field evolves and there is a consensus on the appropriate technology for aviation.
 
 ## Registry tables and Scopes
 
