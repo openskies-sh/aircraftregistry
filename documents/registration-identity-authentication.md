@@ -15,7 +15,10 @@ We are not advocating any of these products or technologies but the goal is to h
 
 ## Registry tables and Scopes
 
-The registry backend specify a set of [tables](https://github.com/openskies-sh/aircraftregistry/blob/master/registry/models.py) for a database to hold data about the People, Operators and Equipment. In this section we specify the scopes for each table, generally, `all` scopes are for foreign keys of the table. There are `privilaged` scopes are for privilaged endpoints and interested parties.
+The registry backend specifies a set of [tables](https://github.com/openskies-sh/aircraftregistry/blob/master/registry/models.py) for a database to hold data about the People, Operators and Equipment. In this section we specify the scopes and privilages for each table, as expected every table as `read` and `write` scopes additionally, we specify the following:
+- `all` scopes are for foreign keys of the table
+- `privilaged` scopes are for privilaged endpoints and interested parties.
+- `unthrottled` scopes are for specific endpoints and roles (see below).
 
 | Table | Scopes assigned | Notes |
 | --- | --- | --- |
@@ -32,7 +35,7 @@ The registry backend specify a set of [tables](https://github.com/openskies-sh/a
 | Manufacturer |  __Read__: read:manufacturer read:manufacturer:all <br><br> __Write__: write:manufacturer | All information about manufacturers |
 | Aircraft |  __Read__: read:aircraft read:aircraft:all read:aircraft:all<br><br> __Write__: write:aircraft write:aircraft:all |  All information about drones and aircraft in the registry |
 
-In addition there are two scopes `privilaged` and `unthrottled` that are specific to the API endpoints (see below).
+
 
 ## Personally Identifiable Information
 
