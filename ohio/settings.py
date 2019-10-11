@@ -31,7 +31,7 @@ import textwrap
 SECRET_KEY = '0o=aajzmkgwtb=in$6mn))k)krkf^_4o^@**xdj@z@2v@ro_e+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 

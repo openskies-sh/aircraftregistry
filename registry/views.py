@@ -49,7 +49,7 @@ def requires_scopes(required_scopes):
                 token = parts[1]            
             else:             
                 response = JsonResponse({'detail': 'Authentication credentials were not provided'})
-                response.status_code = 403
+                response.status_code = 401
                 return response
 
             AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
@@ -60,7 +60,29 @@ def requires_scopes(required_scopes):
                 jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
             certificate = load_pem_x509_certificate(cert.encode('utf-8'), default_backend())
             public_key = certificate.public_key()
-            decoded = jwt.decode(token, public_key, audience=API_IDENTIFIER, algorithms=['RS256'])
+            try:
+                decoded = jwt.decode(token, public_key, audience=API_IDENTIFIER, algorithms=['RS256'])
+            except jwt.ExpiredSignatureError as es: 
+                response = JsonResponse({'detail': 'Token Signature has expired'})
+                response.status_code = 401
+                return response
+            except jwt.InvalidAudienceError as es: 
+                response = JsonResponse({'detail': 'Invalid audience in token'})
+                response.status_code = 401
+                return response
+            
+            except jwt.InvalidIssuerError as es: 
+                response = JsonResponse({'detail': 'Invalid issuer for token'})
+                response.status_code = 401
+                return response
+
+            except jwt.InvalidSignatureError as es: 
+                response = JsonResponse({'detail': 'Invalid signature in token'})
+                response.status_code = 401
+                return response
+            
+            
+
             if decoded.get("scope"):
                 token_scopes = decoded["scope"].split()
                 token_scopes_set = set(token_scopes)
