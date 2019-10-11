@@ -67,7 +67,7 @@ The list below details the registry endpoints as depicted in the API blue print 
 | [/operators/{operatorid}/aircraft/update/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-update-registered-equipment-post) | POST | write:aircraft write:aircraft:privilaged | - |
 
 ## Roles
-Below are roles listed as they are developed in the registry. In the coming weeks, more roles will be developed as per individual and professional roles in the different organizations mentioned in the [Interested Parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md) section.
+Below are roles listed as they are developed in the registry. In the coming weeks, more roles will be developed as per individual and professional roles in the different organizations mentioned in the [Interested Parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties) section.
 
 | Role Name | Applicable Interested Party | Description | Scopes to be assigned | Notes |
 | --- | --- | --- | --- | --- |
