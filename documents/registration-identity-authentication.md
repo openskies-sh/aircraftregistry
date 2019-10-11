@@ -13,6 +13,27 @@ However, it is the opinion of the author that being stuck in the technology mech
 
 We are not advocating any of these products or technologies but the goal is to have security and identity backend that can be changed / upgraded as this field evolves.
 
+## Registry tables and Scopes
+
+The registry backend specify a set of [tables](https://github.com/openskies-sh/aircraftregistry/blob/master/registry/models.py) for a database to hold data about the People, Operators and Equipment. In this section we specify the scopes for each table, generally, `all` scopes are for foreign keys of the table. There are `privilaged` scopes are for privilaged endpoints and interested parties.
+
+| Table | Scopes assigned | Notes |
+| --- | --- | --- |
+| Person | __Read__: read:person read:person:privilaged read:person:all <br><br> __Write__: write:person write:person:privilaged  |  All information about a person, it could be a contact, pilot etc. PII Information is in this capacity |
+| Address | __Read__: read:address read:address:privilaged read:address:all <br><br> __Write__: write:address write:address:privilaged |  All information about addresses, PII information  |
+| Activity | __Read__: read:acitivity <br><br> __Write__: write:activity |  All information about acitivites undertaken by a operator |
+| Authorization | __Read__: read:authorization <br><br> __Write__: write:authorization |  All information about authorization for the operator |
+| Operator | __Read__: read:operator read:operator:all read:operator:privilaged <br><br> __Write__: write:operator write:operator:privilaged |  All information related to a operators in the registry|
+| Contact | __Read__: read:contact read:contact:all read:contact:privilaged<br><br> __Write__: write:contact write:contact:privilaged |  All information about a contact. PII Information. |
+| Test |  __Read__: read:test <br><br> __Write__: write:test|  All information about tests taken by the pilot |
+| Pilot |  __Read__: read:pilot read:pilot:all read:pilot:privilaged<br><br> __Write__: write:pilot write:pilot:privilaged |  All information about the pilot, PII Information |
+| TestValidity |  __Read__: read:testvalidity read:testvalidity:all <br><br> __Write__: write:testvalidity write:testvalidity:all |  Write information about TestValidity|
+| TypeCertificate |  __Read__:read:typecertificate <br><br> __Write__: write:typecertificate |  All information about aircraft type certificate |
+| Manufacturer |  __Read__: read:manufacturer read:manufacturer:all <br><br> __Write__: write:manufacturer | All information about manufacturers |
+| Aircraft |  __Read__: read:aircraft read:aircraft:all read:aircraft:all<br><br> __Write__: write:aircraft write:aircraft:all |  All information about drones and aircraft in the registry |
+
+In addition there are two scopes `privilaged` and `unthrottled` that are specific to the API endpoints (see below).
+
 ## Personally Identifiable Information
 
 The registry by its nature will store personally identifiable information (PII) and the database will come under the local or national privacy and data protection laws. In many cases, this means that the data has to be stored in different servers and / or relevant security and isolation procedures must be followed. At a API level however, we propose different privilages, roles and scope that enable the interested party making the query to access this information.
@@ -45,7 +66,7 @@ The goal here is to demonstrate how the JWT token encapsulates the role and scop
 ## API End point scopes
 The list below details the registry endpoints as depicted in the API blue print and the associated scopes with it.
 
-| [End point](https://droneregistry.herokuapp.com/api/v1/) |   | Scopes required | Notes |
+| [End point](https://droneregistry.herokuapp.com/api/v1/) | Request Type  | Scopes required | Notes |
 | --- | --- | --- | --- |
 | [/person/add](https://aircraftregistry.herokuapp.com/api/v1/#person-and-address-api-add-a-new-person-post) | POST | write:person write:person:privilaged |  PII Information |
 | [/address/add](https://aircraftregistry.herokuapp.com/api/v1/#person-and-address-api-add-a-new-address-post) | POST | write:address write:address:privilaged | PII Information  |
@@ -67,7 +88,7 @@ The list below details the registry endpoints as depicted in the API blue print 
 | [/operators/{operatorid}/aircraft/update/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-update-registered-equipment-post) | POST | write:aircraft write:aircraft:privilaged | - |
 
 ## Roles
-Below are roles listed as they are developed in the registry. In the coming weeks, more roles will be developed as per individual and professional roles in the different organizations mentioned in the [Interested Parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties) section.
+Below are roles listed as they are developed in the registry. In the coming time, more roles will be developed as per individual and professional roles in the different organizations mentioned in the [Interested Parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties) section. These roles and scopes would have to be linked to the registry and 
 
 | Role Name | Applicable Interested Party | Description | Scopes to be assigned | Notes |
 | --- | --- | --- | --- | --- |
