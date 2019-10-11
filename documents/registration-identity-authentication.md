@@ -81,6 +81,7 @@ Below are roles listed as they are developed in the registry. In the coming week
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.4 | 11-October-2019 | Dr. Hrishikesh Ballal | Added scopes to roles |
 | 0.3 | 9-October-2019 | Dr. Hrishikesh Ballal | Added Payload and scope section |
 | 0.2 | 4-October-2019 | Dr. Hrishikesh Ballal | Added sections about PII, Rate Limits|
 | 0.1 | 26-September-2019 | Dr. Hrishikesh Ballal | First draft |
