@@ -3,7 +3,7 @@
 This document details the technical implementation of identity and authentication for the registry. We detail the roles, privilages and the permissions required to access data in the registry. The goal of this document is to propose standard roles and privilages associated with API end points to ensure registry interoperability and queries.
 
 ## Identity / Login method
-Users will log into the regitry using a number of methods, it could be using their phone, email or corporate identity. Broadly, they will login and the get a JWT credentials. The credentials are decoded / de-encrypted on the registry server and return the data back. Broadly the flow looks like the following.
+Users will log into the regitry using a number of methods, it could be using their phone, email or corporate identity. Broadly, they will login and the get a JWT credentials. The credentials are decoded / de-encrypted on the registry server and return the data back. Broadly the flow looks like the following. For a broader application and how this ties into the ICAO Trust Framework, please review how this is used in the [broker whitepaper](https://github.com/openskies-sh/aircraftregistry-broker/blob/master/documents/registration-brokerage-specification.md#integration-with-icao-trust-framework).
 
 <img src="https://i.imgur.com/4rMHnJH.jpg" height="400">
 
