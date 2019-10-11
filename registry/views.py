@@ -80,7 +80,11 @@ def requires_scopes(required_scopes):
                 response = JsonResponse({'detail': 'Invalid signature in token'})
                 response.status_code = 401
                 return response
-            
+            except Exception as e: 
+                response = JsonResponse({'detail': 'Invalid in token'})
+                response.status_code = 401
+                return response
+
             
 
             if decoded.get("scope"):
