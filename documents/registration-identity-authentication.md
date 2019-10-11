@@ -4,6 +4,8 @@ This document details the technical implementation of identity and authenticatio
 
 ## Identity / Login method
 Users will log into the regitry using a number of methods, it could be using their phone, email or corporate identity. Conceptually,  they will verify their identity using these methods and get encrypted tokens back (JavaScript Web Tokens for this document). The credentials are decoded / de-encrypted on the registry server and depending on the scopes present and the API called relevant the data is sent back as a standard HTTP response. Broadly the flow looks like the following diagram:
+
+
 <img src="https://i.imgur.com/4rMHnJH.jpg" height="400">
 
 For a broader application and how this ties into the ICAO Trust Framework, please review the "intergration" and how this is used in the [broker whitepaper](https://github.com/openskies-sh/aircraftregistry-broker/blob/master/documents/registration-brokerage-specification.md#integration-with-icao-trust-framework).
