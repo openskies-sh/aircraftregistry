@@ -69,13 +69,13 @@ The list below details the registry endpoints as depicted in the API blue print 
 ## Roles
 Below are roles listed as they are developed in the registry. In the coming weeks, more roles will be developed as per individual and professional roles in the different organizations mentioned in the [Interested Parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md) section.
 
-| Name | Applicable Interested Party | Description | Notes |
-| --- | --- | --- | --- |
-| Drone Pilot | USS Operator | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment. | --- |
-| Regulator Employee | ANSP, CAA | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry. | --- |
-| Regulator Manager | ANSP, CAA | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry. | May need unthrottled privilages |
-| Law Enforcement "Standard" | Police | A regular employee in law enforcement at a local level (e.g. on patrol). | --- |
-| Law Enforcement "Enhanced" | Police | A employee in law enforcement at a regional level (e.g. national investigation agency, head ). | May need unthrottled privilages |
+| Role Name | Applicable Interested Party | Description | Scopes to be assigned | Notes |
+| --- | --- | --- | --- | --- |
+| Drone Pilot | USS Operator | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment. | read:operator read:person read:pilot write:address write:person |
+| Regulator Employee | ANSP or CAA | A regular employee in a regulator or ANSP who needs see flights and view data in the registry (but not authorize them). | read:operator read:person write:operator write:contact read:contact:all read:person:all read:contact read:pilot read:pilot read:aircraft write:aircraft write:person read:activity read:authorization | --- |
+| Regulator Manager | ANSP or CAA | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry. | read:operator read:operator:all read:operator:privilaged read:person write:address write:address:privilaged write:operator:privilaged write:operator write:contact read:contact:all read:person:all read:contact read:pilot read:pilot:privilaged read:address:privilaged read:aircraft read:aircraft:privilaged write:aircraft write:aircraft:privilaged write:person write:authorization write:activity read:authorization read:activity | May need unthrottled privilages |
+| Law Enforcement "Standard" | Police | A regular employee in law enforcement at a local level (e.g. on patrol). | read:operator read:operator:all read:operator:privilaged read:person write:address write:address:privilaged write:operator:privilaged write:operator write:contact read:contact:all read:person:all read:contact read:pilot read:pilot:privilaged read:address:privilaged read:aircraft read:aircraft:privilaged write:aircraft write:aircraft:privilaged write:person write:authorization write:activity read:authorization read:activity |--- |
+| Law Enforcement "Enhanced" | Police | A employee in law enforcement at a regional level (e.g. national investigation agency, head ). | read:operator read:operator:all read:operator:privilaged read:person read:contact:all read:person:all read:contact read:pilot read:pilot:privilaged read:aircraft read:aircraft:privialged read:authorization read:activity read:unthrottled | May need unthrottled privilages |
 
 ## Revision History
 
