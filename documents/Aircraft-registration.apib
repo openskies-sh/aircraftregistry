@@ -6,7 +6,7 @@ HOST: https://www.caa.com/api/v1
 This API exposes registration data and additional functionalities to enable developers and interested parties build applications and tools that utilize the data in the registry. The API is JSON-rest based and uses standard HTTP response codes to indicate API errors and successes.
 
 #### Token Authentication
-The registration data is exposed via a OAUTH token that is linked to a user account on the system. To generate a OAUTH token and credentials you must first create a account and follow instructions at the [Token Generation page](https://www.caa.com/accounts/token/) on our website. If your account is for specific law enforcement bodies or regulatory bodies, you will be required to request privilaged access, you can get your tokens by filling out the form here [Privilaged Access request](https://www.caa.com/accounts/token/) 
+The registration data is exposed via a OAUTH token that is linked to a user account on the system. To generate a OAUTH token and credentials you must first create a account and follow instructions at the [Token Generation page](https://www.caa.com/accounts/token/) on our website. If your account is for specific law enforcement bodies or regulatory bodies, you will be required to request privileged access, you can get your tokens by filling out the form here [Privileged Access request](https://www.caa.com/accounts/token/) 
 
 #### Access
 This API supports only **https://** connections via the API. ``http://`` connections will be given a automatic HTTP 301 response.
@@ -15,7 +15,7 @@ This API supports only **https://** connections via the API. ``http://`` connect
 API responses are paginated. The default page size is 20; you can alter this by adding the ``page_size`` parameter to your request.
 
 #### Limits
-The API system throttles reqests to 1000 per hour for a particular token after which it will deny repeated requests for 30 minutes. If you require unthrottled access, please contact us using the [Special Access request](https://www.caa.com/accounts/privilaged/). For more information please review [Identity and Authentication](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md) document.
+The API system throttles reqests to 1000 per hour for a particular token after which it will deny repeated requests for 30 minutes. If you require unthrottled access, please contact us using the [Special Access request](https://www.caa.com/accounts/privileged/). For more information please review [Identity and Authentication](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md) document.
 
 #### Response Codes
 The API uses standard HTTP response codes to communicate the status of the request. In general, 2xx codes signify success and 4xx codes signify failure, and these codes are generally associated with an invalid parameter being provided in the request. A 5xx code is a general server failure on our side. Please contact our support team if you encounter 5xx errors. Please refer to the Wikipedia page on [HTTP request codes](https://www.wikipedia.org/HTTP_Respose_Codes/) for more information 
@@ -27,7 +27,7 @@ Resources related to adding person and addresses in the Registration API
 
 ### Add new person [POST]
 
-***Scope write:person write:person:privilaged***
+***Scope write:person write:person:privileged***
 
 Adds a new person (Contact or Pilot) to the database
 
@@ -106,7 +106,7 @@ Adds a new person (Contact or Pilot) to the database
 
 ### Add new address [POST]
 
-***Scope write:address write:address:privilaged***
+***Scope write:address write:address:privileged***
 
 
 Adds a entry in the address database
@@ -180,7 +180,7 @@ Resources related to Operator Registration in the API
 
 ### Add new operator [POST]
 
-***Scope write:operator write:operator:privilaged***
+***Scope write:operator write:operator:privileged***
 
 
 Adds a entry in the operator database
@@ -360,15 +360,15 @@ Returns all the details of a single operator available in the database. The oper
                 "phone_number": "+497221816880"
             }
 
-## Privilaged Single Operator Details [/operators/{operatorid}/privilaged/]
+## Privileged Single Operator Details [/operators/{operatorid}/privileged/]
 
-### Get a operator (Privilaged) [GET]
-
-
-***Scopes read:operator read:operator:all read:operator:privilaged***
+### Get a operator (Privileged) [GET]
 
 
-This is a privilaged request made by a interested party that has special access privilages in the registry. Returns all the details of a single operator available in the database. The operatorid is the unique ID assoicated with the operator that is in the form of a uuid. 
+***Scopes read:operator read:operator:all read:operator:privileged***
+
+
+This is a privileged request made by a interested party that has special access privileges in the registry. Returns all the details of a single operator available in the database. The operatorid is the unique ID assoicated with the operator that is in the form of a uuid. 
 
 + Parameters
     + operatorid: 4f140e59-98c3-4bc2-bf30-eec982c132ad (string) - The ID of a operator in the form of an string
@@ -428,7 +428,7 @@ This is a privilaged request made by a interested party that has special access 
 
 ### Update operator details [POST]
 
-***Scope write:operator write:operator:privilaged***
+***Scope write:operator write:operator:privileged***
 
 Updates a entry in the operator database with modified details. 
 
@@ -699,11 +699,11 @@ Returns all the details of a single contact and basic information about the cont
             }
 
 
-## Privilaged Single Contact Details [/contacts/{contactid}/privilaged]
+## Privileged Single Contact Details [/contacts/{contactid}/privileged]
 
 ### Get a single contact [GET]
 
-***Scope read:contact read:contact:all read:contact:privilaged read:address:all read:person:all***
+***Scope read:contact read:contact:all read:contact:privileged read:address:all read:person:all***
 
 Returns all the details of a single contact and basic information about the contact person available in the database. The contact id is the unique ID assoicated with a contact person for the operator that is in the form of a uuid.
 
@@ -774,7 +774,7 @@ Returns all the details of a single contact and basic information about the cont
 
 ### Update contact details [POST]
 
-***Scope write:contact write:contact:privilaged***
+***Scope write:contact write:contact:privileged***
 
 Updates a contact point entry in the operator database with modified details. 
 
@@ -836,7 +836,7 @@ Resources related to Pilots with in the Registration in the API
 
 ### List all pilots [GET]
 
-***Scope read:pilot read:pilot:privilaged read:person:privilaged read:address:privilaged***
+***Scope read:pilot read:pilot:privileged read:person:privileged read:address:privileged***
 
 
 Returns a list of pilots in the registry
@@ -902,11 +902,11 @@ Returns all the details of a single pilot and basic information about the pilot 
             }
             
 
-## Privilaged Single Pilot Details [/pilots/{pilotid}/privilaged]
+## Privileged Single Pilot Details [/pilots/{pilotid}/privileged]
 
-### Get a single pilot (Privilaged) [GET]
+### Get a single pilot (Privileged) [GET]
 
-***Scope read:pilot read:pilot:all read:pilot:privilaged read:person:privilaged read:address:privilaged***
+***Scope read:pilot read:pilot:all read:pilot:privileged read:person:privileged read:address:privileged***
 
 Returns all the details of a single pilot and basic information about the pilot available in the database. The pilot id is the unique ID assoicated with a pilot for the operator that is in the form of a uuid.
 
@@ -962,7 +962,7 @@ Returns all the details of a single pilot and basic information about the pilot 
 
 ### Update pilot details [POST]
 
-***Scope write:pilot write:pilot:privilaged***
+***Scope write:pilot write:pilot:privileged***
 
 Updates a pilot entry in the operator database with modified details. 
 
@@ -1081,7 +1081,7 @@ List all aircraft in the registry
 
 ### Get a single Aircraft [GET]
 
-***Scope read:aircraft read:aircraft:all read:aircraft:privilaged***
+***Scope read:aircraft read:aircraft:all read:aircraft:privileged***
 
 Get information about a Aircraft by looking up its ESN
 
@@ -1143,7 +1143,7 @@ Get information about a Aircraft by looking up its ESN
 
 ### Update a existing Aircraft Detail [POST]
 
-***Scope write:aircraft write:aircraft:privilaged***
+***Scope write:aircraft write:aircraft:privileged***
 
 Updates a entry in the operator database with modified details. 
 

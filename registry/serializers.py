@@ -77,8 +77,8 @@ class OperatorSerializer(serializers.ModelSerializer):
                   'phone_number', )
 
 
-class PrivilagedOperatorSerializer(serializers.ModelSerializer):
-    ''' This is the privilaged serializer for Operator specially for law enforcement and other privilaged operators '''
+class PrivilegedOperatorSerializer(serializers.ModelSerializer):
+    ''' This is the privileged serializer for Operator specially for law enforcement and other privileged operators '''
     authorized_activities = serializers.SerializerMethodField()
     operational_authorizations = serializers.SerializerMethodField()  
     address = AddressSerializer(read_only=True)
@@ -105,7 +105,7 @@ class PrivilagedOperatorSerializer(serializers.ModelSerializer):
 
 
 class OperatorSelectRelatedSerializer(serializers.ModelSerializer):
-    ''' This is the privilaged serializer for Operator specially for law enforcement and other privilaged operators '''
+    ''' This is the privileged serializer for Operator specially for law enforcement and other privileged operators '''
     authorized_activities = serializers.SerializerMethodField()
     operational_authorizations = serializers.SerializerMethodField()
     contacts = serializers.SerializerMethodField()
@@ -208,8 +208,8 @@ class PilotDetailSerializer(serializers.ModelSerializer):
 
 
 
-class PrivilagedPilotDetailSerializer(serializers.ModelSerializer):
-    ''' This is the privilaged serializer for Pilot specially for law enforcement and other privilaged interested parties '''
+class PrivilegedPilotDetailSerializer(serializers.ModelSerializer):
+    ''' This is the privileged serializer for Pilot specially for law enforcement and other privileged interested parties '''
     person = PersonSerializer(read_only=True)
     address = AddressSerializer(read_only=True)
     operator = OperatorSerializer(read_only=True)
@@ -262,8 +262,8 @@ class AircraftESNSerializer(serializers.ModelSerializer):
         lookup_field = 'esn'
         
     
-class PrivilagedContactSerializer(serializers.ModelSerializer):
-    ''' This is the privilaged serializer for Contact model specially for law enforcement and other privilaged interested parties '''
+class PrivilegedContactSerializer(serializers.ModelSerializer):
+    ''' This is the privileged serializer for Contact model specially for law enforcement and other privileged interested parties '''
 
     authorized_activities = serializers.SerializerMethodField()
     operational_authorizations = serializers.SerializerMethodField()

@@ -17,8 +17,8 @@ from rest_framework.views import APIView
 
 from registry.models import Activity, Authorization, Contact, Operator, Aircraft, Pilot, Test, TestValidity
 from registry.serializers import (ContactSerializer, OperatorSerializer, PilotSerializer, PilotDetailSerializer,
-                                  PrivilagedContactSerializer, PrivilagedPilotDetailSerializer, 
-                                  PrivilagedOperatorSerializer, AircraftSerializer, AircraftDetailSerializer, AircraftESNSerializer)
+                                  PrivilegedContactSerializer, PrivilegedPilotDetailSerializer, 
+                                  PrivilegedOperatorSerializer, AircraftSerializer, AircraftDetailSerializer, AircraftESNSerializer)
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from six.moves.urllib import request as req
@@ -155,7 +155,7 @@ class AircraftList(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privilaged']), name='dispatch')
+@method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privileged']), name='dispatch')
 class AircraftDetail(mixins.RetrieveModelMixin,
                      mixins.UpdateModelMixin,
                      mixins.DestroyModelMixin,
@@ -189,15 +189,15 @@ class AircraftDetail(mixins.RetrieveModelMixin,
         return self.destroy(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:operator', 'read:operator:all', 'read:operator:privilaged']), name='dispatch')
-class OperatorDetailPrivilaged(mixins.RetrieveModelMixin,
+@method_decorator(requires_scopes(['read:operator', 'read:operator:all', 'read:operator:privileged']), name='dispatch')
+class OperatorDetailPrivileged(mixins.RetrieveModelMixin,
                                generics.GenericAPIView):
     """
     Retrieve, update or delete a Operator instance.
     """
 
     queryset = Operator.objects.all()
-    serializer_class = PrivilagedOperatorSerializer
+    serializer_class = PrivilegedOperatorSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -239,7 +239,7 @@ class OperatorAircraft(mixins.RetrieveModelMixin,
         return self.destroy(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privilaged']), name='dispatch')
+@method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privileged']), name='dispatch')
 class AircraftESNDetails(mixins.RetrieveModelMixin,
                          generics.GenericAPIView):
 
@@ -277,15 +277,15 @@ class ContactDetail(mixins.RetrieveModelMixin,
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-@method_decorator(requires_scopes(['read:contact','read:contact:all','read:contact:privilaged', 'read:address:all','read:person:all']), name='dispatch')
-class ContactDetailPrivilaged(mixins.RetrieveModelMixin,
+@method_decorator(requires_scopes(['read:contact','read:contact:all','read:contact:privileged', 'read:address:all','read:person:all']), name='dispatch')
+class ContactDetailPrivileged(mixins.RetrieveModelMixin,
                               generics.GenericAPIView):
     """
     Retrieve, update or delete a Contact instance.
     """
 
     queryset = Contact.objects.all()
-    serializer_class = PrivilagedContactSerializer
+    serializer_class = PrivilegedContactSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -326,15 +326,15 @@ class PilotDetail(mixins.RetrieveModelMixin,
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-@method_decorator(requires_scopes(['read:pilot','read:person','read:pilot:privilaged','read:person:privilaged','read:address:privilaged']), name='dispatch')
-class PilotDetailPrivilaged(mixins.RetrieveModelMixin,
+@method_decorator(requires_scopes(['read:pilot','read:person','read:pilot:privileged','read:person:privileged','read:address:privileged']), name='dispatch')
+class PilotDetailPrivileged(mixins.RetrieveModelMixin,
                             generics.GenericAPIView):
     """
     Retrieve, update or delete a Pilot instance.
     """
 
     queryset = Pilot.objects.all()
-    serializer_class = PrivilagedPilotDetailSerializer
+    serializer_class = PrivilegedPilotDetailSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
