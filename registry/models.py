@@ -149,7 +149,7 @@ class Pilot(models.Model):
     photo_small = models.URLField(blank=True, null=True)
     address = models.ForeignKey(Address, models.CASCADE)
     identification_photo = models.URLField(blank=True, null=True)
-    identificationiphoto_small = models.URLField(blank=True, null=True)
+    identification_photo_small = models.URLField(blank=True, null=True)
     tests = models.ManyToManyField(Test, through ='TestValidity')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

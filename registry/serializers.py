@@ -225,10 +225,9 @@ class PrivilegedPilotDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Pilot
-        fields = ('id', 'operator','is_active','tests', 'address', 'person','updated_at','created_at')
+        fields = ('id', 'operator','is_active','tests', 'address', 'person','updated_at','created_at','photo_small','photo')
 
  
-
 
 
 
@@ -251,7 +250,7 @@ class AircraftDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Aircraft
-        fields = ('id', 'mass', 'manufacturer', 'model','esn','maci_number','status','registration_mark', 'category','type_certificate', 'created_at','master_series', 'series','popular_name','manufacturer','registration_mark','sub_category',"photo", "photo_small",'icao_aircraft_type_designator', 'max_certified_takeoff_weight','updated_at')
+        fields = ('id', 'mass', 'manufacturer', 'model','esn','maci_number','status','registration_mark', 'category','type_certificate', 'created_at','master_series', 'series','popular_name','manufacturer','registration_mark','sub_category',"photo", "photo_small",'icao_aircraft_type_designator', 'max_certified_takeoff_weight','updated_at','photo_small','photo')
            
 
 class AircraftESNSerializer(serializers.ModelSerializer):
