@@ -2,6 +2,13 @@
 
 The registry, identity and authentication associated with it are a series of complex interconnected technologies and processes that need comprehensive testing at different levels of the stack. The aim of this document is to develop use cases and the associated testing criteria for a operational, interoperable registry. This is a living document and additiional tests will be added over time. All testing code is available in the `tests` folder of the repository.
 
+## Goals
+The aim of these tests is to generate data and understand some key questions regarding the registry: 
+- *Required reliability*: On the internet, the amount of uptime required for service is critical and directly realted to the investment required to run the service. E.g. a 99.99% uptime vs a 99.99999% uptime requires different investment and technology strategy. In the context of the registry, the goal of these tests is to understand the level of SLA required for the service. 
+- *Response Probability*: In the context of the registry, metrics need to be developed as to how fast should the requestor expect a response and additionally the probability of receiving a respone. 
+- *Uptime and reliability*: Is the registry system mission crticial or safety critical? If the registry system fails what are the implications for the flights.
+- *Push vs Pull*: Should the registry be a pull system or a push i.e. can / should the vehicles "subscribe" to the registry for updates (e.g. via Server Push or WebSockets) or should they request data using normal requests (HTTP pull).
+
 ## Background
 It is understood that Civil Aviation Agencies (CAAs) will be building and aircraft and drone registries. At some point they will have to "bring this registry online". This means that automated queries will have to be made to the registry, from outside [interested parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties) to read data from it. Eventually, we forsee a situation where in addition to reading data from a registry, there will be automated operations to write data in it as well. We also foresee a situation where federated calls to the registry will have to be made where multiple registries have to be queried simultaneously. At this time (November 2019) the focus of the document is to develop tests and scenarios for reading data from the registry. 
 
@@ -29,7 +36,7 @@ At this initial stage, we will just test the read throughput, no write calls wil
 
 As is detailed in the API specification, we will query two API endpoints: 
 - [GET Operator Details](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) (regular and privileged): Get details for the operator, when used as a privileged request, additional information such as personally identifiable infromation about the operators is also passed. 
-- [GET Aircraft details](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-single-aircraft-details-get) (Privileged): A request is made to the registry using the Electronic Serial number and records about the aircraft are relayed back. 
+- [GET Aircraft details](file:///Users/hrishiballal/Documents/GitHub/aircraftregistry/registry/templates/registry/api.html#operator-api-single-operator-details-get) (regular and privileged): A request is made to the registry using the Electronic Serial number and records about the aircraft are relayed back. 
 
 | Test ID |  Test name | Objective | Duration | Details| Request payload |
 | --- | --- | --- | --- | --- | --- |
@@ -40,9 +47,12 @@ As is detailed in the API specification, we will query two API endpoints:
 | E | Authenticated requests | The primary goal here is to test token decryption performance on the server.  | Continuously for 2 mins.  | All the interested parties in the area will make authenticated requests to the registry for data from unprivileged endpoints. | TBC |
 | F | Unauthorized requests | The main goal of this is to test how quickly the server can respond to requests that are unauthorized (e.g. wrong scopes) | Continuously for 5 mins.  | The server will decrypt the token, read the scopes and then will understand that the requestor does not have the permission to view the data.  | TBC |
 
+## Acknowledgements 
+We are thankful to [Dr. Karthik Balakrishnan](https://www.linkedin.com/in/kbalakri) for his comments and review.
+
 ## Revision History
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
-| 0.2 | 11-November-2019 | Dr. Hrishikesh Ballal | First draft of tests to be impleneted |
+| 0.2 | 11-November-2019 | Dr. Hrishikesh Ballal | Added additional section about goals |
 | 0.1 | 5-November-2019 | Dr. Hrishikesh Ballal | First draft |
