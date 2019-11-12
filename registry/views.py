@@ -116,8 +116,6 @@ class OperatorList(mixins.ListModelMixin,
 
 @method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
 class OperatorDetail(mixins.RetrieveModelMixin,
-                     mixins.UpdateModelMixin,
-                     mixins.DestroyModelMixin,
                      generics.GenericAPIView):
     """
     Retrieve, update or delete a Operator instance.
@@ -130,16 +128,6 @@ class OperatorDetail(mixins.RetrieveModelMixin,
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-
 
 @method_decorator(requires_scopes(['read:aircraft']), name='dispatch')
 class AircraftList(mixins.ListModelMixin,
@@ -157,8 +145,6 @@ class AircraftList(mixins.ListModelMixin,
 
 @method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privileged']), name='dispatch')
 class AircraftDetail(mixins.RetrieveModelMixin,
-                     mixins.UpdateModelMixin,
-                     mixins.DestroyModelMixin,
                      generics.GenericAPIView):
     """
     Retrieve, update or delete a Aircraft instance.
@@ -179,14 +165,6 @@ class AircraftDetail(mixins.RetrieveModelMixin,
         serializer = AircraftDetailSerializer(aircraft)
         return Response(serializer.data)
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
 
 
 @method_decorator(requires_scopes(['read:operator', 'read:operator:all', 'read:operator:privileged']), name='dispatch')
@@ -205,8 +183,6 @@ class OperatorDetailPrivileged(mixins.RetrieveModelMixin,
 
 @method_decorator(requires_scopes(['read:operator', 'read:operator:all','read:aircraft','read:aircraft:all']), name='dispatch')
 class OperatorAircraft(mixins.RetrieveModelMixin,
-                       mixins.UpdateModelMixin,
-                       mixins.DestroyModelMixin,
                        generics.GenericAPIView):
     """
     Retrieve, update or delete a Operator instance.
@@ -228,15 +204,6 @@ class OperatorAircraft(mixins.RetrieveModelMixin,
         serializer = AircraftSerializer(aircraft, many=True)
 
         return Response(serializer.data)
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
 
 
 @method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privileged']), name='dispatch')
@@ -305,8 +272,6 @@ class PilotList(mixins.ListModelMixin,
 
 @method_decorator(requires_scopes(['read:pilot','read:person']), name='dispatch')
 class PilotDetail(mixins.RetrieveModelMixin,
-                  mixins.UpdateModelMixin,
-                  mixins.DestroyModelMixin,
                   generics.GenericAPIView):
     """
     Retrieve, update or delete a Pilot instance.
@@ -319,12 +284,7 @@ class PilotDetail(mixins.RetrieveModelMixin,
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
+        
 
 @method_decorator(requires_scopes(['read:pilot','read:person','read:pilot:privileged','read:person:privileged','read:address:privileged']), name='dispatch')
 class PilotDetailPrivileged(mixins.RetrieveModelMixin,
