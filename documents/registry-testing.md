@@ -41,8 +41,8 @@ At this initial stage, we will just test the read throughput, no write calls wil
 
 As is detailed in the API specification, we will query two API endpoints:
 
-- [GET Operator Details](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) (regular and privileged): Get details for the operator, when used as a privileged request, additional information such as personally identifiable infromation about the operators is also passed. 
-- [GET Aircraft details](file:///Users/hrishiballal/Documents/GitHub/aircraftregistry/registry/templates/registry/api.html#operator-api-single-operator-details-get) (regular and privileged): A request is made to the registry using the Electronic Serial number and records about the aircraft are relayed back. 
+- [GET Operator Details](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) (regular and privileged): Get details for the operator, when used as a privileged request, additional information such as personally identifiable infromation about the operators is also passed.
+- [GET Aircraft details](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-operator-aircraft-details-get) (regular and privileged): A request is made to the registry using the Electronic Serial number and records about the aircraft are relayed back. 
 
 | Test ID |  Test name | Objective | Duration | Details| Request payload |
 | --- | --- | --- | --- | --- | --- |
