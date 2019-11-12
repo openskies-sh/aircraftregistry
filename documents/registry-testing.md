@@ -3,16 +3,19 @@
 The registry, identity and authentication associated with it are a series of complex interconnected technologies and processes that need comprehensive testing at different levels of the stack. The aim of this document is to develop use cases and the associated testing criteria for a operational, interoperable registry. This is a living document and additiional tests will be added over time. All testing code is available in the `tests` folder of the repository.
 
 ## Goals
+
 The aim of these tests is to generate data and understand some key questions regarding the registry: 
-- *Required reliability*: On the internet, the amount of uptime required for service is critical and directly realted to the investment required to run the service. E.g. a 99.99% uptime vs a 99.99999% uptime requires different investment and technology strategy. In the context of the registry, the goal of these tests is to understand the level of SLA required for the service. 
+
+- *Required reliability*: On the internet, the amount of uptime required for service is critical and directly realted to the investment required to run the service. E.g. a 99.99% uptime vs a 99.99999% uptime requires different investment and technology strategy. In the context of the registry, the goal of these tests is to understand the level of SLA required for the service.
 - *Response Probability*: In the context of the registry, metrics need to be developed as to how fast should the requestor expect a response and additionally the probability of receiving a respone. 
 - *Uptime and reliability*: Is the registry system mission crticial or safety critical? If the registry system fails what are the implications for the flights.
 - *Push vs Pull*: Should the registry be a pull system or a push i.e. can / should the vehicles "subscribe" to the registry for updates (e.g. via Server Push or WebSockets) or should they request data using normal requests (HTTP pull).
 
 ## Background
+
 It is understood that Civil Aviation Agencies (CAAs) will be building and aircraft and drone registries. At some point they will have to "bring this registry online". This means that automated queries will have to be made to the registry, from outside [interested parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties) to read data from it. Eventually, we forsee a situation where in addition to reading data from a registry, there will be automated operations to write data in it as well. We also foresee a situation where federated calls to the registry will have to be made where multiple registries have to be queried simultaneously. At this time (November 2019) the focus of the document is to develop tests and scenarios for reading data from the registry. 
 
-Conceptually, there are three types of tests that can be undertaken in a registry: 
+Conceptually, there are three types of tests that can be undertaken in a registry:
 
  - *Stress tests*: This type of testing is about the fault tolerance of the system, understanding the redundancies in place and the scenarios where for e.g. the registry will return a HTTP 408 request time out response. It will broadly describe the limitations of the system. In the context of manned aviation it is the loss of communication between the ATC and the pilot, at which point a set of lost communication procedures will be needed to be followed. In the context of the registry stress testing is more about peak load conditions and also ensuring that requests are not "dropped" or lost given the database load. 
 
@@ -21,9 +24,11 @@ Conceptually, there are three types of tests that can be undertaken in a registr
  - *Load tests*: The primary goal of these tests is to find software bugs e.g. memory leaks, latency / congestion, buffer overflows etc.). This type of test checks the oeprating capacity of the registry system. This also tests multiple requests to the registry with different scopes requesting different type of information. 
 
 ## Scenarios
+
 To conduct comprehensive testing for the registry, we create a software simulation. The simulation essentially is digital environment with a number of drones and aerial vehicles flying in the sky. Out of these vehicles we would simulate a percent of them making calls to the registry at any given point of time. The simulation will also have a temporal compnent in that it will run for a certain amount of time: 15 minutes. In addtion to the vehicles making calls to the registry, we would like to simulate different stakeholders making requests for data into the registry. This woud be consistent with the 
 
 ## Test details
+
 At this initial stage, we will just test the read throughput, no write calls will be made to the registry. To set the scene, we will assume the following: 
 
 - Operational corridoor: _1 km length x 200 m width_
@@ -34,7 +39,8 @@ At this initial stage, we will just test the read throughput, no write calls wil
 - Number of police / law enforcement devices: _5_ 
 - Number of "common citizen" Remote ID requests: _20_
 
-As is detailed in the API specification, we will query two API endpoints: 
+As is detailed in the API specification, we will query two API endpoints:
+
 - [GET Operator Details](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) (regular and privileged): Get details for the operator, when used as a privileged request, additional information such as personally identifiable infromation about the operators is also passed. 
 - [GET Aircraft details](file:///Users/hrishiballal/Documents/GitHub/aircraftregistry/registry/templates/registry/api.html#operator-api-single-operator-details-get) (regular and privileged): A request is made to the registry using the Electronic Serial number and records about the aircraft are relayed back. 
 
@@ -48,6 +54,7 @@ As is detailed in the API specification, we will query two API endpoints:
 | F | Unauthorized requests | The main goal of this is to test how quickly the server can respond to requests that are unauthorized (e.g. wrong scopes) | Continuously for 5 mins.  | The server will decrypt the token, read the scopes and then will understand that the requestor does not have the permission to view the data.  | TBC |
 
 ## Acknowledgements 
+
 We are thankful to [Dr. Karthik Balakrishnan](https://www.linkedin.com/in/kbalakri) for his comments and review.
 
 ## Revision History
