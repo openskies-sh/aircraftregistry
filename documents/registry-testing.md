@@ -8,12 +8,12 @@ The aim of these tests is to generate data and understand some key questions reg
 
 - *Required reliability*: On the internet, the amount of uptime required for service is critical and directly realted to the investment required to run the service. E.g. a 99.99% uptime vs a 99.99999% uptime requires different investment and technology strategy. In the context of the registry, the goal of these tests is to understand the level of SLA required for the service.
 - *Response Probability*: In the context of the registry, metrics need to be developed as to how fast should the requestor expect a response and additionally the probability of receiving a respone. 
-- *Uptime and reliability*: Is the registry system mission crticial or safety critical? If the registry system fails what are the implications for the flights.
+- *Uptime*: Is the registry system mission crticial or safety critical? If the registry system fails what are the implications for the flights.
 - *Push vs Pull*: Should the registry be a pull system or a push i.e. can / should the vehicles "subscribe" to the registry for updates (e.g. via Server Push or WebSockets) or should they request data using normal requests (HTTP pull).
 
 ## Background
 
-It is understood that Civil Aviation Agencies (CAAs) will be building and aircraft and drone registries. At some point they will have to "bring this registry online". This means that automated queries will have to be made to the registry, from outside [interested parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties) to read data from it. Eventually, we forsee a situation where in addition to reading data from a registry, there will be automated operations to write data in it as well. We also foresee a situation where federated calls to the registry will have to be made where multiple registries have to be queried simultaneously. At this time (November 2019) the focus of the document is to develop tests and scenarios for reading data from the registry. 
+It is understood that Civil Aviation Agencies (CAAs) will be building aircraft and drone registries indedpendently using their existing IT contractors / procurement procedures. In a UTM context, the registry is a live and "active" member of the sky and the CAAs will have to "bring these registries online". This means that authenticated queries will have to be made to the registry by [interested parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties). We anticipate a bulk of these queries would be to read data from it. Eventually, we forsee a situation where in addition to reading data from a registry, there will be automated operations to write data in it as well. We also foresee a situation where federated calls to the registry will have to be made where multiple registries have to be queried simultaneously. At this time (November 2019) the focus of the document is to develop tests and scenarios for reading data from the registry and not on writing data into the registry. This is because we expect that writing data into sovereign registrties by third parties will not be allowed. 
 
 Conceptually, there are three types of tests that can be undertaken in a registry:
 
@@ -25,7 +25,7 @@ Conceptually, there are three types of tests that can be undertaken in a registr
 
 ## Scenarios
 
-To conduct comprehensive testing for the registry, we create a software simulation. The simulation essentially is digital environment with a number of drones and aerial vehicles flying in the sky. Out of these vehicles we would simulate a percent of them making calls to the registry at any given point of time. The simulation will also have a temporal compnent in that it will run for a certain amount of time: 15 minutes. In addtion to the vehicles making calls to the registry, we would like to simulate different stakeholders making requests for data into the registry. This woud be consistent with the 
+To conduct comprehensive testing for the registry, we will create a software simulation. The simulation essentially is digital environment with a number of drones and aerial vehicles flying in the sky. Out of these vehicles we would simulate a percent of them making calls to the registry at any given point of time. The simulation will also have a temporal compnent in that it will run for a certain amount of time: 15 minutes. In addtion to the vehicles making calls to the registry, we would like to simulate different stakeholders making requests for data into the registry.
 
 ## Test details
 
