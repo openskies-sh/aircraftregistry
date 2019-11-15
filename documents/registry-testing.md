@@ -6,9 +6,9 @@ The registry, identity and authentication associated with it are a series of com
 
 The aim of these tests is to generate data and understand some key questions regarding the registry: 
 
-- *Required reliability*: On the internet, the amount of uptime required for service is critical and directly realted to the investment required to run the service. E.g. a 99.99% uptime vs a 99.99999% uptime requires different investment and technology strategy. In the context of the registry, the goal of these tests is to understand the level of SLA required for the service.
-- *Response Probability*: In the context of the registry, metrics need to be developed as to how fast should the requestor expect a response and additionally the probability of receiving a respone. 
-- *Uptime*: Is the registry system mission crticial or safety critical? If the registry system fails what are the implications for the flights.
+- *Required reliability*: On the internet, the amount of uptime required for a service is critical and directly related to the investment required to run it. E.g. a 99.99% uptime vs a 99.99999% uptime requires different levels of investment and technology strategy. In the context of the registry, the goal of these tests is to understand the level of SLA required for the service in production.
+- *Response Probability*: In the context of the registry, metrics need to be developed as to how fast should the requestor expect a response and additionally the probability of receiving a respone in different network conditions. 
+- *Uptime*: Is the registry system mission crticial or safety critical service? If the registry system fails what are the implications for the flights, while not directly related to the technical performance of the registry, the tests need to develop a opinion on this topic. 
 - *Push vs Pull*: Should the registry be a pull system or a push i.e. can / should the vehicles "subscribe" to the registry for updates (e.g. via Server Push or WebSockets) or should they request data using normal requests (HTTP pull).
 
 ## Background
