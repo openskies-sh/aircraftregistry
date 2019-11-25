@@ -1,6 +1,8 @@
 # Comprehensive Registry Testing
 
+# Table of Contents
 - [Comprehensive Registry Testing](#comprehensive-registry-testing)
+- [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Goals](#goals)
   - [Scenarios](#scenarios)
@@ -8,7 +10,8 @@
   - [Appendix](#appendix)
   - [Acknowledgements](#acknowledgements)
   - [Revision History](#revision-history)
-
+  
+  
 ## Introduction
 
 The registry, identity and authentication associated with it are a series of complex interconnected technologies and processes that need comprehensive testing at different levels of the stack. The aim of this document is to develop use cases and the associated testing criteria for a operational, interoperable registry. This is a living document and additiional tests will be added over time. All testing code is available in the `tests` folder of the repository. 
