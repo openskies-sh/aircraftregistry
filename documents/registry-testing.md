@@ -10,8 +10,8 @@
   - [Appendix](#appendix)
   - [Acknowledgements](#acknowledgements)
   - [Revision History](#revision-history)
-  
-  
+ 
+
 ## Introduction
 
 The registry, identity and authentication associated with it are a series of complex interconnected technologies and processes that need comprehensive testing at different levels of the stack. The aim of this document is to develop use cases and the associated testing criteria for a operational, interoperable registry. This is a living document and additiional tests will be added over time. All testing code is available in the `tests` folder of the repository. 
@@ -66,7 +66,6 @@ Conceptually, there are three types of tests that can be undertaken in a registr
 - *Performance tests*: This test validates that the registry performs properly for the performance standard. This is a demonstration that the system meets the requirements of performance and response times. The main goal of performance tests is to develop redundancies and make appropriate changes in the software architecture.
 
 - *Load tests*: The primary goal of these tests is to find software bugs e.g. memory leaks, latency / congestion, buffer overflows etc.). This type of test checks the oeprating capacity of the registry system. This also tests multiple requests to the registry with different scopes requesting different type of information.
-
 
 ## Acknowledgements
 

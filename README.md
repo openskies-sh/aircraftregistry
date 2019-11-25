@@ -1,12 +1,18 @@
 **Update July 2019**: **This is a fork of the [GUTMA Registry](https://github.com/gutma-org/droneregistry) that is maintainted and adds Identity and Authentication to access the endpoints and also has an updated API**
 
+
+## Get started
+Registry and Registration systems in the context of unmanned aviation is a vast topic covering a number of things: security, identity etc. 
+
 ## Aircraft Registry Sandbox
 
-This is a sandbox for working on a interoperable drone registry. It has three main things, you can start in the order below: 
+This is a sandbox for working on a interoperable drone registry. It has three main things, you can start in the order below:
 
 1. [Registry Landscape Whitepaper](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md)
-2. Interoperatble API Specification, the technical specification for a registry. You can see the API specification and explore API endpoints at [https://aircraftregistry.herokuapp.com](https://aircraftregistry.herokuapp.com) 
-3. A working API with all endpoints and sample data for you to explore [https://aircraftregistry.herokuapp.com/api/v1/](https://aircraftregistry.herokuapp.com/api/v1/)
+   - [Registry Identity and Authentication](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md)
+   - [Comprehensive Registry Testing](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registry-testing.md)
+2. Interoperatble API Specification, the technical specification for a registry. You can see the API specification and explore API endpoints at [https://aircraftregistry.herokuapp.com](https://aircraftregistry.herokuapp.com)
+3. A working Frontend application with all endpoints and sample data for you to explore (you will need credentials from us) [Airegistry Frontend](https://airegister-fe.herokuapp.com/)
 
 ## Contribute
 
