@@ -1,5 +1,16 @@
 # Comprehensive Registry Testing
 
+- [Comprehensive Registry Testing](#comprehensive-registry-testing)
+  - [Introduction](#introduction)
+  - [Goals](#goals)
+  - [Scenarios](#scenarios)
+  - [Test details](#test-details)
+  - [Appendix](#appendix)
+  - [Acknowledgements](#acknowledgements)
+  - [Revision History](#revision-history)
+
+## Introduction
+
 The registry, identity and authentication associated with it are a series of complex interconnected technologies and processes that need comprehensive testing at different levels of the stack. The aim of this document is to develop use cases and the associated testing criteria for a operational, interoperable registry. This is a living document and additiional tests will be added over time. All testing code is available in the `tests` folder of the repository. 
 
 It is understood that Civil Aviation Agencies (CAAs) will be building and aircraft and drone registries. At some point they will have to "bring this registry online". This means that automated queries will have to be made to the registry, from outside [interested parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties) to read data from it. Eventually, we forsee a situation where in addition to reading data from a registry, there will be automated operations to write data in it as well. We also foresee a situation where federated calls to the registry will have to be made where multiple registries have to be queried simultaneously. At this time (November 2019) the focus of the document is to develop tests and scenarios for reading data from the registry.
