@@ -7,6 +7,7 @@
   - [Background](#background)
   - [Goals](#goals)
   - [Security Standards Compliance](#security-standards-compliance)
+    - [Security and Impact assessmetnt of registry data per-end point](#security-and-impact-assessmetnt-of-registry-data-per-end-point)
   - [Scenarios](#scenarios)
   - [Test details](#test-details)
   - [Results](#results)
@@ -38,6 +39,23 @@ There are two major goals of this document, to develop a assessment of the secur
 For the purpose of testing the registry, we have reviewed two specific documents / publiccations from National Institute of Standards and Technology (NIST). They are:
 - [Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v1r1.pdf)
 - [NIST Digital Identity Guidelines](https://pages.nist.gov/800-63-3/sp800-63-3.html#sec4)
+
+### Security and Impact assessmetnt of registry data per-end point
+
+| [End point](https://droneregistry.herokuapp.com/api/v1/) |  Security Category |
+| --- | --- |
+| [/operators](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) |   -  |
+| [/operators/{operatorid}](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) | - |
+| [/operators/{operatorid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-privilaged-single-operator-details-get) | - |
+| [/contacts](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-all-contacts-get) |  - |
+| [/contacts/{contactid}](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-single-contact-details-get) |  - |
+| [/contacts/{contactid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-privilaged-single-contact-details-get) | - |
+| [/pilots](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-all-pilots-get) | - |
+| [/pilots/{pilotid}](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get) |  - |
+| [/pilots/{pilotid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get-1) |  - |
+| [/operators/{operatorid}/aircraft](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator) | - |
+| [/aircraft/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-single-aircraft-details-get) | - |
+
 
 ## Scenarios
 
