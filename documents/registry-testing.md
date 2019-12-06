@@ -11,6 +11,7 @@
   - [Scenarios](#scenarios)
   - [Test details](#test-details)
   - [Results](#results)
+  - [References](#references)
   - [Appendix](#appendix)
   - [Acknowledgements](#acknowledgements)
   - [Revision History](#revision-history)
@@ -36,26 +37,23 @@ There are two major goals of this document, to develop a assessment of the secur
 - *Push vs Pull*: Should the registry be a pull system or a push i.e. can / should the vehicles "subscribe" to the registry for updates (e.g. via Server Push or WebSockets) or should they request data using normal requests (HTTP pull).
 
 ## Security Standards Compliance
-For the purpose of testing the registry, we have reviewed two specific documents / publiccations from National Institute of Standards and Technology (NIST). They are:
-- [Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v1r1.pdf)
-- [NIST Digital Identity Guidelines](https://pages.nist.gov/800-63-3/sp800-63-3.html#sec4)
+For the purpose of testing the registry, we have reviewed two specific documents / publiccations from National Institute of Standards and Technology (NIST). [1][2][3]
 
 ### Security and Impact assessmetnt of registry data per-end point
 
 | [End point](https://droneregistry.herokuapp.com/api/v1/) |  Security Category |
 | --- | --- |
-| [/operators](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) |   -  |
-| [/operators/{operatorid}](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) | - |
-| [/operators/{operatorid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-privilaged-single-operator-details-get) | - |
-| [/contacts](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-all-contacts-get) |  - |
-| [/contacts/{contactid}](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-single-contact-details-get) |  - |
-| [/contacts/{contactid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-privilaged-single-contact-details-get) | - |
-| [/pilots](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-all-pilots-get) | - |
-| [/pilots/{pilotid}](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get) |  - |
-| [/pilots/{pilotid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get-1) |  - |
-| [/operators/{operatorid}/aircraft](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator) | - |
-| [/aircraft/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-single-aircraft-details-get) | - |
-
+| [/operators](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) |   Security Category <sub><sup>Public Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/operators/{operatorid}](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) | Security Category <sub><sup> Personal Identity and Authentication Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/operators/{operatorid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-privilaged-single-operator-details-get) | Security Category <sub><sup>Citizen Protection Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/contacts](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-all-contacts-get) |  Security Category <sub><sup> Personal Identity and Authentication Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/contacts/{contactid}](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-single-contact-details-get) | Security Category <sub><sup>Public Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/contacts/{contactid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-privilaged-single-contact-details-get) | Security Category <sub><sup>Citizen Protection Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/pilots](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-all-pilots-get) | Security Category <sub><sup>Personal Identity and Authentication Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/pilots/{pilotid}](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get) | Security Category <sub><sup>Personal Identity and Authentication Information</sup></sub>  = {(confidentiality, moderate), (integrity, moderate), (availability, moderate)} |
+| [/pilots/{pilotid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get-1) | Security Category <sub><sup>Citizen Protection Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/operators/{operatorid}/aircraft](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator) | Security Category <sub><sup>Public Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/aircraft/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-single-aircraft-details-get) | Security Category <sub><sup>Public Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
 
 ## Scenarios
 
@@ -87,7 +85,14 @@ As is detailed in the API specification, we will query two API endpoints:
 | E | Authenticated requests | The primary goal here is to test token decryption performance on the server.  | Continuously for 2 mins.  | All the interested parties in the area will make authenticated requests to the registry for data from unprivileged endpoints. | TBC |
 | F | Unauthorized requests | The main goal of this is to test how quickly the server can respond to requests that are unauthorized (e.g. wrong scopes) | Continuously for 5 mins.  | The server will decrypt the token, read the scopes and then will understand that the requestor does not have the permission to view the data.  | TBC |
 
-## Results 
+## Results
+
+## References
+[1] - [Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v1r1.pdf)
+
+[2] - [Volume II: Appendices to Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v2r1.pdf)
+
+[3] - [NIST Digital Identity Guidelines](https://pages.nist.gov/800-63-3/sp800-63-3.html#sec4)
 
 ## Appendix
 
@@ -107,6 +112,7 @@ We are thankful to [Dr. Karthik Balakrishnan](https://www.linkedin.com/in/kbalak
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.4 | 6-December-2019 | Dr. Hrishikesh Ballal | Added assessment of endpoints to NIST recommendations |
 | 0.3 | 4-December-2019 | Dr. Hrishikesh Ballal | Updated test details sections |
 | 0.2 | 11-November-2019 | Dr. Hrishikesh Ballal | Added additional section about goals |
 | 0.1 | 5-November-2019 | Dr. Hrishikesh Ballal | First draft |
