@@ -4,39 +4,44 @@
 - [Comprehensive Registry Testing](#comprehensive-registry-testing)
 - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
+  - [Background](#background)
   - [Goals](#goals)
   - [Security Standards Compliance](#security-standards-compliance)
   - [Scenarios](#scenarios)
-    - [Server Hardware details](#server-hardware-details)
   - [Test details](#test-details)
+  - [Results](#results)
   - [Appendix](#appendix)
   - [Acknowledgements](#acknowledgements)
   - [Revision History](#revision-history)
 
 ## Introduction
 
-The registry, identity and authentication associated with it are a series of complex interconnected technologies and processes that need comprehensive testing at different levels of the stack. The aim of this document is to develop use cases and the associated testing criteria for an operational, interoperable registry. This is a living document and additional tests will be added over time. All testing code is available in the `tests` folder of the repository.
+The registry, identity and authentication associated with it are a series of complex interconnected technologies and processes that need comprehensive testing at different levels of the stack. The aim of this document is to develop operating parameters and performance envelope for an operational, interoperable registry. This is a living document and additional tests will be added over time. All testing code is available in the `tests` folder of the repository.
 
-It is understood that Civil Aviation Agencies (CAAs) will be building and aircraft and drone registries. At some point they will have to "bring this registry online". This means that automated queries will have to be made to the registry, from outside [interested parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties) to read data from it. Eventually, we forsee a situation where in addition to reading data from a registry, there will be automated operations to write data in it as well. We also foresee a situation where federated calls to the registry will have to be made where multiple registries have to be queried simultaneously. At this time (November 2019) the focus of the document is to develop tests and scenarios for reading data from the registry.
+## Background
+
+It is understood that Civil Aviation Agencies (CAAs) will be building and aircraft and drone registries independelty using their existing IT staff or external contractors. At some point they will have to "bring this registry online" to enable automated querying and reading a sub-set of data in the registry.
+
+It is anticipated that these data queries will have to be made to the registry from outside [interested parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties) to read data from it. Eventually, we forsee a situation where in addition to reading data from a registry, there will be automated operations to write data in it as well, it is out of scope for this document. Interoperable registries will be federated . At this time (November 2019) the focus of the document is to develop tests and scenarios for reading data from the registry.
 
 ## Goals
 
-The aim of these tests is to generate data and understand some key questions regarding the registry:
+There are two major goals of this document, to develop a assessment of the security standards, hardware tests and develop data on the operational requirements for the registry, these include:
 
+- *Hardware requirements*: The recommended hardware required to run a registration server that has to respond to the data requests.
 - *Required reliability*: On the internet, the amount of uptime required for service is critical and directly related to the investment required to run the service. E.g. a 99.99% uptime vs a 99.99999% uptime requires different investment and technology strategy. In the context of the registry, the goal of these tests is to understand the level of SLA required for the service.
 - *Response Probability*: In the context of the registry, metrics need to be developed as to how fast the requestor should expect a response and additionally the probability of receiving a response.
 - *Uptime and reliability*: Is the registry system mission critical or safety critical or security critical? If the registry system fails what are the implications for the flights.
 - *Push vs Pull*: Should the registry be a pull system or a push i.e. can / should the vehicles "subscribe" to the registry for updates (e.g. via Server Push or WebSockets) or should they request data using normal requests (HTTP pull).
 
 ## Security Standards Compliance
-TBC: Assessment with NIST standards
+For the purpose of testing the registry, we have reviewed two specific documents / publiccations from National Institute of Standards and Technology (NIST). They are:
+- [Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v1r1.pdf)
+- [NIST Digital Identity Guidelines](https://pages.nist.gov/800-63-3/sp800-63-3.html#sec4)
 
 ## Scenarios
 
 To conduct comprehensive testing for the registry, we create a software simulation. The simulation essentially is digital environment with a number of drones and aerial vehicles flying in the sky. Out of these vehicles we would simulate a percent of them making calls to the registry at any given point of time. The simulation will also have a temporal component in that it will run for a certain amount of time: 15 minutes. In addition to the vehicles making calls to the registry, we would like to simulate different stakeholders making requests for data into the registry.
-
-### Server Hardware details
-TBC: Details of the registry server
 
 ## Test details
 
@@ -63,6 +68,8 @@ As is detailed in the API specification, we will query two API endpoints:
 | D | Unauthenticated requests | The main goal of this is to test how quickly the server can respond to requests that are unauthenticated | Continuously for 5 mins.  | All the interested parties will make requests to the registry without sending authentication credentials. | TBC |
 | E | Authenticated requests | The primary goal here is to test token decryption performance on the server.  | Continuously for 2 mins.  | All the interested parties in the area will make authenticated requests to the registry for data from unprivileged endpoints. | TBC |
 | F | Unauthorized requests | The main goal of this is to test how quickly the server can respond to requests that are unauthorized (e.g. wrong scopes) | Continuously for 5 mins.  | The server will decrypt the token, read the scopes and then will understand that the requestor does not have the permission to view the data.  | TBC |
+
+## Results 
 
 ## Appendix
 
