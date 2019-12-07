@@ -1,10 +1,12 @@
 from locust import HttpLocust, TaskSet, task, between, constant_pacing
 from locust.contrib.fasthttp import FastHttpLocust
 import os
+
 from dotenv import load_dotenv, find_dotenv
 ENV_FILE = find_dotenv()
 if ENV_FILE:
     load_dotenv(ENV_FILE)
+
 class CallOperatorAircraftList(TaskSet):
 
     @task(1)
