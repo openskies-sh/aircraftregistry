@@ -36,9 +36,35 @@ The registry backend specifies a set of [tables](https://github.com/openskies-sh
 | Manufacturer |  __Read__: read:manufacturer read:manufacturer:all <br><br> __Write__: write:manufacturer | All information about manufacturers |
 | Aircraft |  __Read__: read:aircraft read:aircraft:all read:aircraft:all<br><br> __Write__: write:aircraft write:aircraft:all |  All information about drones and aircraft in the registry |
 
-## Personally Identifiable Information
+## Digital Identity Risk Assessment
+**to be completed** 
+
+In the context of Digital Identity we use the following definitions:
+
+ - IAL refers to the identity proofing process.
+ - AAL refers to the authentication process.
+ - FAL refers to the strength of an assertion in a federated environment, used to communicate authentication and attribute information (if applicable) to a relying party (RP).
+
+
+## Information Security Assessment
 
 The registry by its nature will store personally identifiable information (PII) and the database will come under the local or national privacy and data protection laws. In many cases, this means that the data has to be stored in different servers and / or relevant security and isolation procedures must be followed. At a API level however, we propose different privilages, roles and scope that enable the interested party making the query to access this information.
+
+For the purpose of testing the registry, we have reviewed two specific documents / publications from National Institute of Standards and Technology (NIST). [1][2][3]
+
+| [End point](https://droneregistry.herokuapp.com/api/v1/) |  Security Category |
+| --- | --- |
+| [/operators](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) |   Security Category <sub><sup>Public Information</sup></sub> = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/operators/{operatorid}](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) | Security Category <sub><sup> Personal Identity and Authentication Information</sup></sub> = {(confidentiality, moderate), (integrity, moderate), (availability, moderate)} |
+| [/operators/{operatorid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-privilaged-single-operator-details-get) | Security Category <sub><sup>Citizen Protection Information</sup></sub> = {(confidentiality, moderate), (integrity, moderate), (availability, moderate)} |
+| [/contacts](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-all-contacts-get) |  Security Category <sub><sup> Personal Identity and Authentication Information</sup></sub> = {(confidentiality, moderate), (integrity, moderate), (availability, moderate)} |
+| [/contacts/{contactid}](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-single-contact-details-get) | Security Category <sub><sup>Personal Identity and Authentication Information</sup></sub> = {(confidentiality, moderate), (integrity, moderate), (availability, moderate)} |
+| [/contacts/{contactid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-privilaged-single-contact-details-get) | Security Category <sub><sup>Citizen Protection Information</sup></sub> = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
+| [/pilots](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-all-pilots-get) | Security Category <sub><sup>Personal Identity and Authentication Information</sup></sub>  = {(confidentiality, moderate), (integrity, moderate), (availability, moderate)}|
+| [/pilots/{pilotid}](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get) | Security Category <sub><sup>Personal Identity and Authentication Information</sup></sub> = {(confidentiality, moderate), (integrity, moderate), (availability, moderate)} |
+| [/pilots/{pilotid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get-1) | Security Category <sub><sup>Citizen Protection Information</sup></sub> = {(confidentiality, moderate), (integrity, moderate), (availability, moderate)}  |
+| [/operators/{operatorid}/aircraft](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator) | Security Category <sub><sup>Key Asset and Critical Infrastructure Protection </sup></sub> = {(confidentiality, high), (integrity, high), (availability, high)} |
+| [/aircraft/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-single-aircraft-details-get) | Security Category <sub><sup>Key Asset and Critical Infrastructure Protection </sup></sub> = {(confidentiality, high), (integrity, high), (availability, high)} |
 
 ## Rate limits
 In the [API Specification](https://aircraftregistry.herokuapp.com/api/v1/), we have a section for rate limits for queries arising out of the registries. We acknowledge that rate limits is a vast topic in itself and for certain types of users (e.g. law enforcement), rate limits may need to be disabled. This is a decision that needs to be taken at the implementation level to ensure that the throttling is turned off. The section below makes note of such exception (see Notes column)
@@ -63,7 +89,7 @@ In this section we will describe the payload that will be used to query the regi
 
 ```
 
-The goal here is to demonstrate how the JWT token encapsulates the role and scopes associated with the login. Once these scopes are passed to the registry then the appropriate response is received. 
+The goal here is to demonstrate how the JWT token encapsulates the role and scopes associated with the login. Once these scopes are passed to the registry then the appropriate response is received.
 
 ## API End point scopes
 The list below details the registry endpoints as depicted in the API blue print and the associated scopes with it.
@@ -95,10 +121,18 @@ Below are roles listed as they are developed in the registry. In the coming time
 | Law Enforcement "Standard" | Police | <b>D</b> | A regular employee in law enforcement at a local level (e.g. on patrol). | read:operator read:operator:all read:operator:privileged read:person write:address write:address:privileged write:operator:privileged write:operator write:contact read:contact:all read:person:all read:contact read:pilot read:pilot:privileged read:address:privileged read:aircraft read:aircraft:privileged write:aircraft write:aircraft:privileged write:person write:authorization write:activity read:authorization read:activity |--- |
 | Law Enforcement "Enhanced" | Police | <b>D</b> | A employee in law enforcement at a regional level (e.g. national investigation agency, head ). | read:operator read:operator:all read:operator:privileged read:person read:contact:all read:person:all read:contact read:pilot read:pilot:privileged read:aircraft read:aircraft:privialged read:authorization read:activity read:unthrottled | May need unthrottled privileged |
 
+## References
+[1] - [Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v1r1.pdf)
+
+[2] - [Volume II: Appendices to Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v2r1.pdf)
+
+[3] - [NIST Digital Identity Guidelines](https://pages.nist.gov/800-63-3/sp800-63-3.html#sec4)
+
 ## Revision History
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.5 | 6-December-2019 | Dr. Hrishikesh Ballal | Added assessment of endpoints to NIST recommendations |
 | 0.4 | 11-October-2019 | Dr. Hrishikesh Ballal | Added scopes to roles |
 | 0.3 | 9-October-2019 | Dr. Hrishikesh Ballal | Added Payload and scope section |
 | 0.2 | 4-October-2019 | Dr. Hrishikesh Ballal | Added sections about PII, Rate Limits|

@@ -1,8 +1,8 @@
+
 # Comprehensive Registry Testing
 
-# Table of Contents
-- [Comprehensive Registry Testing](#comprehensive-registry-testing)
-- [Table of Contents](#table-of-contents)
+## Table of Contents
+
   - [Introduction](#introduction)
   - [Background](#background)
   - [Goals](#goals)
@@ -18,7 +18,7 @@
 
 ## Introduction
 
-The registry, identity and authentication associated with it are a series of complex interconnected technologies and processes that need comprehensive testing at different levels of the stack. The aim of this document is to develop operating parameters and performance envelope for an operational, interoperable registry. This is a living document and additional tests will be added over time. All testing code is available in the `tests` folder of the repository.
+The aim of this document is to develop operating parameters and performance envelope for an operational, interoperable registry. The registry, identity and authentication associated with it are a series of complex interconnected technologies and processes that need comprehensive testing at different levels of the stack. This is a living document and additional tests will be added over time. All testing code is available in the `tests` folder of the repository, these tests were written in the [Locust.io](https://locust.io/) framework.
 
 ## Background
 
@@ -36,24 +36,6 @@ There are two major goals of this document, to develop a assessment of the secur
 - *Uptime and reliability*: Is the registry system mission critical or safety critical or security critical? If the registry system fails what are the implications for the flights.
 - *Push vs Pull*: Should the registry be a pull system or a push i.e. can / should the vehicles "subscribe" to the registry for updates (e.g. via Server Push or WebSockets) or should they request data using normal requests (HTTP pull).
 
-## Security Standards Compliance
-For the purpose of testing the registry, we have reviewed two specific documents / publiccations from National Institute of Standards and Technology (NIST). [1][2][3]
-
-### Security and Impact assessmetnt of registry data per-end point
-
-| [End point](https://droneregistry.herokuapp.com/api/v1/) |  Security Category |
-| --- | --- |
-| [/operators](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) |   Security Category <sub><sup>Public Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
-| [/operators/{operatorid}](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) | Security Category <sub><sup> Personal Identity and Authentication Information</sup></sub>  = {(confidentiality, moderate), (integrity, moderate), (availability, moderate)} |
-| [/operators/{operatorid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-privilaged-single-operator-details-get) | Security Category <sub><sup>Citizen Protection Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
-| [/contacts](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-all-contacts-get) |  Security Category <sub><sup> Personal Identity and Authentication Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
-| [/contacts/{contactid}](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-single-contact-details-get) | Security Category <sub><sup>Personal Identity and Authentication Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
-| [/contacts/{contactid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-privilaged-single-contact-details-get) | Security Category <sub><sup>Citizen Protection Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
-| [/pilots](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-all-pilots-get) | Security Category <sub><sup>Personal Identity and Authentication Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
-| [/pilots/{pilotid}](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get) | Security Category <sub><sup>Personal Identity and Authentication Information</sup></sub>  = {(confidentiality, moderate), (integrity, moderate), (availability, moderate)} |
-| [/pilots/{pilotid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get-1) | Security Category <sub><sup>Citizen Protection Information</sup></sub>  = {(confidentiality, n/a), (integrity, moderate), (availability, low)} |
-| [/operators/{operatorid}/aircraft](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator) | Security Category <sub><sup>Key Asset and Critical Infrastructure Protection </sup></sub>  = {(confidentiality, high), (integrity, high), (availability, high)} |
-| [/aircraft/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-single-aircraft-details-get) | Security Category <sub><sup>Key Asset and Critical Infrastructure Protection </sup></sub>  = {(confidentiality, high), (integrity, high), (availability, high)} |
 
 ## Scenarios
 
@@ -67,7 +49,7 @@ At this initial stage, we will just test the read throughput, no write calls wil
 - Operational scenario: _Medium Density Urban_
 - Number of people / residents nearby: _1000 individuals_
 - Flying over people: _Not permitted_
-- Number of vehicles in the air: _500_
+- Number of vehicles in the air: _150_
 - Number of police / law enforcement devices: _5_
 - Number of "common citizen" Remote ID requests: _20_
 
@@ -78,21 +60,22 @@ As is detailed in the API specification, we will query two API endpoints:
 
 | Test ID |  Test name | Objective | Duration | Details| Request payload |
 | --- | --- | --- | --- | --- | --- |
-| A | Rush hour load | The goal of this test is to see the server performance to numerous authenticated requests. We will query randomly the unprivileged endpoints of "aircraft details" and "operator details" | Continuously for 5 mins.  | Every vehicle makes a request per second for 5 minutes.  | TBC |
+| A | Rush hour load | The goal of this test is to see the server performance to numerous authenticated requests. We will query randomly the unprivileged endpoints of "aircraft details" and "operator details" | Continuously for 5 mins.  | 150 vehicles make a request per second for 5 minutes.  | TBC |
 | B | Law Enforcement requests | All law enforce and devices in the area make requests to the registry simultaneously with privileged requests. | Continuously for 1 minute. | Every law enforcement device in the area will make a request for data to both end points for 1 minute.  | TBC |
 | C |Citizen requests | The citizens in the area  | Continuously for 5 mins. | The citizens will make a authenticated request for data from the un-privileged endpoints for data about the aircraft and also the operator. | TBC |
 | D | Unauthenticated requests | The main goal of this is to test how quickly the server can respond to requests that are unauthenticated | Continuously for 5 mins.  | All the interested parties will make requests to the registry without sending authentication credentials. | TBC |
-| E | Authenticated requests | The primary goal here is to test token decryption performance on the server.  | Continuously for 2 mins.  | All the interested parties in the area will make authenticated requests to the registry for data from unprivileged endpoints. | TBC |
-| F | Unauthorized requests | The main goal of this is to test how quickly the server can respond to requests that are unauthorized (e.g. wrong scopes) | Continuously for 5 mins.  | The server will decrypt the token, read the scopes and then will understand that the requestor does not have the permission to view the data.  | TBC |
+| E | Authenticated requests | The primary goal here is to test token decryption performance on the server.  | Continuously for 2 mins. | All the interested parties in the area will make authenticated requests to the registry for data from unprivileged endpoints. | TBC |
+| F | Unauthorized requests | The main goal of this is to test how quickly the server can respond to requests that are unauthorized (e.g. wrong scopes) | Continuously for 5 mins.  | The server will decrypt the token, read the scopes and then will understand that the requestor does not have the permission to view the data. | TBC |
 
 ## Results
 
-## References
-[1] - [Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v1r1.pdf)
-
-[2] - [Volume II: Appendices to Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v2r1.pdf)
-
-[3] - [NIST Digital Identity Guidelines](https://pages.nist.gov/800-63-3/sp800-63-3.html#sec4)
+| Test ID |  Test output |
+| --- | --- |
+| A ([view test source]) | ![img](https://i.imgur.com/auVaOIg.jpg) |
+| C | --- |
+| D | --- |
+| E | --- |
+| F | --- |
 
 ## Appendix
 
@@ -112,7 +95,7 @@ We are thankful to [Dr. Karthik Balakrishnan](https://www.linkedin.com/in/kbalak
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
-| 0.4 | 6-December-2019 | Dr. Hrishikesh Ballal | Added assessment of endpoints to NIST recommendations |
+| 0.4 | 6-December-2019 | Dr. Hrishikesh Ballal | Added results section and first test |
 | 0.3 | 4-December-2019 | Dr. Hrishikesh Ballal | Updated test details sections |
 | 0.2 | 11-November-2019 | Dr. Hrishikesh Ballal | Added additional section about goals |
 | 0.1 | 5-November-2019 | Dr. Hrishikesh Ballal | First draft |
