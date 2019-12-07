@@ -157,6 +157,7 @@ if ENV_FILE:
 
 AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
 API_IDENTIFIER = os.environ.get('API_IDENTIFIER')
+API_TOKEN = os.environ.get('API_TOKEN')
 PUBLIC_KEY = None
 JWT_ISSUER = None
 

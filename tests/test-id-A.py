@@ -1,15 +1,25 @@
-from locust import HttpLocust, TaskSet, task, between
+from locust import HttpLocust, TaskSet, task, between, constant_pacing
 from locust.contrib.fasthttp import FastHttpLocust
-
-class MyTaskSet(TaskSet):
+import os
+from dotenv import load_dotenv, find_dotenv
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+class CallOperatorAircraftList(TaskSet):
 
     @task(1)
     def call_operator_list(self):
-        self.client.get("api/v1/operator/41174c3f-e86c-4e5a-a629-32d4d9da6011", {"Authorization":"Bearer "})
+        authorization_header = "Bearer " + os.environ.get('API_TOKEN')
+        self.client.get("/api/v1/operators", headers={"Authorization":authorization_header})
+
+    @task(2)
+    def call_aircraft_list(self):
+        authorization_header = "Bearer " + os.environ.get('API_TOKEN')
+        self.client.get("/api/v1/aircrafts", headers={"Authorization":authorization_header})
 
 class MyLocust(HttpLocust):
-    task_set = MyTaskSet
-    wait_time = between(5, 15)
+    task_set = CallOperatorAircraftList
+    wait_time = between(5,6)
 
 
 # class MyFastLocust(FastHttpLocust):
