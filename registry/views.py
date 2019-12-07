@@ -100,7 +100,7 @@ def requires_scopes(required_scopes):
     return require_scope
 
 
-@method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
+@method_decorator(requires_scopes(['read:operator']), name='dispatch')
 class OperatorList(mixins.ListModelMixin,
                    generics.GenericAPIView):
     """
