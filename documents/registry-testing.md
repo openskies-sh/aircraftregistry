@@ -72,10 +72,10 @@ As is detailed in the API specification, we will query two API endpoints:
 | Test ID |  Test output |
 | --- | --- |
 | A ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-A.py)) | ![img](https://i.imgur.com/pvgL74Q.jpg) |
+| B ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-B.py)| ![img-testb](https://i.imgur.com/fLyB8f3.jpg) |
 | C | --- |
 | D | --- |
 | E | --- |
-| F | --- |
 
 ## Appendix
 

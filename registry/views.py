@@ -90,6 +90,7 @@ def requires_scopes(required_scopes):
             if decoded.get("scope"):
                 token_scopes = decoded["scope"].split()
                 token_scopes_set = set(token_scopes)
+                
                 if set(required_scopes).issubset(token_scopes_set):
                     return f(*args, **kwargs)
             response = JsonResponse({'message': 'You don\'t have access to this resource'})
@@ -286,7 +287,7 @@ class PilotDetail(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
         
 
-@method_decorator(requires_scopes(['read:pilot','read:person','read:pilot:privileged','read:person:privileged','read:address:privileged']), name='dispatch')
+@method_decorator(requires_scopes(['read:pilot','read:person:all','read:pilot:privileged','read:address:privileged']), name='dispatch')
 class PilotDetailPrivileged(mixins.RetrieveModelMixin,
                             generics.GenericAPIView):
     """
