@@ -3,15 +3,14 @@
 
 ## Table of Contents
 
+- [Comprehensive Registry Testing](#comprehensive-registry-testing)
+  - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Background](#background)
   - [Goals](#goals)
-  - [Security Standards Compliance](#security-standards-compliance)
-    - [Security and Impact assessmetnt of registry data per-end point](#security-and-impact-assessmetnt-of-registry-data-per-end-point)
   - [Scenarios](#scenarios)
   - [Test details](#test-details)
   - [Results](#results)
-  - [References](#references)
   - [Appendix](#appendix)
   - [Acknowledgements](#acknowledgements)
   - [Revision History](#revision-history)
