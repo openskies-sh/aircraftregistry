@@ -92,6 +92,7 @@ We are thankful to [Dr. Karthik Balakrishnan](https://www.linkedin.com/in/kbalak
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.5 | 16-December-2019 | Dr. Hrishikesh Ballal | Added results for tests C,D and E |
 | 0.4 | 6-December-2019 | Dr. Hrishikesh Ballal | Added results section and first test |
 | 0.3 | 4-December-2019 | Dr. Hrishikesh Ballal | Updated test details sections |
 | 0.2 | 11-November-2019 | Dr. Hrishikesh Ballal | Added additional section about goals |
