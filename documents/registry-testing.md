@@ -70,9 +70,9 @@ As is detailed in the API specification, we will query two API endpoints:
 | --- | --- |
 | A ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-A.py)) | ![img-test-a](https://i.imgur.com/pvgL74Q.jpg) |
 | B ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-B.py))| ![img-test-b](https://i.imgur.com/fLyB8f3.jpg) |
-| C ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-C.py)) | [img-test-c](https://i.imgur.com/nu00451.jpg) |
-| D ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-D.py)| [img-test-d](https://i.imgur.com/I1TXYPq.jpg) |
-| E ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-E.py)| [img-test-e](https://i.imgur.com/xjmU1dI.jpg) |
+| C ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-C.py)) | ![img-test-c](https://i.imgur.com/nu00451.jpg) |
+| D ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-D.py)| ![img-test-d](https://i.imgur.com/I1TXYPq.jpg) |
+| E ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-E.py)| ![img-test-e](https://i.imgur.com/xjmU1dI.jpg) |
 
 ## Appendix
 
