@@ -115,7 +115,7 @@ class OperatorList(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:operator', 'read:operator:all']), name='dispatch')
+@method_decorator(requires_scopes(['read:operator']), name='dispatch')
 class OperatorDetail(mixins.RetrieveModelMixin,
                      generics.GenericAPIView):
     """
@@ -144,8 +144,32 @@ class AircraftList(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privileged']), name='dispatch')
+@method_decorator(requires_scopes(['read:aircraft']), name='dispatch')
 class AircraftDetail(mixins.RetrieveModelMixin,
+                     generics.GenericAPIView):
+    """
+    Retrieve, update or delete a Aircraft instance.
+    """
+    # authentication_classes = (SessionAuthentication,TokenAuthentication)
+    # permission_classes = (IsAuthenticated,)
+
+    def get_Aircraft(self, pk):
+        try:
+            a = Aircraft.objects.get(id=pk)
+        except Aircraft.DoesNotExist:
+            raise Http404
+        else:
+            return a
+
+    def get(self, request, pk, format=None):
+        aircraft = self.get_Aircraft(pk)
+        serializer = AircraftSerializer(aircraft)
+        return Response(serializer.data)
+
+
+
+@method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privileged']), name='dispatch')
+class AircraftDetailPrivileged(mixins.RetrieveModelMixin,
                      generics.GenericAPIView):
     """
     Retrieve, update or delete a Aircraft instance.
@@ -165,7 +189,6 @@ class AircraftDetail(mixins.RetrieveModelMixin,
         aircraft = self.get_Aircraft(pk)
         serializer = AircraftDetailSerializer(aircraft)
         return Response(serializer.data)
-
 
 
 @method_decorator(requires_scopes(['read:operator', 'read:operator:all', 'read:operator:privileged']), name='dispatch')
