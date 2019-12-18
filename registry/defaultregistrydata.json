@@ -115,124 +115,7 @@
       "updated_at": "2018-09-04T13:20:30+01:00"
    }
 },
-{
-   "model": "registry.address",
-   "pk": "42bcaa01-334a-4fcb-ac5b-a90ba310e03d",
-   "fields": {
-      "address_line_1": "19, Ndjamena Street",
-      "address_line_2": "Wuse II",
-      "address_line_3": "",
-      "postcode": "N/A",
-      "city": "Lagos",
-      "country": "NG",      
-      "created_at": "2019-12-04T13:20:30+01:00",
-      "updated_at": "2019-12-04T13:20:30+01:00"
-   }
-},
-{
-   "model": "registry.address",
-   "pk": "6515bc0b-fe83-4084-80d8-840ec4e95e90",
-   "fields": {
-      "address_line_1": "4, Irewole Shopping Complex,",
-      "address_line_2": "Opebi Allen",
-      "address_line_3": "",
-      "postcode": "N/A",
-      "city": "Ikeja",
-      "country": "NG",      
-      "created_at": "2019-12-04T13:20:30+01:00",
-      "updated_at": "2019-12-04T13:20:30+01:00"
-   }
-},
-{
-   "model": "registry.address",
-   "pk": "e2c38627-bdfb-44cd-bd6e-715a121778fb",
-   "fields": {
-      "address_line_1": "9B, MacDonald Road,",
-      "address_line_2": "Ikoyi",
-      "address_line_3": "",
-      "postcode": "N/A",
-      "city": "Ikorodu",
-      "country": "NG",      
-      "created_at": "2019-12-04T13:20:30+01:00",
-      "updated_at": "2019-12-04T13:20:30+01:00"
-   }
-},
-{
-   "model": "registry.address",
-   "pk": "411ce87d-2e2d-48c0-86b2-c48d5bac4b6d",
-   "fields": {
-      "address_line_1": "38, Adedosu Street",
-      "address_line_2": "",
-      "address_line_3": "",
-      "postcode": "N/A",
-      "city": "Keke",
-      "state":"Agege",
-      "country": "NG",      
-      "created_at": "2019-12-04T13:20:30+01:00",
-      "updated_at": "2019-12-04T13:20:30+01:00"
-   }
-},
-{
-   "model": "registry.address",
-   "pk": "459a6e00-a45b-44aa-b698-1a902eb8adbd",
-   "fields": {
-      "address_line_1": "Eleganza Biro Plaza, Plot 634",
-      "address_line_2": "Adeyemo Alakija",
-      "address_line_3": "",
-      "postcode": "N/A",
-      "city": "Eti Osa",
-      "state":"Victoria Island",
-      "country": "NG",      
-      "created_at": "2019-12-04T13:20:30+01:00",
-      "updated_at": "2019-12-04T13:20:30+01:00"
-   }
-},
 
-{
-   "model": "registry.operator",
-   "pk": "7a2712a3-3ece-4300-b2f1-a30809a9202b",
-   "fields": {
-      "company_name": "Orbital Solutions Global Services Limited",
-      "website": "oribtal.com.ng",
-      "phone_number":"+2348085509426",
-      "email": "contact@oribtal.com.ng",
-      "operator_type": "0",
-      "address": "459a6e00-a45b-44aa-b698-1a902eb8adbd",
-      "vat_number": "",
-      "company_number": "RC45875TRE",
-      "operational_authorizations": [
-         "e7bfa98c-8e4f-40bd-b42f-62fd3651d7da"
-      ],
-      "authorized_activities": [
-         "26b6a66d-5e77-4a43-94e9-630e141a1087",
-         "7a875ff9-79ee-460e-816f-30360e0ac645"
-      ],
-      "created_at": "2019-12-10T13:20:30+01:00",
-      "updated_at": "2019-12-10T13:20:30+01:00"
-   }
-},
-{
-   "model": "registry.operator",
-   "pk": "dad21be7-8910-4fc0-af7b-91e56b7a7791",
-   "fields": {
-      "company_name": "YUAVI Technologies Limited",
-      "website": "yuavi.com.ng",
-      "phone_number":"+2348033900975",
-      "email": "support@yuavi.com.ng",
-      "operator_type": "0",
-      "address": "411ce87d-2e2d-48c0-86b2-c48d5bac4b6d",
-      "vat_number": "",
-      "company_number": "RC10254YEA",
-      "operational_authorizations": [
-         "e7bfa98c-8e4f-40bd-b42f-62fd3651d7da"
-      ],
-      "authorized_activities": [
-         "7a875ff9-79ee-460e-816f-30360e0ac645"
-      ],
-      "created_at": "2019-12-10T13:20:30+01:00",
-      "updated_at": "2019-12-10T13:20:30+01:00"
-   }
-},
 {
    "model": "registry.operator",
    "pk": "41174c3f-e86c-4e5a-a629-32d4d9da6011",
@@ -320,6 +203,7 @@
       "updated_at": "2018-09-04T13:20:30+01:00"
    }
 },
+
 {
    "model": "registry.person",
    "pk": "5434e29a-d7e6-4462-ab30-73c7a074915c",
@@ -333,87 +217,6 @@
       "updated_at": "2018-09-04T13:20:30+01:00"
    }
 },
-{
-   "model": "registry.person",
-   "pk": "34ec29b1-5c98-4cc0-9859-977d221e5b4d",
-   "fields": {
-      "first_name": "Nancy",
-      "middle_name": "",
-      "last_name": "Damhindi",
-      "email": "nancy_d@gmail.com",
-      "phone_number": "+2349122992107",
-      "created_at": "2018-09-04T13:20:30+01:00",
-      "updated_at": "2018-09-04T13:20:30+01:00"
-   }
-},
-
-{
-   "model": "registry.person",
-   "pk": "9c4c4abc-6c76-44bc-adeb-7ecf8ddb9126",
-   "fields": {
-      "first_name": "Oladapo",
-      "middle_name": "",
-      "last_name": "Alebiosu",
-      "email": "oladapoa@hotmail.com",
-      "phone_number": "+2349122992107",
-      "created_at": "2018-09-04T13:20:30+01:00",
-      "updated_at": "2018-09-04T13:20:30+01:00"
-   }
-},
-
-{
-   "model": "registry.person",
-   "pk": "ef70efd5-9017-47e8-9a32-022a26ce01e5",
-   "fields": {
-      "first_name": "Chukwuemeka",
-      "middle_name": "",
-      "last_name": "Iziengbe",
-      "email": "Augustine_Kariara@email.com.ng",
-      "phone_number": "+234122992107",
-      "created_at": "2018-09-04T13:20:30+01:00",
-      "updated_at": "2018-09-04T13:20:30+01:00"
-   }
-},
-
-{
-   "model": "registry.person",
-   "pk": "d2a3d76e-96ac-4a3f-8950-f8f8c1c7518f",
-   "fields": {
-      "first_name": "Kennedy",
-      "middle_name": "",
-      "last_name": "Kazeem",
-      "email": "kkazeem.1@gmail.com",
-      "phone_number": "+23417349635",
-      "created_at": "2018-09-04T13:20:30+01:00",
-      "updated_at": "2018-09-04T13:20:30+01:00"
-   }
-},
-
-{
-   "model": "registry.contact",
-   "pk": "79121ba4-651b-4a55-9c7b-138f0ede7134",
-   "fields": {
-      "operator": "dad21be7-8910-4fc0-af7b-91e56b7a7791",
-      "person": "34ec29b1-5c98-4cc0-9859-977d221e5b4d",
-      "address": "42bcaa01-334a-4fcb-ac5b-a90ba310e03d",
-      "role_type": "0",
-      "created_at": "2018-09-04T13:20:30+01:00",
-      "updated_at": "2018-09-04T13:20:30+01:00"
-   }
-},
-{
-   "model": "registry.contact",
-   "pk": "bc6eac7d-5201-468f-a1e1-0e8ecc5cccf1",
-   "fields": {
-      "operator": "dad21be7-8910-4fc0-af7b-91e56b7a7791",
-      "person": "ef70efd5-9017-47e8-9a32-022a26ce01e5",
-      "address": "459a6e00-a45b-44aa-b698-1a902eb8adbd",
-      "role_type": "0",
-      "created_at": "2018-09-04T13:20:30+01:00",
-      "updated_at": "2018-09-04T13:20:30+01:00"
-   }
-},
-
 {
    "model": "registry.contact",
    "pk": "a7646ce2-f7df-48a9-9ff8-98dfd04794be",
@@ -458,17 +261,6 @@
       "acronym": "DJI",
       "role": "Manufacturer",
       "country": "IRE"
-   }
-},
-{
-   "model": "registry.manufacturer",
-   "pk": "f731ed65-c93d-42e7-94a3-b64213dd180a",
-   "fields": {
-      "full_name": "Parrot",
-      "common_name": "Parrot",
-      "acronym": "Parrot",
-      "role": "Manufacturer",
-      "country": "FRA"
    }
 },
 {
@@ -528,50 +320,6 @@
    }
 },
 {
-   "model": "registry.aircraft",
-   "pk": "f5333b4b-5d40-4110-b179-d5f697fbb78f",
-   "fields": {
-      "operator": "566d63bb-cb1c-42dc-9a51-baef0d0a8d04",
-      "type_certificate": "75f358c6-e8d3-46aa-a3de-172bdcea469d",
-      "mass": "700",
-      "make": "Bluegrass Fields",
-      "manufacturer": "f731ed65-c93d-42e7-94a3-b64213dd180a",
-      "model": "Parrot",
-      "category": 1,
-      "sub_category": 7,
-      "photo_small":"https://i.imgur.com/aXZyTdI.jpg",
-      "photo":"https://i.imgur.com/VYC6F65.jpg",
-      "is_airworthy": 1,
-      "icao_aircraft_type_designator": "STRM",
-      "esn": "5G6532640000000000000000920392800831710988336410",
-      "maci_number": "fau5-7e7f-157f",
-      "created_at": "2019-09-04T13:20:30+01:00",
-      "updated_at": "2019-09-04T13:20:30+01:00"
-   }
-},
-{
-   "model": "registry.aircraft",
-   "pk": "1f36acd4-9b07-499f-9162-7646a4849dd4",
-   "fields": {
-      "operator": "566d63bb-cb1c-42dc-9a51-baef0d0a8d04",
-      "type_certificate": "75f358c6-e8d3-46aa-a3de-172bdcea469d",
-      "mass": "700",
-      "make": "Phantom 3 Standard",
-      "manufacturer": "6f9cd973-15b9-4066-b4d0-1e8bbd0f279d",
-      "model": "DJI",
-      "category": 1,
-      "sub_category": 7,
-      "photo_small":"https://i.imgur.com/TyT7EJj.jpg",
-      "photo":"https://i.imgur.com/bxTs49S.jpg",
-      "is_airworthy": 1,
-      "icao_aircraft_type_designator": "STRM",
-      "esn": "5G6532640000000000000000823050083171098833641055",
-      "maci_number": "eb30-4fb4-b12d",
-      "created_at": "2018-09-04T13:20:30+01:00",
-      "updated_at": "2018-09-04T13:20:30+01:00"
-   }
-},
-{
    "model": "registry.test",
    "pk": "da7dae8f-3fea-46b6-9076-fe3735817de9",
    "fields": {
@@ -619,38 +367,6 @@
       "identification_photo_small":"https://i.imgur.com/3UAP5w1.jpg", 
       "is_active": 1,
       "address": "1888d6a4-166c-47b3-b519-d78a5ca7b25d",
-      "created_at": "2018-09-04T13:20:30+01:00",
-      "updated_at": "2018-09-04T13:20:30+01:00"
-   }
-},
-{
-   "model": "registry.pilot",
-   "pk": "50eb32e9-06d9-465c-b7d6-3d14c976a21b",
-   "fields": {
-      "operator": "7a2712a3-3ece-4300-b2f1-a30809a9202b",
-      "person": "ef70efd5-9017-47e8-9a32-022a26ce01e5",
-      "photo_small":"https://i.imgur.com/p9wrHKC.png",
-      "photo":"https://i.imgur.com/rXAvQ9l.jpg",
-      "identification_photo":"https://i.imgur.com/tcZv9RY.jpg",
-      "identification_photo_small":"https://i.imgur.com/DDQOKMT.jpg", 
-      "is_active": 1,
-      "address": "459a6e00-a45b-44aa-b698-1a902eb8adbd",
-      "created_at": "2018-09-04T13:20:30+01:00",
-      "updated_at": "2018-09-04T13:20:30+01:00"
-   }
-},
-{
-   "model": "registry.pilot",
-   "pk": "7a9439f5-521c-47c1-8ab3-f9e8d43b6e20",
-   "fields": {
-      "operator": "dad21be7-8910-4fc0-af7b-91e56b7a7791",
-      "person": "d2a3d76e-96ac-4a3f-8950-f8f8c1c7518f",
-      "photo_small":"https://i.imgur.com/2gFxJAp.jpg",
-      "photo":"https://i.imgur.com/ADqDoMD.jpg",
-      "identification_photo":"https://i.imgur.com/xrJkdXp.jpg",
-      "identification_photo_small":"https://i.imgur.com/4phgvns.jpg", 
-      "is_active": 1,
-      "address": "411ce87d-2e2d-48c0-86b2-c48d5bac4b6d",
       "created_at": "2018-09-04T13:20:30+01:00",
       "updated_at": "2018-09-04T13:20:30+01:00"
    }
