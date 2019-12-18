@@ -40,9 +40,16 @@ class Address(models.Model):
     address_line_3 = models.CharField(max_length=140)
     postcode = models.CharField(_("post code"), max_length=10, default="0")
     city = models.CharField(max_length=140)
+    state = models.CharField(max_length=140, blank=True, null=True)
     country = models.CharField(max_length = 2, choices=countries.COUNTRY_CHOICES_ISO3166, default = 'NA')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+       return self.address_line_1 + ' '+ self.country
+
+    def __str__(self):
+        return self.address_line_1 + ' '+ self.country
 
 
 # Create your models here.
@@ -154,6 +161,12 @@ class Pilot(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default =0)
+    def __unicode__(self):
+       return self.operator.company_name + ' ' + self.first_name +' ' + self.last_name
+
+    def __str__(self):
+       return self.operator.company_name + ' ' + self.first_name +' ' + self.last_name
+
 
 
 class TestValidity(models.Model):
@@ -169,6 +182,14 @@ class TypeCertificate(models.Model):
     type_certificate_issuing_country = models.CharField(max_length = 280)
     type_certificate_holder = models.CharField(max_length = 140)
     type_certificate_holder_country = models.CharField(max_length = 140)
+    
+    def __unicode__(self):
+       return self.type_certificate_id
+
+    def __str__(self):
+       return self.type_certificate_id
+
+
 
 class Manufacturer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -178,6 +199,13 @@ class Manufacturer(models.Model):
     acronym = models.CharField(max_length =10, default = 'NA')
     role = models.CharField(max_length = 140, default = 'NA')
     country = models.CharField(max_length =3, default = 'NA')
+
+    def __unicode__(self):
+       return self.common_name
+
+    def __str__(self):
+       return self.common_name
+
 
   
 class Aircraft(models.Model):
@@ -214,7 +242,7 @@ class Aircraft(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     def __unicode__(self):
-       return self.model
+        return self.operator.company_name +' ' + self.model
 
     def __str__(self):
-        return self.model
+        return self.operator.company_name +' ' + self.model
