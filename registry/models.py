@@ -127,10 +127,10 @@ class Contact(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-       return self.email
+       return self.person.first_name + ' ' + self.person.last_name + ' : '+ self.operator.company_name
 
     def __str__(self):
-        return self.email
+       return self.person.first_name + ' ' + self.person.last_name + ' : '+ self.operator.company_name
 
 
 class Test(models.Model):
@@ -161,12 +161,12 @@ class Pilot(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default =0)
+
     def __unicode__(self):
-       return self.operator.company_name + ' ' + self.first_name +' ' + self.last_name
+       return self.person.first_name + ' ' + self.person.last_name + ' : '+ self.operator.company_name
 
     def __str__(self):
-       return self.operator.company_name + ' ' + self.first_name +' ' + self.last_name
-
+       return self.person.first_name + ' ' + self.person.last_name + ' : '+ self.operator.company_name
 
 
 class TestValidity(models.Model):
