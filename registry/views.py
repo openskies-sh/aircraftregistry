@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from registry.models import Activity, Authorization, Contact, Operator, Aircraft, Pilot, Test, TestValidity
-from registry.serializers import (ContactSerializer, OperatorSerializer, PilotSerializer, PilotDetailSerializer,
+from registry.serializers import (ContactSerializer, ContactDetailSerializer, OperatorSerializer, PilotSerializer, PilotDetailSerializer,
                                   PrivilegedContactSerializer, PrivilegedPilotDetailSerializer, 
                                   PrivilegedOperatorSerializer, AircraftSerializer, AircraftDetailSerializer, AircraftESNSerializer)
 from django.http import JsonResponse
@@ -89,8 +89,7 @@ def requires_scopes(required_scopes):
 
             if decoded.get("scope"):
                 token_scopes = decoded["scope"].split()
-                token_scopes_set = set(token_scopes)
-                
+                token_scopes_set = set(token_scopes)                
                 if set(required_scopes).issubset(token_scopes_set):
                     return f(*args, **kwargs)
             response = JsonResponse({'message': 'You don\'t have access to this resource'})
@@ -168,7 +167,7 @@ class AircraftDetail(mixins.RetrieveModelMixin,
 
 
 
-@method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privileged']), name='dispatch')
+@method_decorator(requires_scopes(['read:aircraft','read:aircraft:privileged']), name='dispatch')
 class AircraftDetailPrivileged(mixins.RetrieveModelMixin,
                      generics.GenericAPIView):
     """
@@ -191,7 +190,7 @@ class AircraftDetailPrivileged(mixins.RetrieveModelMixin,
         return Response(serializer.data)
 
 
-@method_decorator(requires_scopes(['read:operator', 'read:operator:all', 'read:operator:privileged']), name='dispatch')
+@method_decorator(requires_scopes(['read:operator', 'read:address', 'read:operator:privileged']), name='dispatch')
 class OperatorDetailPrivileged(mixins.RetrieveModelMixin,
                                generics.GenericAPIView):
     """
@@ -205,7 +204,7 @@ class OperatorDetailPrivileged(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:operator', 'read:operator:all','read:aircraft','read:aircraft:all']), name='dispatch')
+@method_decorator(requires_scopes(['read:operator', 'read:aircraft']), name='dispatch')
 class OperatorAircraft(mixins.RetrieveModelMixin,
                        generics.GenericAPIView):
     """
@@ -230,7 +229,7 @@ class OperatorAircraft(mixins.RetrieveModelMixin,
         return Response(serializer.data)
 
 
-@method_decorator(requires_scopes(['read:aircraft','read:aircraft:all','read:aircraft:privileged']), name='dispatch')
+@method_decorator(requires_scopes(['read:aircraft','read:aircraft:privileged']), name='dispatch')
 class AircraftESNDetails(mixins.RetrieveModelMixin,
                          generics.GenericAPIView):
 
@@ -242,7 +241,7 @@ class AircraftESNDetails(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:contact','read:operator:all','read:person']), name='dispatch')
+@method_decorator(requires_scopes(['read:contact']), name='dispatch')
 class ContactList(mixins.ListModelMixin,
                   generics.GenericAPIView):
     """
@@ -255,7 +254,7 @@ class ContactList(mixins.ListModelMixin,
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
-@method_decorator(requires_scopes(['read:contact','read:person']), name='dispatch')
+@method_decorator(requires_scopes(['read:contact','read:person','read:operator']), name='dispatch')
 class ContactDetail(mixins.RetrieveModelMixin,
                     generics.GenericAPIView):
     """
@@ -263,12 +262,12 @@ class ContactDetail(mixins.RetrieveModelMixin,
     """
 
     queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
+    serializer_class = ContactDetailSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-@method_decorator(requires_scopes(['read:contact','read:contact:all','read:contact:privileged', 'read:address:all','read:person:all']), name='dispatch')
+@method_decorator(requires_scopes(['read:contact','read:contact:privileged','read:operator', 'read:address','read:person']), name='dispatch')
 class ContactDetailPrivileged(mixins.RetrieveModelMixin,
                               generics.GenericAPIView):
     """
@@ -310,7 +309,7 @@ class PilotDetail(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
         
 
-@method_decorator(requires_scopes(['read:pilot','read:person:all','read:pilot:privileged','read:address:privileged']), name='dispatch')
+@method_decorator(requires_scopes(['read:pilot','read:person','read:address', 'read:operator','read:pilot:privileged']), name='dispatch')
 class PilotDetailPrivileged(mixins.RetrieveModelMixin,
                             generics.GenericAPIView):
     """

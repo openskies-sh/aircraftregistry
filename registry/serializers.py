@@ -176,11 +176,19 @@ class OperatorSelectRelatedSerializer(serializers.ModelSerializer):
 
 
 class ContactSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Contact
+        fields = ('id', 'person','role_type', 'updated_at')
+
+
+class ContactDetailSerializer(serializers.ModelSerializer):
     person = PersonSerializer(read_only=True)
     operator = OperatorSerializer(read_only=True)
     class Meta:
         model = Contact
         fields = ('id', 'operator','person','role_type', 'updated_at')
+
 
 
 class PilotSerializer(serializers.ModelSerializer):
@@ -229,13 +237,11 @@ class PrivilegedPilotDetailSerializer(serializers.ModelSerializer):
 
  
 
-
-
 class AircraftSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Aircraft
-        fields = ('id', 'registration_mark','updated_at')
+        fields = ('id', 'registration_mark','updated_at','mass', 'maci_number','manufacturer', 'model','status','created_at', 'updated_at')
      
 class AircraftDetailSerializer(serializers.ModelSerializer):
     type_certificate = TypeCertificateSerializer(read_only= True)
