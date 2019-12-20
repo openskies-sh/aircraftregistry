@@ -3,6 +3,7 @@
 This document details the technical implementation of identity and authentication for the registry. We detail the roles, privilages and the permissions required to access data in the registry. The goal of this document is to propose standard roles and privilages associated with API end points to ensure registry interoperability using standardized queries and resposes.
 
 ## Identity / Login method
+
 Users will log into the registry using a number of methods: it could be using their phone, email or corporate identity. Conceptually, they will verify their identity using these methods and get encrypted tokens back with the appropriate scopes (JavaScript Web Tokens for this document). The credentials are decoded / de-encrypted on the registry server and depending on the scopes present and the API called relevant the data is sent back as a standard HTTP responses. In the case of a "non-federated" / singular registry the flow looks like the diagram below.
 
 <img src="https://i.imgur.com/ud4RORf.jpg" height="400">
@@ -10,6 +11,7 @@ Users will log into the registry using a number of methods: it could be using th
 For a broader application of querying multiple registries (registry broker) and how this ties into the ICAO Trust Framework, please review the intergration section in the [broker whitepaper](https://github.com/openskies-sh/aircraftregistry-broker/blob/master/documents/registration-brokerage-specification.md#integration-with-icao-trust-framework).
 
 ## Comment
+
 Security is a vast and deep topic, for the purpose of this document, we are not advocating a specific security mechanism or technology. At this time (October-2019) it is unclear which security technology or mechanism is the most suitable for unmanned aviation. In the community there is a debate about whether OAUTH that powers major internet sites is good enough or "aviation grade". It is clear that security in aviation is a open topic that needs more research and more importantly testing.
 
 However, it is the opinion of the author that being stuck in the technology mechanism prevents us from moving forward. We are more interested in developing the API, the scopes, identities and  roles and permissions and assume that any current or future technology can be used to communicate and transmit this information. For the sake of performance testing, we are using Auth0.com a commercial service and also building our own fork of the popular [ory/hydra](https://github.com/openskies-sh/hydra) server that is OpenID and OpenID Connect compatible.
@@ -39,6 +41,7 @@ The registry backend specifies a set of [tables](https://github.com/openskies-sh
 | Aircraft |  __Read__: read:aircraft read:aircraft:all read:aircraft:all<br><br> __Write__: write:aircraft write:aircraft:all |  All information about drones and aircraft in the registry |
 
 ## Digital Identity Risk Assessment
+
 **to be completed** 
 
 In the context of Digital Identity we use the following definitions:
@@ -46,7 +49,6 @@ In the context of Digital Identity we use the following definitions:
  - IAL refers to the identity proofing process.
  - AAL refers to the authentication process.
  - FAL refers to the strength of an assertion in a federated environment, used to communicate authentication and attribute information (if applicable) to a relying party (RP).
-
 
 ## Information Security Assessment
 
@@ -69,9 +71,11 @@ For the purpose of testing the registry, we have reviewed two specific documents
 | [/aircraft/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-single-aircraft-details-get) | Security Category <sub><sup>Key Asset and Critical Infrastructure Protection </sup></sub> = {(confidentiality, high), (integrity, high), (availability, high)} |
 
 ## Rate limits
+
 In the [API Specification](https://aircraftregistry.herokuapp.com/api/v1/), we have a section for rate limits for queries arising out of the registries. We acknowledge that rate limits is a vast topic in itself and for certain types of users (e.g. law enforcement), rate limits may need to be disabled. This is a decision that needs to be taken at the implementation level to ensure that the throttling is turned off. The section below makes note of such exception (see Notes column)
 
 ## Payload and scopes
+
 In this section we will describe the payload that will be used to query the registry. Below is a decrypted JWT token (sent as a Bearer Token with the request) to demonstrate the details of the token. Here the `scope` is the most important parameter since it details the privilages allocated to the role.
 
 ``` JSON
@@ -94,6 +98,7 @@ In this section we will describe the payload that will be used to query the regi
 The goal here is to demonstrate how the JWT token encapsulates the role and scopes associated with the login. Once these scopes are passed to the registry then the appropriate response is received.
 
 ## API End point scopes
+
 The list below details the registry endpoints as depicted in the API blue print and the associated scopes with it.
 
 | [End point](https://droneregistry.herokuapp.com/api/v1/) | Request Type  | Scopes required | Notes |
@@ -124,6 +129,7 @@ Below are roles listed as they are developed in the registry. In the coming time
 | Law Enforcement "Enhanced" | Police | <b>D</b> | A employee in law enforcement at a regional level (e.g. national investigation agency, head ). | read:operator read:operator:all read:operator:privileged read:person read:contact:all read:person:all read:contact read:pilot read:pilot:privileged read:aircraft read:aircraft:privialged read:authorization read:activity read:unthrottled | May need unthrottled privileged |
 
 ## References
+
 [1] - [Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v1r1.pdf)
 
 [2] - [Volume II: Appendices to Guide for Mapping Types of Information and Information Systems to Security Categories](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-60v2r1.pdf)
