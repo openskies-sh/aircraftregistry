@@ -27,18 +27,18 @@ The registry backend specifies a set of [tables](https://github.com/openskies-sh
 
 | Table | Scopes assigned | Notes |
 | --- | --- | --- |
-| Person | __Read__: read:person read:person:privileged read:person:all <br><br> __Write__: write:person write:person:privileged  |  All information about a person, it could be a contact, pilot etc. PII Information is in this capacity |
-| Address | __Read__: read:address read:address:privileged read:address:all <br><br> __Write__: write:address write:address:privileged |  All information about addresses, PII information  |
+| Person | __Read__: read:person read:person:privileged <br><br> __Write__: write:person write:person:privileged  |  All information about a person, it could be a contact, pilot etc. PII Information is in this capacity |
+| Address | __Read__: read:address read:address:privileged <br><br> __Write__: write:address write:address:privileged |  All information about addresses, PII information  |
 | Activity | __Read__: read:acitivity <br><br> __Write__: write:activity |  All information about acitivites undertaken by a operator |
 | Authorization | __Read__: read:authorization <br><br> __Write__: write:authorization |  All information about authorization for the operator |
-| Operator | __Read__: read:operator read:operator:all read:operator:privileged <br><br> __Write__: write:operator write:operator:privileged |  All information related to a operators in the registry|
-| Contact | __Read__: read:contact read:contact:all read:contact:privileged<br><br> __Write__: write:contact write:contact:privileged |  All information about a contact. PII Information. |
+| Operator | __Read__: read:operator read:operator:privileged <br><br> __Write__: write:operator write:operator:privileged |  All information related to a operators in the registry|
+| Contact | __Read__: read:contact read:contact:privileged<br><br> __Write__: write:contact write:contact:privileged |  All information about a contact. PII Information. |
 | Test |  __Read__: read:test <br><br> __Write__: write:test|  All information about tests taken by the pilot |
-| Pilot |  __Read__: read:pilot read:pilot:all read:pilot:privileged<br><br> __Write__: write:pilot write:pilot:privileged |  All information about the pilot, PII Information |
+| Pilot |  __Read__: read:pilot read:pilot:privileged<br><br> __Write__: write:pilot write:pilot:privileged |  All information about the pilot, PII Information |
 | TestValidity |  __Read__: read:testvalidity read:testvalidity:all <br><br> __Write__: write:testvalidity write:testvalidity:all |  Write information about TestValidity|
 | TypeCertificate |  __Read__:read:typecertificate <br><br> __Write__: write:typecertificate |  All information about aircraft type certificate |
-| Manufacturer |  __Read__: read:manufacturer read:manufacturer:all <br><br> __Write__: write:manufacturer | All information about manufacturers |
-| Aircraft |  __Read__: read:aircraft read:aircraft:all read:aircraft:all<br><br> __Write__: write:aircraft write:aircraft:all |  All information about drones and aircraft in the registry |
+| Manufacturer |  __Read__: read:manufacturer <br><br> __Write__: write:manufacturer | All information about manufacturers |
+| Aircraft |  __Read__: read:aircraft <br><br> __Write__: write:aircraft |  All information about drones and aircraft in the registry |
 
 ## Digital Identity Risk Assessment
 
@@ -89,7 +89,7 @@ In this section we will describe the payload that will be used to query the regi
   "iat": 8644995913,
   "exp": 7333345260,
   "azp": "hnhxSbRihoaBXOsLcgy2nbIIEIZNt01U",
-  "scope": "read:operator read:operator:all read:operator:privileged openid profile",
+  "scope": "read:operator read:operator:privileged openid profile",
   "permissions": []
 }
 
