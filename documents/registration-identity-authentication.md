@@ -5,7 +5,7 @@ This document details the technical implementation of identity and authenticatio
 ## Identity / Login method
 Users will log into the regitry using a number of methods, it could be using their phone, email or corporate identity. Conceptually,  they will verify their identity using these methods and get encrypted tokens back (JavaScript Web Tokens for this document). The credentials are decoded / de-encrypted on the registry server and depending on the scopes present and the API called relevant the data is sent back as a standard HTTP response. In the case of a "non-federated" / singular registry the flow looks like the diagram below. For a broader application and how this ties into the ICAO Trust Framework, please review the intergration section in the [broker whitepaper](https://github.com/openskies-sh/aircraftregistry-broker/blob/master/documents/registration-brokerage-specification.md#integration-with-icao-trust-framework).
 
-<img src="https://i.imgur.com/Hzd2Llb.jpg" height="400">
+<img src="https://i.imgur.com/n4nkARZ.jpg" height="400">
 
 ## Comment
 Security is a vast and deep topic, for the purpose of this document, we are not advocating a specific security mechanism or technology. At this time (October-2019) it is unclear which security technology or mechanism is the most suitable for unmanned aviation. In the community there is a debate about whether OAUTH that powers major internet sites is good enough or "aviation grade". It is clear that security in aviation is a open topic that needs more research and more importantly testing.
