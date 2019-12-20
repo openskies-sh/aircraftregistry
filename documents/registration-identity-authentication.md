@@ -3,7 +3,7 @@
 This document details the technical implementation of identity and authentication for the registry. We detail the roles, privilages and the permissions required to access data in the registry. The goal of this document is to propose standard roles and privilages associated with API end points to ensure registry interoperability using standardized queries and resposes.
 
 ## Identity / Login method
-Users will log into the regitry using a number of methods, it could be using their phone, email or corporate identity. Conceptually,  they will verify their identity using these methods and get encrypted tokens back (JavaScript Web Tokens for this document). The credentials are decoded / de-encrypted on the registry server and depending on the scopes present and the API called relevant the data is sent back as a standard HTTP response. In the case of a "non-federated" / singular registry the flow looks like the diagram below. 
+Users will log into the registry using a number of methods: it could be using their phone, email or corporate identity. Conceptually, they will verify their identity using these methods and get encrypted tokens back with the appropriate scopes (JavaScript Web Tokens for this document). The credentials are decoded / de-encrypted on the registry server and depending on the scopes present and the API called relevant the data is sent back as a standard HTTP responses. In the case of a "non-federated" / singular registry the flow looks like the diagram below.
 
 <img src="https://i.imgur.com/ud4RORf.jpg" height="400">
 
