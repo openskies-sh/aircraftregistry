@@ -148,7 +148,7 @@ The aim is not to mandate a large bureaucratic structure to manage the registry,
 
 ## Acknowledgements
 
-We are thankful to Mr. Michael Rudolph ([michael.rudolph@dcaa.gov.ae](mailto:michael.rudolph@dcaa.gov.ae)) , Head of Airspace Safety Section in the Aviation and Airports Safety Department of the Dubai Civil Aviation Authority for comments and review.
+We are thankful to Mr. Michael Rudolph, Head of Airspace Safety Section in the Aviation and Airports Safety Department of the Dubai Civil Aviation Authority for comments and review.
 
 ## Revision History
 
