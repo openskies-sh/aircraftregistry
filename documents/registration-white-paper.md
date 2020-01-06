@@ -154,6 +154,7 @@ We are thankful to Mr. Michael Rudolph ([michael.rudolph@dcaa.gov.ae](mailto:mic
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.7 | 15-October-2019 | Dr. Hrishikesh Ballal | Update to identity and authentication tests |
 | 0.6 | 5-August-2019 | Dr. Hrishikesh Ballal | Added Authenthication and Identity sections |
 | 0.5 | 4-June-2019 | Dr. Hrishikesh Ballal | Additions to field and integration comments from Fanni |
 | 0.4 | 15-December-2018 | Dr. Hrishikesh Ballal | Comments / Review from Fanni |
