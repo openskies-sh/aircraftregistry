@@ -17,7 +17,7 @@ This is a softare backend for a interoperable drone registry. It is extensive an
 
 ## Get started
 
-Registry and Registration systems in the context of unmanned aviation is a vast topic covering a number of things: security, identity etc.
+Registry and Registration systems in the context of unmanned aviation is a vast topic covering a number of things: security, identity etc. this is a comp
 
 ## Contribute
 
