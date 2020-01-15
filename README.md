@@ -42,5 +42,4 @@ Use `python manage.py loaddata registry/defaultregistrydata.json` to populate in
 ### 4. Launch browser 
 Launch browser to http://localhost:8000/api/v1/ to launch the API Explorer
 
-
 **Update July 2019**: **This is a fork of the [GUTMA Registry](https://github.com/gutma-org/droneregistry) that is maintainted and adds Identity and Authentication to access the endpoints and also has an updated API**
