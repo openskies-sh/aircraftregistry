@@ -1,6 +1,6 @@
 ## Aircraft Registry
 
-This is a softare backend for a interoperable drone registry. It is extensive and covers a large number of topics and you can start reading it in the order below:
+This is a softare backend for a interoperable drone registry. This topic is extensive and covers a large number of topics and you can start reading it in the order below:
 
 1. *Registration Overivew* (READ FIRST)
    - [Registry Landscape Whitepaper](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md)
