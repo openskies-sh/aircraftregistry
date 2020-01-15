@@ -1,6 +1,6 @@
 ## Aircraft Registry
 
-This is a softare stack for a interoperable drone registry. It is extensive and covers a large number of topics and you can start reading it in the order below:
+This is a softare backend for a interoperable drone registry. It is extensive and covers a large number of topics and you can start reading it in the order below:
 
 1. *Registration Overivew* (READ FIRST)
    - [Registry Landscape Whitepaper](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md)
@@ -9,9 +9,11 @@ This is a softare stack for a interoperable drone registry. It is extensive and 
   
    - [Comprehensive Registry Testing](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registry-testing.md)
 
-2. A registry backend server with API endpoints and documentation to read data off the database [https://aircraftregistry.herokuapp.com](https://aircraftregistry.herokuapp.com)
+2. A deployed registry backend server (this repository) with API endpoints and documentation to read data off the database [https://aircraftregistry.herokuapp.com](https://aircraftregistry.herokuapp.com)
 
-3. A registry frontend application with all endpoints and sample data for you to explore (you will need credentials from us) [Airegister Frontend](https://airegister.herokuapp.com/)
+3. A deployed [registry frontend](https://github.com/openskies-sh/aircraft-registry-spa) application with all endpoints and sample data for you to explore (you will need credentials from us) [Airegister Frontend](https://airegister.herokuapp.com/)
+  
+4. A deployed [registry broker](https://github.com/openskies-sh/aircraftregistry-broker) application with all endpoints and sample data for you to explore (you will need credentials from us) [Aircraft Registry Broker](https://aircraftregistry-broker.herokuapp.com/)
 
 ## Get started
 
