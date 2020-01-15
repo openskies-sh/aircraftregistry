@@ -190,7 +190,6 @@ class TypeCertificate(models.Model):
        return self.type_certificate_id
 
 
-
 class Manufacturer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     full_name = models.CharField(max_length = 140, default = 'NA')
@@ -233,6 +232,8 @@ class Aircraft(models.Model):
     model = models.CharField(max_length = 280)
     esn = models.CharField(max_length = 48, default='000000000000000000000000000000000000000000000000')
     maci_number = models.CharField(max_length = 280)
+    flight_controller_number = models.TextField(default=0)
+    operating_frequency = models.DecimalField(decimal_places = 2, max_digits=10, default=0.00)
     status = models.IntegerField(choices=STATUS_CHOICES, default = 1)
     photo = models.URLField(blank=True, null=True)
     photo_small = models.URLField(blank=True, null=True)
