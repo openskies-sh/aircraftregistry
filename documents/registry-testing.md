@@ -66,13 +66,13 @@ As is detailed in the API specification, we will query two API endpoints:
 
 ## Results
 
-| Test ID |  Test output |
-| --- | --- |
-| A ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-A.py)) | ![img-test-a](https://i.imgur.com/pvgL74Q.jpg) |
-| B ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-B.py))| ![img-test-b](https://i.imgur.com/fLyB8f3.jpg) |
-| C ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-C.py)) | ![img-test-c](https://i.imgur.com/nu00451.jpg) |
-| D ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-D.py)| ![img-test-d](https://i.imgur.com/I1TXYPq.jpg) |
-| E ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-E.py)| ![img-test-e](https://i.imgur.com/xjmU1dI.jpg) |
+| Test ID |  Test output | Key Observation |
+| --- | --- | --- |
+| A ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-A.py)) | ![img-test-a](https://i.imgur.com/pvgL74Q.jpg) | The response time plateaus earlier than the max number of users, this means that there is software limit to the performance of Django / Python project that is independent of the number of users querying the system. |
+| B ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-B.py))| ![img-test-b](https://i.imgur.com/fLyB8f3.jpg) | In this test the number of queries are very low compared (see RPS) to the previous one, in this case as well the response time is more or less the same. This means that the system performance is not really dependent on the number of requests, it is in the software. |
+| C ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-C.py)) | ![img-test-c](https://i.imgur.com/nu00451.jpg) | Same comments as above, with slightly less users (RPS 4.3 -> RPS 0.8) the response time is more or less the same.  |
+| D ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-D.py))| ![img-test-d](https://i.imgur.com/I1TXYPq.jpg) | For unauthenticated requests there is a high failure rate, this seems to be a function of Django, need to investigate why there is such a high drop rate. |
+| E ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-E.py))| ![img-test-e](https://i.imgur.com/xjmU1dI.jpg) | As expected all requersts should fail because they are unauthenticated in this case, we pause in the middle and then add the requests again to see if the increase in the response times has any change. |
 
 ## Appendix
 
