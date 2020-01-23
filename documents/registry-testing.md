@@ -32,7 +32,7 @@ There are two major goals of this document, to develop a assessment of the secur
 - *Hardware requirements*: The recommended hardware required to run a registration server that has to respond to the data requests.
 - *Required reliability*: On the internet, the amount of uptime required for service is critical and directly related to the investment required to run the service. E.g. a 99.99% uptime vs a 99.99999% uptime requires different investment and technology strategy. In the context of the registry, the goal of these tests is to understand the level of SLA required for the service.
 - *Response Probability*: In the context of the registry, metrics need to be developed as to how fast the requestor should expect a response and additionally the probability of receiving a response.
-- *Uptime and reliability*: Is the registry system mission critical or safety critical or security critical? If the registry system fails what are the implications for the flights.
+- *Criticality and reliability*: Is the registry system mission critical or safety critical or security critical? If the registry system fails what are the implications for the flights.
 - *Push vs Pull*: Should the registry be a pull system or a push i.e. can / should the vehicles "subscribe" to the registry for updates (e.g. via Server Push or WebSockets) or should they request data using normal requests (HTTP pull).
 
 ## Scenarios
