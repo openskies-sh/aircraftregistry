@@ -31,6 +31,10 @@ This is a Django project that uses Django and Django Rest Framework and the API 
 
 Python 3 is required for this and install dependencies using `pip install -r requirements.txt`.
 
+### 2. For Local testing turn off Securing API endpoints
+
+Go to `settings.py` and file and set `SECURE_API_ENDPOINTS` as `False` to disable secure endpoints, this means that you dont need the JWT tokens for Identity and Authenication for the endpoints. For more information about Identity and Roles for the registry, please review [comprehensive paper](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md) 
+
 ### 2. Create Initial Database
 
 Use `python manage.py migrate` to create the initial database tables locally. It will use the default SQLLite.

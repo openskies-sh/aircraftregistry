@@ -27,6 +27,7 @@ import os
 import jwt
 from django.core.exceptions import PermissionDenied
 from functools import wraps
+from django.conf import settings
 from django.utils.decorators import method_decorator
 from cryptography.x509 import load_pem_x509_certificate
 from cryptography.hazmat.backends import default_backend
@@ -41,60 +42,64 @@ def requires_scopes(required_scopes):
     """
     def require_scope(f):
         @wraps(f)
-        def decorated(*args, **kwargs):            
-            request = args[0]
-            auth = request.META.get("HTTP_AUTHORIZATION", None)
-            if auth:
-                parts = auth.split()
-                token = parts[1]            
-            else:             
-                response = JsonResponse({'detail': 'Authentication credentials were not provided'})
-                response.status_code = 401
-                return response
+        def decorated(*args, **kwargs):           
+            if settings.SECURE_API_ENDPOINTS: 
+                request = args[0]
+                auth = request.META.get("HTTP_AUTHORIZATION", None)
+                
+                if auth:
+                    parts = auth.split()
+                    token = parts[1]            
+                else:             
+                    response = JsonResponse({'detail': 'Authentication credentials were not provided'})
+                    response.status_code = 401
+                    return response
 
-            AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
-            API_IDENTIFIER = os.environ.get('API_IDENTIFIER')
-            jsonurl = req.urlopen('https://' + AUTH0_DOMAIN + '/.well-known/jwks.json')
-            jwks = json.loads(jsonurl.read())
-            cert = '-----BEGIN CERTIFICATE-----\n' + \
-                jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
-            certificate = load_pem_x509_certificate(cert.encode('utf-8'), default_backend())
-            public_key = certificate.public_key()
-            try:
-                decoded = jwt.decode(token, public_key, audience=API_IDENTIFIER, algorithms=['RS256'])
-            except jwt.ExpiredSignatureError as es: 
-                response = JsonResponse({'detail': 'Token Signature has expired'})
-                response.status_code = 401
-                return response
-            except jwt.InvalidAudienceError as es: 
-                response = JsonResponse({'detail': 'Invalid audience in token'})
-                response.status_code = 401
-                return response
-            
-            except jwt.InvalidIssuerError as es: 
-                response = JsonResponse({'detail': 'Invalid issuer for token'})
-                response.status_code = 401
-                return response
+                AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
+                API_IDENTIFIER = os.environ.get('API_IDENTIFIER')
+                jsonurl = req.urlopen('https://' + AUTH0_DOMAIN + '/.well-known/jwks.json')
+                jwks = json.loads(jsonurl.read())
+                cert = '-----BEGIN CERTIFICATE-----\n' + \
+                    jwks['keys'][0]['x5c'][0] + '\n-----END CERTIFICATE-----'
+                certificate = load_pem_x509_certificate(cert.encode('utf-8'), default_backend())
+                public_key = certificate.public_key()
+                try:
+                    decoded = jwt.decode(token, public_key, audience=API_IDENTIFIER, algorithms=['RS256'])
+                except jwt.ExpiredSignatureError as es: 
+                    response = JsonResponse({'detail': 'Token Signature has expired'})
+                    response.status_code = 401
+                    return response
+                except jwt.InvalidAudienceError as es: 
+                    response = JsonResponse({'detail': 'Invalid audience in token'})
+                    response.status_code = 401
+                    return response
+                
+                except jwt.InvalidIssuerError as es: 
+                    response = JsonResponse({'detail': 'Invalid issuer for token'})
+                    response.status_code = 401
+                    return response
 
-            except jwt.InvalidSignatureError as es: 
-                response = JsonResponse({'detail': 'Invalid signature in token'})
-                response.status_code = 401
-                return response
-            except Exception as e: 
-                response = JsonResponse({'detail': 'Invalid in token'})
-                response.status_code = 401
-                return response
+                except jwt.InvalidSignatureError as es: 
+                    response = JsonResponse({'detail': 'Invalid signature in token'})
+                    response.status_code = 401
+                    return response
+                except Exception as e: 
+                    response = JsonResponse({'detail': 'Invalid token'})
+                    response.status_code = 401
+                    return response
 
-            
+                
 
-            if decoded.get("scope"):
-                token_scopes = decoded["scope"].split()
-                token_scopes_set = set(token_scopes)                
-                if set(required_scopes).issubset(token_scopes_set):
-                    return f(*args, **kwargs)
-            response = JsonResponse({'message': 'You don\'t have access to this resource'})
-            response.status_code = 403
-            return response
+                if decoded.get("scope"):
+                    token_scopes = decoded["scope"].split()
+                    token_scopes_set = set(token_scopes)                
+                    if set(required_scopes).issubset(token_scopes_set):
+                        return f(*args, **kwargs)
+                response = JsonResponse({'message': 'You don\'t have access to this resource'})
+                response.status_code = 403
+                return response
+            else:
+                return f(*args, **kwargs)
         return decorated
 
     return require_scope
