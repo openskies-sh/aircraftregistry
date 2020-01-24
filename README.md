@@ -33,7 +33,7 @@ Python 3 is required for this and install dependencies using `pip install -r req
 
 ### 2. For Local testing turn off Securing API endpoints
 
-Go to `settings.py` and file and set `SECURE_API_ENDPOINTS` as `False` to disable secure endpoints, this means that you dont need the JWT tokens for Identity and Authenication for the endpoints. For more information about Identity and Roles for the registry, please review [comprehensive paper](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md) 
+Go to `settings.py` and set `SECURE_API_ENDPOINTS` as `False` to disable secure endpoints for local testing. This means that you dont need the JWT tokens for Identity and Authenication, for more information about Identity and Roles are managed, please review [Identitiy and Authentication paper](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-identity-authentication.md) 
 
 ### 2. Create Initial Database
 
