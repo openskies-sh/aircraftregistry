@@ -46,4 +46,9 @@ Use `python manage.py loaddata registry/defaultregistrydata.json` to populate in
 ### 4. Launch browser 
 Launch browser to http://localhost:8000/api/v1/ to launch the API Explorer
 
-**Update July 2019**: **This is a fork of the [GUTMA Registry](https://github.com/gutma-org/droneregistry) that is maintainted and adds Identity and Authentication to access the endpoints and also has an updated API**
+### 5. Update / Add data
+This project runs on Python / Django and one of the nice thing about Django is that it comes with a Adminstration Interface. So you can go to `http://localhost:8000/admin` and login using a adminsitrator account and use the user interface to add / modify entries. 
+
+You will have to create a "superuser" first by typing in `python manage.py createsuperuser` to create the user first. 
+
+**Update July 2019**: **This is a fork of the [GUTMA Registry](https://github.com/gutma-org/droneregistry), that I [Dr. Hrishikesh Ballal](https://www.hrishikeshballal.net) created when I was working at GUTMA, I have now forked that repository and the work continues. The main difference here is that it has JWT based Identity and Authentication to access the endpoints and also has an updated API**
