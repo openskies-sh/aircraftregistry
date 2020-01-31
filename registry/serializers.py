@@ -136,8 +136,8 @@ class OperatorSelectRelatedSerializer(serializers.ModelSerializer):
         o = Operator.objects.get(id=response.id)
         contacts = Contact.objects.filter(operator = o)
         for contact in contacts:
-            contact_serializer = GUTMADemoPersonSerializer(contact.person)
-            address_serializer = GUTMADemoAddressSerializer(contact.address)
+            contact_serializer = PersonSerializer(contact.person)
+            address_serializer = AddressSerializer(contact.address)
             contact_data = contact_serializer.data
             address_data = address_serializer.data
             contact_data.update(address_data)
@@ -150,7 +150,7 @@ class OperatorSelectRelatedSerializer(serializers.ModelSerializer):
         o = Operator.objects.get(id=response.id)
         aircrafts = Aircraft.objects.filter(operator = o)
         for aircraft in aircrafts:
-            aircraft_serializer = GUTMADemoAircraftSerializer(aircraft)
+            aircraft_serializer = AircraftSerializer(aircraft)
             all_aircrafts.append(aircraft_serializer.data)
         return all_aircrafts
 
@@ -160,8 +160,8 @@ class OperatorSelectRelatedSerializer(serializers.ModelSerializer):
         o = Operator.objects.get(id=response.id)
         pilots = Pilot.objects.filter(operator = o)
         for pilot in pilots:
-            contact_serializer = GUTMADemoPersonSerializer(pilot.person)
-            address_serializer = GUTMADemoAddressSerializer(pilot.address)
+            contact_serializer = PersonSerializer(pilot.person)
+            address_serializer = AddressSerializer(pilot.address)
             pilot_data = contact_serializer.data
             address_data = address_serializer.data
             pilot_data.update(address_data)
