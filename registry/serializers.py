@@ -1,12 +1,10 @@
 from rest_framework import serializers
 from registry.models import Activity, Authorization, Operator, Contact, Aircraft, Pilot, Address, Person, Test, TypeCertificate, Manufacturer, TestValidity
 
-
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
         fields = ('id', 'address_line_1','address_line_2', 'address_line_3', 'postcode','city', 'country','created_at','updated_at')
-   
 
 
 class ManufacturerSerializer(serializers.ModelSerializer):
@@ -15,7 +13,6 @@ class ManufacturerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Manufacturer
         fields = ('id', 'full_name','common_name', 'address', 'role')
-   
         
 
 class AuthorizationSerializer(serializers.ModelSerializer):
