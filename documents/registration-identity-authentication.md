@@ -141,7 +141,7 @@ Below are roles listed as they are developed in the registry. In the coming time
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
-| 0.5 | 4-February-2019 | Dr. Hrishikesh Ballal | Added assessment of endpoints to NIST recommendations |
+| 0.5 | 4-February-2019 | Dr. Hrishikesh Ballal | Removing write calls in endpoints to make it consistent with API |
 | 0.5 | 6-December-2019 | Dr. Hrishikesh Ballal | Added assessment of endpoints to NIST recommendations |
 | 0.4 | 11-October-2019 | Dr. Hrishikesh Ballal | Added scopes to roles |
 | 0.3 | 9-October-2019 | Dr. Hrishikesh Ballal | Added Payload and scope section |
