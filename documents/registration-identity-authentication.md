@@ -21,6 +21,7 @@ We are not advocating any of these products or technologies but the goal is to h
 ## Registry tables and Scopes
 
 The registry backend specifies a set of [tables](https://github.com/openskies-sh/aircraftregistry/blob/master/registry/models.py) for a database to hold data about the People, Operators and Equipment. In this section we specify the scopes and privilages for each table, as expected every table as `read` and `write` scopes additionally, we specify the following:
+
 - `all` scopes are for foreign keys of the table
 - `privileged` scopes are for privileged endpoints and interested parties.
 - `unthrottled` scopes are for specific endpoints and roles (see below).
@@ -121,11 +122,11 @@ Below are roles listed as they are developed in the registry. In the coming time
 
 | Role Name | Applicable Interested Party | Entity ID | Description | Scopes to be assigned | Notes |
 | --- | --- | --- | --- | --- | --- |
-| Drone Pilot | Private USS Operator | <b>B</b> | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment. | read:operator read:person read:pilot write:address write:person |
-| USS Administrator | USS Service provider |<b>B</b> |  A administrator within a USS, they can be the contact person between the regulator and USS. | write:operator write:person write:pilot write:address write:person read:operator read:person read:pilot read:address|
-| Regulator Employee | ANSP or CAA | <b>A</b>,<b>B</b> | A regular employee in a regulator or ANSP who needs see flights and view data in the registry (but not authorize them). | read:operator read:person write:operator write:contact read:contact read:pilot read:pilot read:aircraft write:aircraft write:person read:activity read:authorization | --- |
-| Regulator Manager | ANSP or CAA | <b>A</b>,<b>B</b> | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry. | read:operator read:operator:privileged read:person write:address write:address:privileged write:operator:privileged write:operator write:contact  read:contact read:pilot read:pilot:privileged read:address:privileged read:aircraft read:aircraft:privileged write:aircraft write:aircraft:privileged write:person write:authorization write:activity read:authorization read:activity | May need unthrottled privilages |
-| Law Enforcement "Standard" | Police | <b>D</b> | A regular employee in law enforcement at a local level (e.g. on patrol). | read:operator  read:operator:privileged read:person write:address write:address:privileged write:operator:privileged write:operator write:contact read:contact read:pilot read:pilot:privileged read:address:privileged read:aircraft read:aircraft:privileged write:aircraft write:aircraft:privileged write:person write:authorization write:activity read:authorization read:activity |--- |
+| Drone Pilot | Private USS Operator | <b>B</b> | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment. | read:operator read:person read:pilot |
+| USS Administrator | USS Service provider |<b>B</b> |  A administrator within a USS, they can be the contact person between the regulator and USS. | read:operator read:person read:pilot read:address|
+| Regulator Employee | ANSP or CAA | <b>A</b>,<b>B</b> | A regular employee in a regulator or ANSP who needs see flights and view data in the registry (but not authorize them). | read:operator read:person read:contact read:pilot read:pilot read:aircraft read:activity read:authorization | --- |
+| Regulator Manager | ANSP or CAA | <b>A</b>,<b>B</b> | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry. | read:operator read:operator:privileged read:person write:address read:contact read:pilot read:pilot:privileged read:address:privileged read:aircraft read:aircraft:privileged read:authorization read:activity | May need unthrottled privilages |
+| Law Enforcement "Standard" | Police | <b>D</b> | A regular employee in law enforcement at a local level (e.g. on patrol). | read:operator  read:operator:privileged read:person read:contact read:pilot read:pilot:privileged read:address:privileged read:aircraft read:aircraft:privileged read:authorization read:activity |--- |
 | Law Enforcement "Enhanced" | Police | <b>D</b> | A employee in law enforcement at a regional level (e.g. national investigation agency, head ). | read:operator read:operator:privileged read:person read:contact read:pilot read:pilot:privileged read:aircraft read:aircraft:privialged read:authorization read:activity read:unthrottled | May need unthrottled privileged |
 
 ## References
@@ -140,6 +141,7 @@ Below are roles listed as they are developed in the registry. In the coming time
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.5 | 4-February-2019 | Dr. Hrishikesh Ballal | Added assessment of endpoints to NIST recommendations |
 | 0.5 | 6-December-2019 | Dr. Hrishikesh Ballal | Added assessment of endpoints to NIST recommendations |
 | 0.4 | 11-October-2019 | Dr. Hrishikesh Ballal | Added scopes to roles |
 | 0.3 | 9-October-2019 | Dr. Hrishikesh Ballal | Added Payload and scope section |
