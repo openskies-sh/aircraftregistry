@@ -9,7 +9,8 @@
   - [Background](#background)
   - [Goals](#goals)
   - [Scenarios](#scenarios)
-  - [Test details](#test-details)
+  - [Extrapolating real world projections from TCL demos](#extrapolating-real-world-projections-from-tcl-demos)
+  - [Simulation details for all of Reno, NV](#simulation-details-for-all-of-reno-nv)
   - [Results](#results)
   - [Appendix](#appendix)
   - [Acknowledgements](#acknowledgements)
@@ -37,19 +38,37 @@ There are two major goals of this document, to develop a assessment of the secur
 
 ## Scenarios
 
-To conduct comprehensive testing for the registry, we create a software simulation. The simulation essentially is digital environment with a number of drones and aerial vehicles flying in the sky. Out of these vehicles we would simulate a percent of them making calls to the registry at any given point of time. The simulation will also have a temporal component in that it will run for a certain amount of time: 15 minutes. In addition to the vehicles making calls to the registry, we would like to simulate different stakeholders making requests for data into the registry.
+To conduct a comprehensive testing and load simuation, NASA has developed a series of tests under the Technology Capabiltiy Level (TCL) framework to demonstrate and operationalize key enabling technologies in an increasing order of complexity. NASA has provided detailed reports about these tests and are available on the [NASA UTM website](https://utm.arc.nasa.gov/documents.shtml). These demonstrators increase in complexity of missions and diverse stakeholders, the most important and relevant scenarios as demosntrated in the TCL tests is in TCL 3 and 4, TCL 4 specifically focuses on high-density urban operations, the most complicated scenario for a registry and we will focus on this.
 
-## Test details
+## Extrapolating real world projections from TCL demos
+
+The TCL tests are just a demonstration of core technical capability but can be a useful basis to extrapolate to understand potential real-world flight densities. For more information about TCL 4 reports, please reveiew the [results and analysis](https://utm.arc.nasa.gov/docs/2020-Rios_TM_220462-USS-Net-Perf.pdf) PDF. The most relevant Measures of Performance (MOP) for this document is UTM-MOP-16:
+
+- _"Successful High Density Operations" which is define as the following “measures the number of (live and simulated) aircraft per defined 0.2nmi​2​ of UTM operations."_
+- _"For this analysis, the minimum success criteria was more precisely defined as “> 10 aircraft (atleast 3 live operations) airborne and managed by UTM within an area of 0.2 nmi​2​."_
+- _"The value of 0.2 nmi​2​ is roughlyequivalent to 720 m​2​ or a circle with radius 406m, For all calculations in this paper, a circle with 406m radius was used to calculate density."_
+From the document, below is a image of the study area that is 406m in density with > 10 flights
+![study-area](https://i.imgur.com/sHWaESL.jpg)
+
+TCL demonstrators are not meant to be a reflection of the real world scenario but we can extrapolate this using data about Reno and making some assumptions. A 406 m radius circle gives a area of 517585.04 m<sup>2</sup> area or 0.51758 km<sup>2</sup> area. According to {Wikipedia}(https://en.wikipedia.org/wiki/Reno,_Nevada), the population density of Reno is about 820 / km<sup>2</sup> or 424.4156 for our area of interest. For the sake of this paper, let us consider the urgent package delivery market with the following assumptions:
+
+- 5% of the people are interested in urgent delivery (22 people in the area)
+- they order urgent delivery twice a week (22 x 2 packages x 2 days = 88 flights (back and forth))
+So in this area we anticipate **48 flights per week** to service 3% of urgent parcel deliveries. This calcuation can be extrapolated for all of Reno which as a population of 250,998 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)) and a area of 274.2 km<sup>2</sup>. Conducting the same calculations:
+
+- 5% of the people are interested in urgen delivery (12550 people in the city)
+- they order urgent delivery twice a week (12550 x 2 deliveries x 2 days) = 50,200 flights (back and forth)
+This means that every week there will be potentially 50,200 flights in the area, for the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 50,2000 flights and 40 hours to fly them = **1255 flights per hour** across the city.
+
+## Simulation details for all of Reno, NV
 
 At this initial stage, we will just test the read throughput, no write calls will be made to the registry. To set the scene, please review the article by [Airbus Altiscope](https://medium.com/altiscope/introducing-altiscope-creating-blueprints-for-the-sky-9eaf931e2a60), we will assume the following:
 
-- Operational Corridor: _1 km length x 200 m width_
+- Operational Corridor: _274.2 km2_
 - Operational scenario: _Medium Density Urban_
-- Number of people / residents nearby: _1000 individuals_
-- Flying over people: _Not permitted_
-- Number of vehicles in the air: _150_
+- Number of vehicles in the air: _1255 flights per hour / 17 flights per minute_
 - Number of police / law enforcement devices: _5_
-- Number of "common citizen" Remote ID requests: _20_
+- Number of "common citizen" Remote ID requests: _500_
 
 As is detailed in the API specification, we will query two API endpoints:
 
@@ -58,7 +77,7 @@ As is detailed in the API specification, we will query two API endpoints:
 
 | Test ID |  Test name | Objective | Duration | Details|
 | --- | --- | --- | --- | --- |
-| A | Rush hour load | The goal of this test is to see the server performance to numerous authenticated requests. We will query randomly the unprivileged endpoints of "aircraft details" and "operator details" | Continuously for 5 mins.  | 150 vehicles make a request per second for 5 minutes.  |
+| A | Rush hour load | The goal of this test is to see the server performance to numerous authenticated requests. We will query randomly the unprivileged endpoints of "aircraft details" and "operator details" | Continuously for 5 mins.  | 17 vehicles make a request per second for 5 minutes.  |
 | B | Law Enforcement requests | All law enforce and devices in the area make requests to the registry simultaneously with privileged requests. | Continuously for 1 minute. | Every law enforcement device in the area will make a request for data to both end points for 1 minute.  |
 | C |Citizen requests | The citizens in the area  | Continuously for 1 min. | The citizens will make a authenticated request for data from the un-privileged endpoints for data about the aircraft and also the operator. |
 | D | Unauthenticated requests | The main goal of this is to test how quickly the server can respond to requests that are unauthenticated | Continuously for 1 min.  | All the interested parties will make requests to the registry without sending authentication credentials. |
@@ -92,6 +111,7 @@ We are thankful to [Dr. Karthik Balakrishnan](https://www.linkedin.com/in/kbalak
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.7 | 10-February-2020 | Dr. Hrishikesh Ballal | Updated with NASA TCL 4 information and extrapolated data  |
 | 0.6 | 23-January-2020 | Dr. Hrishikesh Ballal | Added Key Observations in test results  |
 | 0.5 | 16-December-2019 | Dr. Hrishikesh Ballal | Added results for tests C,D and E |
 | 0.4 | 6-December-2019 | Dr. Hrishikesh Ballal | Added results section and first test |
