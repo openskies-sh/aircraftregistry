@@ -50,7 +50,7 @@ The TCL tests are just a demonstration of core technical capability but can be a
   
 <br>From the document, below is a image of the study area that is 406m in density with > 10 flights.
 
-<img src="https://i.imgur.com/sHWaESL.jpg" height="350">
+<img src="https://i.imgur.com/sHWaESL.jpg" height="300">
 
 TCL demonstrators are not meant to be a reflection of a real world "fully active" use. But we can extrapolate this using data about Reno by making some assumptions. A 406 m radius circle gives a area of 517585.04 m<sup>2</sup> area or 0.51758 km<sup>2</sup> area. According to [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada), the population density of Reno is about 820 / km<sup>2</sup> or 424.4156 for our area of interest. For the sake of this paper, let us consider the urgent package delivery market with the following assumptions:
 
