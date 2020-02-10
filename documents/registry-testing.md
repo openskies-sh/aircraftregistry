@@ -55,14 +55,13 @@ TCL demonstrators are not meant to be a reflection of a real world "fully active
 
 - 5% of the people are interested in urgent delivery (22 people in the area)
 - they order urgent delivery twice a week (22 x 2 packages x 2 days = 88 flights (back and forth))
-  
 <br>So in this area we anticipate **48 flights per week** to service 3% of urgent parcel deliveries. This calcuation can be extrapolated for all of Reno which as a population of 250,998 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)) and a area of 274.2 km<sup>2</sup>.
 
 Conducting the same calculations for the entire Reno, NV area, we get the following:
 
 - 5% of the people are interested in urgen delivery (12550 people in the city)
 - they order urgent delivery twice a week (12550 x 2 deliveries x 2 days) = 50,200 flights (back and forth)
-This means that every week there will be potentially 50,200 flights in the area, for the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 50,2000 flights and 40 hours to fly them = **1255 flights per hour** across the city which is significantly more than the TCL demonstration. We can test the impact of these flights on the registry by conducting software tests. 
+<br>This means that every week there will be potentially 50,200 flights in the area, for the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 50,2000 flights and 40 hours to fly them = **1255 flights per hour** across the city which is significantly more than the TCL demonstration. We can test the impact of these flights on the registry by conducting software tests.
 
 ## Simulation details for all of Reno, NV
 
