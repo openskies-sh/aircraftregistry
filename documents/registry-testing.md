@@ -38,7 +38,7 @@ There are two major goals of this document, to develop a assessment of the secur
 
 ## Scenarios
 
-To conduct a comprehensive testing and load simuation, NASA has developed a series of tests under the Technology Capabiltiy Level (TCL) framework to demonstrate and operationalize key enabling technologies in an increasing order of complexity. NASA has provided detailed reports about these tests and are available on the [NASA UTM website](https://utm.arc.nasa.gov/documents.shtml). These demonstrators increase in complexity of missions and diverse stakeholders, the most important and relevant scenarios as demosntrated in the TCL tests is in TCL 3 and 4, TCL 4 specifically focuses on high-density urban operations, the most complicated scenario for a registry and we will focus on this.
+To build a comprehensive testing and load simulation, we utilize the TCL program to develop a scenario. NASA has developed a series of tests under the Technology Capabiltiy Level (TCL) framework to demonstrate and operationalize key enabling technologies in an increasing order of complexity. NASA has provided detailed reports about these tests and are available on the [NASA UTM website](https://utm.arc.nasa.gov/documents.shtml). These demonstrators increase in complexity of missions and diverse stakeholders, the most important and relevant scenarios as demosntrated in the TCL tests is in TCL 3 and 4, TCL 4 specifically focuses on high-density urban operations, the most complicated scenario for a registry and we will focus on this.
 
 ## Extrapolating real world scenarios from TCL demos
 
