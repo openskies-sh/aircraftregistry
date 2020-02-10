@@ -21,7 +21,7 @@ class CallPrivilegedOperatorPilot(TaskSet):
 
 class MyLocust(HttpLocust):
     task_set = CallPrivilegedOperatorPilot
-    wait_time = between(5,6)
+    wait_time = between(1,2)
 
 
 # class MyFastLocust(FastHttpLocust):

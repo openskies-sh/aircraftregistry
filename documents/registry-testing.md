@@ -59,7 +59,7 @@ TCL demonstrators are not meant to be a reflection of a real world "fully active
   
 <br>So in this area we anticipate **48 flights per week** to service 3% of urgent parcel deliveries. This calcuation can be extrapolated for all of Reno which as a population of 250,998 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)) and a area of 274.2 km<sup>2</sup>.
 
-<img src="https://i.imgur.com/i8Cpz0C.png" width="219" height="300">
+<img src="https://i.imgur.com/i8Cpz0C.png" width="400" height="549">
 
 Conducting the same calculations for the entire Reno, NV area, we get the following:
 
@@ -85,21 +85,21 @@ As is detailed in the API specification, we will query two API endpoints:
 
 | Test ID |  Test name | Objective | Duration | Details|
 | --- | --- | --- | --- | --- |
-| A | Rush hour load | The goal of this test is to see the server performance to numerous authenticated requests. We will query randomly the unprivileged endpoints of "aircraft details" and "operator details" | Continuously for 5 mins.  | 17 vehicles make a request per second for 5 minutes.  |
-| B | Law Enforcement requests | All law enforce and devices in the area make requests to the registry simultaneously with privileged requests. | Continuously for 1 minute. | Every law enforcement device in the area will make a request for data to both end points for 1 minute.  |
-| C |Citizen requests | The citizens in the area  | Continuously for 1 min. | The citizens will make a authenticated request for data from the un-privileged endpoints for data about the aircraft and also the operator. |
-| D | Unauthenticated requests | The main goal of this is to test how quickly the server can respond to requests that are unauthenticated | Continuously for 1 min.  | All the interested parties will make requests to the registry without sending authentication credentials. |
-| E | Unauthorized requests | The main goal of this is to test how quickly the server can respond to requests that are unauthorized (e.g. wrong scopes) | Continuously for 5 mins.  | The server will decrypt the token, read the scopes and then will understand that the requestor does not have the permission to view the data. |
+| A | Rush hour load | The goal of this test is to see the server performance to numerous authenticated requests. We will query randomly the unprivileged endpoints of "aircraft details" and "operator details" | Continuously for 5 mins.  | 1255 vehicles make a request per second for 3 minutes.  |
+| B | Law Enforcement requests | All law enforce and devices in the area make requests to the registry simultaneously with privileged requests. | Continuously for 1 minute. | Every law enforcement device in the area will make a request for data to both end points for 3 minutes.  |
+| C |Citizen requests | The citizens in the area  | Continuously for 3 min. | The citizens will make a authenticated request for data from the un-privileged endpoints for data about the aircraft and also the operator. |
+| D | Unauthenticated requests | The main goal of this is to test how quickly the server can respond to requests that are unauthenticated | Continuously for 3 min.  | All the interested parties will make requests to the registry without sending authentication credentials. |
+| E | Unauthorized requests | The main goal of this is to test how quickly the server can respond to requests that are unauthorized (e.g. wrong scopes) | Continuously for 3 mins.  | The server will decrypt the token, read the scopes and then will understand that the requestor does not have the permission to view the data. |
 
 ## Results
 
-| Test ID |  Test output | Key Observation |
-| --- | --- | --- |
-| A ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-A.py)) | ![img-test-a](https://i.imgur.com/pvgL74Q.jpg) | The response time plateaus earlier than the max number of users, this means that there is software limit to the performance of Django / Python project that is independent of the number of users querying the system. |
-| B ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-B.py))| ![img-test-b](https://i.imgur.com/fLyB8f3.jpg) | In this test the number of queries are very low compared (see RPS) to the previous one, in this case as well the response time is more or less the same. This means that the system performance is not really dependent on the number of requests, it is in the software. |
-| C ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-C.py)) | ![img-test-c](https://i.imgur.com/nu00451.jpg) | Same comments as above, with slightly less users (RPS 4.3 -> RPS 0.8) the response time is more or less the same.  |
-| D ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-D.py))| ![img-test-d](https://i.imgur.com/I1TXYPq.jpg) | For unauthenticated requests there is a high failure rate, this seems to be a function of Django, need to investigate why there is such a high drop rate. |
-| E ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-E.py))| ![img-test-e](https://i.imgur.com/xjmU1dI.jpg) | As expected all requersts should fail because they are unauthenticated in this case, we pause in the middle and then add the requests again to see if the increase in the response times has any change. |
+| Test ID |  Test output | Raw data | Key Observation |
+| --- | --- | --- | --- |
+| A ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-A.py)) | ![img-test-a](https://i.imgur.com/Za4vRnr.jpg) | -- | The response time plateaus earlier than the max number of users, this means that there is software limit to the performance of Django / Python project that is independent of the number of users querying the system. |
+| B ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-B.py))| ![img-test-b](https://i.imgur.com/V0IJ5fw.jpg) | --| In this test the number of queries are very low compared (see RPS) to the previous one, in this case as well the response time is more or less the same. This means that the system performance is not really dependent on the number of requests, it is in the software. |
+| C ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-C.py)) | ![img-test-c](https://i.imgur.com/gL5PKhd.jpg) | --| Same comments as above, with slightly less users (RPS 4.3 -> RPS 0.8) the response time is more or less the same.  |
+| D ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-D.py))| ![img-test-d](https://i.imgur.com/BNUFBSA.png) | --| For unauthenticated requests there is a high failure rate, this seems to be a function of Django, need to investigate why there is such a high drop rate. |
+| E ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-E.py))| ![img-test-e](https://i.imgur.com/9kG9Bjv.jpg) | --| As expected all requersts should fail because they are unauthenticated in this case, we pause in the middle and then add the requests again to see if the increase in the response times has any change. |
 
 ## Appendix
 
