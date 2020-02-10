@@ -9,7 +9,7 @@
   - [Background](#background)
   - [Goals](#goals)
   - [Scenarios](#scenarios)
-  - [Extrapolating real world projections from TCL demos](#extrapolating-real-world-projections-from-tcl-demos)
+  - [Extrapolating real world scenarios from TCL demos](#extrapolating-real-world-scenarios-from-tcl-demos)
   - [Simulation details for all of Reno, NV](#simulation-details-for-all-of-reno-nv)
   - [Results](#results)
   - [Appendix](#appendix)
@@ -40,7 +40,7 @@ There are two major goals of this document, to develop a assessment of the secur
 
 To conduct a comprehensive testing and load simuation, NASA has developed a series of tests under the Technology Capabiltiy Level (TCL) framework to demonstrate and operationalize key enabling technologies in an increasing order of complexity. NASA has provided detailed reports about these tests and are available on the [NASA UTM website](https://utm.arc.nasa.gov/documents.shtml). These demonstrators increase in complexity of missions and diverse stakeholders, the most important and relevant scenarios as demosntrated in the TCL tests is in TCL 3 and 4, TCL 4 specifically focuses on high-density urban operations, the most complicated scenario for a registry and we will focus on this.
 
-## Extrapolating real world projections from TCL demos
+## Extrapolating real world scenarios from TCL demos
 
 The TCL tests are just a demonstration of core technical capability but can be a useful basis to extrapolate to understand potential real-world flight densities. For more information about TCL 4 reports, please reveiew the [results and analysis](https://utm.arc.nasa.gov/docs/2020-Rios_TM_220462-USS-Net-Perf.pdf) PDF. The most relevant Measures of Performance (MOP) for this document is UTM-MOP-16:
 
