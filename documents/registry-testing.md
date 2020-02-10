@@ -48,15 +48,15 @@ The TCL tests are just a demonstration of core technical capability but can be a
 - _"For this analysis, the minimum success criteria was more precisely defined as “> 10 aircraft (atleast 3 live operations) airborne and managed by UTM within an area of 0.2 nmi​2​."_
 - _"The value of 0.2 nmi​2​ is roughlyequivalent to 720 m​2​ or a circle with radius 406m, For all calculations in this paper, a circle with 406m radius was used to calculate density."_
   
-From the document, below is a image of the study area that is 406m in density with > 10 flights.
+<br>From the document, below is a image of the study area that is 406m in density with > 10 flights.
 ![study-area](https://i.imgur.com/sHWaESL.jpg)
 
 TCL demonstrators are not meant to be a reflection of a real world "fully active" use. But we can extrapolate this using data about Reno by making some assumptions. A 406 m radius circle gives a area of 517585.04 m<sup>2</sup> area or 0.51758 km<sup>2</sup> area. According to [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada), the population density of Reno is about 820 / km<sup>2</sup> or 424.4156 for our area of interest. For the sake of this paper, let us consider the urgent package delivery market with the following assumptions:
 
 - 5% of the people are interested in urgent delivery (22 people in the area)
 - they order urgent delivery twice a week (22 x 2 packages x 2 days = 88 flights (back and forth))
-- 
-So in this area we anticipate **48 flights per week** to service 3% of urgent parcel deliveries. This calcuation can be extrapolated for all of Reno which as a population of 250,998 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)) and a area of 274.2 km<sup>2</sup>.
+  
+<br>So in this area we anticipate **48 flights per week** to service 3% of urgent parcel deliveries. This calcuation can be extrapolated for all of Reno which as a population of 250,998 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)) and a area of 274.2 km<sup>2</sup>.
 
 Conducting the same calculations for the entire Reno, NV area, we get the following:
 
