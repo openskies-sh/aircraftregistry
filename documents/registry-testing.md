@@ -38,21 +38,21 @@ There are two major goals of this document, to develop a assessment of the secur
 
 ## Scenarios
 
-To build a comprehensive testing and load simulation, we utilize the TCL program to develop a scenario. NASA has developed a series of tests under the Technology Capabiltiy Level (TCL) framework to demonstrate and operationalize key enabling technologies in an increasing order of complexity. NASA has provided detailed reports about these tests and are available on the [NASA UTM website](https://utm.arc.nasa.gov/documents.shtml). These demonstrators increase in complexity of missions and diverse stakeholders, the most important and relevant scenarios as demosntrated in the TCL tests is in TCL 3 and 4, TCL 4 specifically focuses on high-density urban operations, the most complicated scenario for a registry and we will focus on this.
+To build a comprehensive testing and load simulation, we utilize the TCL program to develop a scenario. NASA has developed a series of tests under the Technology Capabiltiy Level (TCL) program to demonstrate and operationalize key enabling technologies for UTM in an increasing order of complexity. NASA has provided detailed reports about these tests and they are available on the [NASA UTM website](https://utm.arc.nasa.gov/documents.shtml). These demonstrators increase in complexity of missions and diverse stakeholders, the most important and relevant scenarios as demosntrated in the TCL tests is in TCL 3 and 4. TCL 4 specifically focuses on high-density urban operations, the most complicated scenario for a registry and we will focus on this.
 
 ## Extrapolating real world scenarios from TCL demos
 
 The TCL tests are just a demonstration of core technical capability but can be a useful basis to extrapolate to understand potential real-world flight densities. For more information about TCL 4 reports, please reveiew the [results and analysis](https://utm.arc.nasa.gov/docs/2020-Rios_TM_220462-USS-Net-Perf.pdf) PDF. The most relevant Measures of Performance (MOP) for this document is UTM-MOP-16:
 
 - _"Successful High Density Operations" which is define as the following “measures the number of (live and simulated) aircraft per defined 0.2nmi​2​ of UTM operations."_
-- _"For this analysis, the minimum success criteria was more precisely defined as “> 10 aircraft (atleast 3 live operations) airborne and managed by UTM within an area of 0.2 nmi​2​."_
+- _"For this analysis, the minimum success criteria was more precisely defined as “ 10 aircraft (atleast 3 live operations) airborne and managed by UTM within an area of 0.2 nmi​2​."_
 - _"The value of 0.2 nmi​2​ is roughlyequivalent to 720 m​2​ or a circle with radius 406m, For all calculations in this paper, a circle with 406m radius was used to calculate density."_
   
 <br>From the document, below is a image of the study area that is 406m in density with > 10 flights.
 
 <img src="https://i.imgur.com/sHWaESL.jpg">
 
-TCL demonstrators are not meant to be a reflection of a real world "fully active" use. But we can extrapolate this using data about Reno by making some assumptions. A 406 m radius circle gives a area of 517585.04 m<sup>2</sup> area or 0.51758 km<sup>2</sup> area. According to [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada), the population density of Reno is about 820 / km<sup>2</sup> or 425 people in our area of interest. For the sake of this paper, let us consider the urgent package delivery market with the following assumptions:
+TCL demonstrators are not meant to be a reflection of a real world "fully active" use. But we can extrapolate this using data about Reno by making some assumptions. A 406 m radius circle gives a area of 517585.04 m<sup>2</sup> or 0.51758 km<sup>2</sup> area. According to [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada), the population density of Reno is about 820 / km<sup>2</sup> or 425 people in our area of interest. For the sake of this paper, let us consider the urgent package delivery market with the following assumptions:
 
 - 5% of the people are interested in urgent delivery (22 people in the area)
 - they order urgent delivery twice a week (22 x 2 packages x 2 days) = 88 flights (back and forth)
@@ -95,7 +95,7 @@ As is detailed in the API specification, we will query two API endpoints:
 
 | Test ID |  Test output | Raw data | Key Observation |
 | --- | --- | --- | --- |
-| A ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-A.py)) | ![img-test-a](https://i.imgur.com/Za4vRnr.jpg) | [csv test output](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/output/test-a.zip) | The response time plateaus earlier than the max number of users, this means that there is software limit to the performance of Django / Python project that is independent of the number of users querying the system. |
+| A ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-A.py)) | ![img-test-a](https://i.imgur.com/Za4vRnr.jpg) | [csv test output](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/output/test-a.zip) | The response time plateaus earlier than the max number of users, this means that there is software limit to the performance of Django / Python project that is independent of the number of users querying the system. This can be fixed by further scaling and investment in the servers. |
 | B ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-B.py))| ![img-test-b](https://i.imgur.com/V0IJ5fw.jpg) | [csv test output](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/output/test-b.zip)| In this test the number of queries are very low compared (see RPS) to the previous one, in this case as well the response time is more or less the same. This means that the system performance is not really dependent on the number of requests, it is in the software. |
 | C ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-C.py)) | ![img-test-c](https://i.imgur.com/gL5PKhd.jpg) | [csv test output](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/output/test-c.zip)| Same comments as above, with slightly less users (RPS 4.3 -> RPS 0.8) the response time is more or less the same.  |
 | D ([view test source](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/test-id-D.py))| ![img-test-d](https://i.imgur.com/BNUFBSA.png) | [csv test output](https://github.com/openskies-sh/aircraftregistry/blob/master/tests/output/test-d.zip)| For unauthenticated requests there is a high failure rate, this seems to be a function of Django, need to investigate why there is such a high drop rate. |
