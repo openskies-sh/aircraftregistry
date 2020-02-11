@@ -52,12 +52,12 @@ The TCL tests are just a demonstration of core technical capability but can be a
 
 <img src="https://i.imgur.com/sHWaESL.jpg">
 
-TCL demonstrators are not meant to be a reflection of a real world "fully active" use. But we can extrapolate this using data about Reno by making some assumptions. A 406 m radius circle gives a area of 517585.04 m<sup>2</sup> area or 0.51758 km<sup>2</sup> area. According to [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada), the population density of Reno is about 820 / km<sup>2</sup> or 424.4156 for our area of interest. For the sake of this paper, let us consider the urgent package delivery market with the following assumptions:
+TCL demonstrators are not meant to be a reflection of a real world "fully active" use. But we can extrapolate this using data about Reno by making some assumptions. A 406 m radius circle gives a area of 517585.04 m<sup>2</sup> area or 0.51758 km<sup>2</sup> area. According to [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada), the population density of Reno is about 820 / km<sup>2</sup> or 425 people in our area of interest. For the sake of this paper, let us consider the urgent package delivery market with the following assumptions:
 
 - 5% of the people are interested in urgent delivery (22 people in the area)
-- they order urgent delivery twice a week (22 x 2 packages x 2 days = 88 flights (back and forth))
+- they order urgent delivery twice a week (22 x 2 packages x 2 days) = 88 flights (back and forth)
   
-<br>So in this area we anticipate **48 flights per week** to service 3% of urgent parcel deliveries. This calcuation can be extrapolated for all of Reno which as a population of 250,998 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)) and a area of 274.2 km<sup>2</sup>.
+<br>So in this area we anticipate **48 flights per week** to service 5% of urgent parcel deliveries. This calcuation can be extrapolated for all of Reno which as a population of 250,998 (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)) and a area of 274.2 km<sup>2</sup>.
 
 <img src="https://i.imgur.com/i8Cpz0C.png" width="400" height="549">
 
