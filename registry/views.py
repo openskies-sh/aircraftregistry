@@ -105,7 +105,7 @@ def requires_scopes(required_scopes):
     return require_scope
 
 
-@method_decorator(requires_scopes(['read:operator']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.operator']), name='dispatch')
 class OperatorList(mixins.ListModelMixin,
                    generics.GenericAPIView):
     """
@@ -119,7 +119,7 @@ class OperatorList(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:operator']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.operator']), name='dispatch')
 class OperatorDetail(mixins.RetrieveModelMixin,
                      generics.GenericAPIView):
     """
@@ -134,7 +134,7 @@ class OperatorDetail(mixins.RetrieveModelMixin,
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-@method_decorator(requires_scopes(['read:aircraft']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.aircraft']), name='dispatch')
 class AircraftList(mixins.ListModelMixin,
                   generics.GenericAPIView):
     """
@@ -148,7 +148,7 @@ class AircraftList(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:aircraft']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.aircraft']), name='dispatch')
 class AircraftDetail(mixins.RetrieveModelMixin,
                      generics.GenericAPIView):
     """
@@ -172,7 +172,7 @@ class AircraftDetail(mixins.RetrieveModelMixin,
 
 
 
-@method_decorator(requires_scopes(['read:aircraft','read:aircraft:privileged']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.aircraft','registry.read.aircraft.privileged']), name='dispatch')
 class AircraftDetailPrivileged(mixins.RetrieveModelMixin,
                      generics.GenericAPIView):
     """
@@ -195,7 +195,7 @@ class AircraftDetailPrivileged(mixins.RetrieveModelMixin,
         return Response(serializer.data)
 
 
-@method_decorator(requires_scopes(['read:operator', 'read:address', 'read:operator:privileged']), name='dispatch')
+@method_decorator(requires_scopes(['regsitry.read.operator', 'registry.read.address', 'regsitry.read.operator.privileged']), name='dispatch')
 class OperatorDetailPrivileged(mixins.RetrieveModelMixin,
                                generics.GenericAPIView):
     """
@@ -209,7 +209,7 @@ class OperatorDetailPrivileged(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:operator', 'read:aircraft']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.operator', 'registry.read.aircraft']), name='dispatch')
 class OperatorAircraft(mixins.RetrieveModelMixin,
                        generics.GenericAPIView):
     """
@@ -234,7 +234,7 @@ class OperatorAircraft(mixins.RetrieveModelMixin,
         return Response(serializer.data)
 
 
-@method_decorator(requires_scopes(['read:aircraft','read:aircraft:privileged']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.aircraft','registry.read.aircraft.privileged']), name='dispatch')
 class AircraftESNDetails(mixins.RetrieveModelMixin,
                          generics.GenericAPIView):
 
@@ -259,7 +259,7 @@ class ContactList(mixins.ListModelMixin,
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
-@method_decorator(requires_scopes(['read:contact','read:person','read:operator']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.contact','registry.read.person','registry.read.operator']), name='dispatch')
 class ContactDetail(mixins.RetrieveModelMixin,
                     generics.GenericAPIView):
     """
@@ -272,7 +272,7 @@ class ContactDetail(mixins.RetrieveModelMixin,
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-@method_decorator(requires_scopes(['read:contact','read:contact:privileged','read:operator', 'read:address','read:person']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.contact','registry.read.contact.privileged','read:operator', 'read:address','read:person']), name='dispatch')
 class ContactDetailPrivileged(mixins.RetrieveModelMixin,
                               generics.GenericAPIView):
     """
@@ -285,7 +285,7 @@ class ContactDetailPrivileged(mixins.RetrieveModelMixin,
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
-@method_decorator(requires_scopes(['read:pilot']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.pilot']), name='dispatch')
 class PilotList(mixins.ListModelMixin,
                 generics.GenericAPIView):
     """
@@ -298,7 +298,7 @@ class PilotList(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
 
-@method_decorator(requires_scopes(['read:pilot','read:person']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.pilot','registry.read.person']), name='dispatch')
 class PilotDetail(mixins.RetrieveModelMixin,
                   generics.GenericAPIView):
     """
@@ -314,7 +314,7 @@ class PilotDetail(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
         
 
-@method_decorator(requires_scopes(['read:pilot','read:person','read:address', 'read:operator','read:pilot:privileged']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.pilot','registry.read.person','registry.read.address', 'registry.read.operator','registry.read.pilot.privileged']), name='dispatch')
 class PilotDetailPrivileged(mixins.RetrieveModelMixin,
                             generics.GenericAPIView):
     """

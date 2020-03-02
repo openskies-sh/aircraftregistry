@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\hrish\\Miniconda3\\envs\\windev\\python.exe",
+    "python.pythonPath": "/Users/hrishiballal/opt/miniconda3/envs/gdhblade/bin/python",
     "python.linting.pylintEnabled": true,
     "python.linting.pycodestyleEnabled": false,
     "python.linting.enabled": true
