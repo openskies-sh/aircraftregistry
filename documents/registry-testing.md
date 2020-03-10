@@ -50,25 +50,22 @@ The TCL tests are just a demonstration of core technical capability but can be a
   
 <br>From the document, below is a image of the study area that is 406m in density with > 10 flights.
 
-<img src="https://i.imgur.com/sHWaESL.jpg">
 
-TCL demonstrators are not meant to be a reflection of a real world "fully active" use. But we can extrapolate this using data about Reno by making some assumptions. A 406 m radius circle gives a area of 517585.04 m<sup>2</sup> or 0.51758 km<sup>2</sup> area. According to [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada), the population density of Reno is about 820 / km<sup>2</sup> or 425 people in our area of interest. For the sake of this paper, let us consider the urgent package delivery market with the following assumptions:
 
-- 5% of the people are interested in urgent delivery (22 people in the area)
-- they order urgent delivery twice a week (22 x 2 packages x 2 days) = 88 flights (back and forth)
-  
-<br>So in this area we anticipate **88 flights per week** to service 5% of urgent parcel deliveries demand. This calcuation can be extrapolated for all of Reno which as a population of 250,998 and a area of 274.2 km<sup>2</sup> (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)).
+TCL demonstrators are not meant to be a reflection of a real world "fully active" use. In addition to Reno, there were tests in the  Corpus Christi area. We can extrapolate this using data about Reno by making some assumptions. 
 
-<img src="https://i.imgur.com/i8Cpz0C.png" width="400" height="549">
+| Location | Area | 
+| ------------- |:-------------:| 
+| Reno, Nevada | Corpus Christi, Texas| 
+| <img src="https://i.imgur.com/sHWaESL.jpg"> | <img src="https://i.imgur.com/xv5ZB3W.png"> | 
+| A 406 m radius circle gives a area of 517585.04 m<sup>2</sup> or 0.51758 km<sup>2</sup> area. According to [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada), the population density of Reno is about 820 / km<sup>2</sup> or 425 people in our area of interest.  |  A 406 m radius circle gives a area of 517585.04 m<sup>2</sup> or 0.51758 km<sup>2</sup> area. According to [Wikipedia](https://en.wikipedia.org/wiki/Corpus_Christi,_Texas), the population density of Corpus Christi is about 710 / km<sup>2</sup> or 366 people in our area of interest. | 
+| Assume that the urgent package delivery market with the following assumptions: 5% of the people are interested in urgent delivery (22 people in the area, they order urgent delivery twice a week (22 x 2 packages x 2 days) = **88 flights (back and forth)** | Assume that the urgent package delivery market with the following assumptions: 5% of the people are interested in urgent delivery (18 people in the area), they order urgent delivery twice a week (18 x 2 packages x 2 days) = **72 flights (back and forth)** | 
+| Reno City has a population of 250,998 and a area of 274.2 km<sup>2</sup> (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)). | Corpus Christi Metro Area has a population of 326,554 and a area of 1,304 km<sup>2</sup> (Source: [Wikipedia](https://en.wikipedia.org/wiki/Corpus_Christi,_Texas))|
+|
+<img src="https://i.imgur.com/i8Cpz0C.png"> | <img src="https://i.imgur.com/886vL6s.png"> |
+| Conducting the same calculations for the entire Reno, NV area, we get the following: 5% of the people are interested in urgen delivery (12,550 people in the city), they order urgent delivery twice a week (12550 x 2 packages x 2 days) = 50,200 flights (back and forth). This means that every week there will be potentially **50,200 flights per week** in the area. For the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 50,200 flights and 40 hours to fly them = **1255 flights per hour**  | Conducting the same calculations for the entire Corpus Christi, TX area, we get the following: 5% of the people are interested in urgen delivery (16328 people in the city), they order urgent delivery twice a week (16328 x 2 packages x 2 days) = 65310 flights (back and forth). This means that every week there will be potentially **65,310 flights per week** in the area. For the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 65,310 flights and 40 hours to fly them = **1633 flights per hour** | 
 
-Conducting the same calculations for the entire Reno, NV area, we get the following:
-
-- 5% of the people are interested in urgen delivery (12,550 people in the city)
-- they order urgent delivery twice a week (12550 x 2 packages x 2 days) = 50,200 flights (back and forth)
-  
-<br>This means that every week there will be potentially **50,200 flights per week** in the area, for the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 50,200 flights and 40 hours to fly them = **1255 flights per hour** across the city which is significantly more than the TCL demonstration. We can test the impact of these flights on the registry by conducting software tests.
-
-## Simulation details for all of Reno, NV
+## Simulation details
 
 At this initial stage, we will just test the read throughput, no write calls will be made to the registry. For more background, please review the article by [Airbus Altiscope](https://medium.com/altiscope/introducing-altiscope-creating-blueprints-for-the-sky-9eaf931e2a60), we will assume the following:
 
@@ -119,6 +116,7 @@ We are thankful to [Dr. Karthik Balakrishnan](https://www.linkedin.com/in/kbalak
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.8 | 10-March-2020 | Dr. Hrishikesh Ballal | Updated with NASA TCL 4 Corpus Chirsti Data |
 | 0.7 | 10-February-2020 | Dr. Hrishikesh Ballal | Updated with NASA TCL 4 information and extrapolated data  |
 | 0.6 | 23-January-2020 | Dr. Hrishikesh Ballal | Added Key Observations in test results  |
 | 0.5 | 16-December-2019 | Dr. Hrishikesh Ballal | Added results for tests C,D and E |
