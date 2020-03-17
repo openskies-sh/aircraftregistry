@@ -64,7 +64,7 @@ Returns a list of operators in the registry
 
 ### Get a single operator [GET]
 
-***Scope registry.read.operator***
+***Scope registry.read.operator_detail***
 
 
 Returns all the details of a single operator available in the database. The operator id is the unique ID assoicated with the operator that is in the form of a uuid.
@@ -103,9 +103,7 @@ Returns all the details of a single operator available in the database. The oper
 
 ### Get a operator (Privileged) [GET]
 
-
-***Scopes registry.read.operator registry.read.address registry.read.operator.privileged***
-
+***Scope registry.read.operator_detail.privileged***
 
 This is a privileged request made by a interested party that has special access privileges in the registry. Returns all the details of a single operator available in the database. The operatorid is the unique ID assoicated with the operator that is in the form of a uuid. 
 
@@ -114,7 +112,7 @@ This is a privileged request made by a interested party that has special access 
     
 + Request (application/json)
     + Headers
-
+    
             Authorization: Bearer ABC123
             
 + Response 200 (application/json)
@@ -155,7 +153,7 @@ This is a privileged request made by a interested party that has special access 
 
 ### Get aircraft for operator [GET]
 
-***Scope registry.read.operator registry.read.aircraft***
+***Scope registry.read.operator_aircraft***
 
 
 Returns all the details of a single operator available in the database. The operator id is the unique ID assoicated with the operator that is in the form of a uuid.
@@ -231,7 +229,7 @@ Resources related to Contacts with in the Registration in the API
 
 ### List all contacts [GET]
 
-***Scope registry.read.contact registry.read.person***
+***Scope registry.read.contact***
 
 Returns a list of contact people in the registry
     
@@ -293,7 +291,7 @@ Returns a list of contact people in the registry
 
 ### Get a single contact [GET]
 
-***Scope registry.read.contact registry.read.person registry.read.operator***
+***Scope registry.read.contact_detail***
 
 Returns all the details of a single contact and basic information about the contact person available in the database. The contact id is the unique ID assoicated with a contact person for the operator that is in the form of a uuid.
 
@@ -347,7 +345,7 @@ Returns all the details of a single contact and basic information about the cont
 
 ### Get a single contact [GET]
 
-***Scope registry.read.contact registry.read.contact.privileged registry.read.address registry.read.person***
+***Scope registry.read.contact_detail.privileged***
 
 Returns all the details of a single contact and basic information about the contact person available in the database. The contact id is the unique ID assoicated with a contact person for the operator that is in the form of a uuid.
 
@@ -422,7 +420,7 @@ Resources related to Pilots with in the Registration in the API
 
 ### List all pilots [GET]
 
-***Scope read:pilot***
+***Scope registry.read.pilot***
 
 
 Returns a list of pilots in the registry
@@ -453,7 +451,7 @@ Returns a list of pilots in the registry
 
 ### Get a single pilot [GET]
 
-***Scope registry.read.pilot registry.read.person***
+***Scope registry.read.pilot_detail***
 
 Returns all the details of a single pilot and basic information about the pilot available in the database. The pilot id is the unique ID assoicated with a pilot for the operator that is in the form of a uuid.
 
@@ -492,7 +490,7 @@ Returns all the details of a single pilot and basic information about the pilot 
 
 ### Get a single pilot (Privileged) [GET]
 
-***Scope registry.read.pilot registry.read.person registry.read.address registry.read.operator registry.read.pilot.privileged***
+***Scope registry.read.pilot_detail.privileged***
 
 Returns all the details of a single pilot and basic information about the pilot available in the database. The pilot id is the unique ID assoicated with a pilot for the operator that is in the form of a uuid.
 
@@ -610,7 +608,7 @@ List all aircraft in the registry
 
 ### Get a single Aircraft [GET]
 
-***Scope registry.read.aircraft***
+***Scope registry.read.aircraft_detail***
 
 Get information about a Aircraft by looking up its ESN
 
@@ -641,7 +639,7 @@ Get information about a Aircraft by looking up its ESN
 
 ### Get a single Aircraft (privileged) [GET]
 
-***Scope registry.read.aircraft registry.read.aircraft.privileged***
+***Scope registry.read.aircraft_detail.privileged***
 
 Get privileged information about a Aircraft by looking up its ESN
 
