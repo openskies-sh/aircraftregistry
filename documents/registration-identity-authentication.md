@@ -20,26 +20,25 @@ We are not advocating any of these products or technologies but the goal is to h
 
 ## Registry tables and Scopes
 
-The registry backend specifies a set of [tables](https://github.com/openskies-sh/aircraftregistry/blob/master/registry/models.py) for a database to hold data about the People, Operators and Equipment. In this section we specify the scopes and privilages for each table, as expected every table as `read` and `write` scopes additionally, we specify the following.
+The registry backend specifies a set of [tables](https://github.com/openskies-sh/aircraftregistry/blob/master/registry/models.py) for a database to hold data about the People, Operators and Equipment. However, in the API the data in these tables is aggregated and we have endpoint based scopes. 
 
-- `all` scopes are for foreign keys of the table
 - `privileged` scopes are for privileged endpoints and interested parties.
 - `unthrottled` scopes are for specific endpoints and roles (see below).
 
-| Table | Scopes assigned | Notes |
-| --- | --- | --- |
-| Person | __Read__: registy.read.person registy.read.person.privileged <br><br> __Write__: registy.write.person registy.write.person.privileged  |  All information about a person, it could be a contact, pilot etc. PII Information is in this capacity |
-| Address | __Read__: registy.read:address registy.read:address:privileged <br><br> __Write__: registy.write.address registy.write.address.privileged |  All information about addresses, PII information  |
-| Activity | __Read__: registy.read.acitivity <br><br> __Write__: registy.write.activity |  All information about acitivites undertaken by a operator |
-| Authorization | __Read__: registy.read.authorization <br><br> __Write__: registy.write.authorization |  All information about authorization for the operator |
-| Operator | __Read__: registy.read.operator registy.read.operator.privileged <br><br> __Write__: registy.write.operator registy.write.operator.privileged |  All information related to a operators in the registry|
-| Contact | __Read__: registy.read.contact registy.read.contact.privileged<br><br> __Write__: registy.write.contact registy.write.contact.privileged |  All information about a contact. PII Information. |
-| Test |  __Read__: registy.read.test <br><br> __Write__: registy.write.test|  All information about tests taken by the pilot |
-| Pilot |  __Read__: registy.read.pilot registy.read.pilot.privileged<br><br> __Write__: registy.write.pilot registy.write.pilot.privileged |  All information about the pilot, PII Information |
-| TestValidity |  __Read__: registy.read.testvalidity <br><br> __Write__: registy.write.testvalidity |  Write information about TestValidity|
-| TypeCertificate |  __Read__: registy.read.typecertificate <br><br> __Write__: registy.write.typecertificate |  All information about aircraft type certificate |
-| Manufacturer |  __Read__: registy.read.manufacturer <br><br> __Write__: registy.write.manufacturer | All information about manufacturers |
-| Aircraft |  __Read__: registy.read.aircraft <br><br> __Write__: registy.write.aircraft |  All information about drones and aircraft in the registry |
+| Table |  Notes |
+| --- |  --- |
+| Person |   All information about a person, it could be a contact, pilot etc. PII Information is in this capacity |
+| Address |  All information about addresses, PII information  |
+| Activity |   All information about acitivites undertaken by a operator |
+| Authorization | All information about authorization for the operator |
+| Operator  |  All information related to a operators in the registry|
+| Contact |  All information about a contact. PII Information. |
+| Test  | All information about tests taken by the pilot |
+| Pilot |  All information about the pilot, PII Information |
+| TestValidity |  Write information about TestValidity|
+| TypeCertificate  |  All information about aircraft type certificate |
+| Manufacturer | All information about manufacturers |
+| Aircraft  |  All information about drones and aircraft in the registry |
 
 ## Digital Identity Risk Assessment
 
@@ -77,7 +76,7 @@ In the [API Specification](https://aircraftregistry.herokuapp.com/api/v1/), we h
 
 ## Payload and scopes
 
-In this section we will describe the payload that will be used to query the registry. Below is a decrypted JWT token (sent as a Bearer Token with the request) to demonstrate the details of the token. Here the `scope` is the most important parameter since it details the privilages allocated to the role.
+In this section we will describe the payload that will be used to query the registry. Below is a decrypted JWT token (sent as a Bearer Token with the request) to demonstrate the details of the token. Here the `scope` is the most important parameter since it details the privilages allocated to the role. For more information please see [Flight Passport](https://www.github.com/openskiesh-sh/flight-passport).
 
 ``` JSON
 {
@@ -103,30 +102,30 @@ The list below details the registry endpoints as depicted in the API blue print 
 
 | [End point](https://droneregistry.herokuapp.com/api/v1/) | Request Type  | Scopes required | Notes |
 | --- | --- | --- | --- |
-| [/operators](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) | GET | registy.read:operator | PII Information  |
-| [/operators/{operatorid}](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) | GET | registy.read.operator  |- |
-| [/operators/{operatorid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-privilaged-single-operator-details-get) | GET | registy.read.operator registy.read.operator.privileged registy.read.operator.unthrottled | Some calls may need to be unthrottled |
-| [/contacts](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-all-contacts-get) | GET | registy.read.contact registy.read.person | - |
-| [/contacts/{contactid}](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-single-contact-details-get) | GET | registy.read.contact registy.read.person | - |
-| [/contacts/{contactid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-privilaged-single-contact-details-get) | GET | registy.read.contact  registy.read.contact.privileged | Some calls may need to be unthrottled |
-| [/pilots](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-all-pilots-get) | GET | registy.read.pilot registy.read:pilot.privileged registy.read.person.privileged registy.read.address.privileged | - |
-| [/pilots/{pilotid}](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get) | GET | registy.read.person registy.read.pilot | - |
-| [/pilots/{pilotid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get-1) | GET | registy.read.pilot  registy.read.pilot.privileged registy.read.person.privileged registy.read.address.privileged | Some calls may need to be unthrottled |
-| [/operators/{operatorid}/aircraft](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator) | GET | registy.read.aircraft  registy.read.aircraft.privileged | - |
-| [/aircraft/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-single-aircraft-details-get) | GET | read.aircraft | - |
+| [/operators](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) | GET | registy.read.operator | PII Information  |
+| [/operators/{operatorid}](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) | GET | registry.read.operator_detail  |- |
+| [/operators/{operatorid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-privilaged-single-operator-details-get) | GET | registry.read.operator_detail.privileged | Some calls may need to be unthrottled |
+| [/contacts](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-all-contacts-get) | GET | registry.read.contact | - |
+| [/contacts/{contactid}](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-single-contact-details-get) | GET | registry.read.contact_detail | - |
+| [/contacts/{contactid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-privilaged-single-contact-details-get) | GET | registry.read.contact_detail.privileged | Some calls may need to be unthrottled |
+| [/pilots](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-all-pilots-get) | GET | registry.read.pilot | - |
+| [/pilots/{pilotid}](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get) | GET | registry.read.pilot_detail | - |
+| [/pilots/{pilotid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#pilot-api-single-pilot-details-get-1) | GET | registry.read.pilot_detail.privileged | Some calls may need to be unthrottled |
+| [/operators/{operatorid}/aircraft](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-equipment-registered-by-a-operator) | GET | registry.read.operator_aircraft | - |
+| [/aircraft/{aircraftid}](https://aircraftregistry.herokuapp.com/api/v1/#aircraft-api-single-aircraft-details-get) | GET | registry.read.aircraft | - |
 
 ## Roles
 
 Below are roles listed as they are developed in the registry. In the coming time, more roles will be developed as per individual and professional roles in the different organizations mentioned in the [Interested Parties](https://github.com/openskies-sh/aircraftregistry/blob/master/documents/registration-white-paper.md#interested-parties) section. These roles and scopes would have to be linked to the registry and provided via the authentication system. We have linked the role to the appropriate "Entity ID" to cross reference the two tables.
 
-| Role Name | Applicable Interested Party | Entity ID | Description | Scopes to be assigned | Notes |
-| --- | --- | --- | --- | --- | --- |
-| Drone Pilot | Private USS Operator | <b>B</b> | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment. | registy.read:operator registy.read:person registy.read:pilot |
-| USS Administrator | USS Service provider |<b>B</b> |  A administrator within a USS, they can be the contact person between the regulator and USS. | registy.read.operator registy.read.person registy.read.pilot registy.read.address|
-| Regulator Employee | ANSP or CAA | <b>A</b>,<b>B</b> | A regular employee in a regulator or ANSP who needs see flights and view data in the registry (but not authorize them). | registy.read.operator registy.read.person registy.read.contact registy.read.pilot registy.read.pilot registy.read.aircraft registy.read.activity registy.read.authorization | --- |
-| Regulator Manager | ANSP or CAA | <b>A</b>,<b>B</b> | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry. | registy.read.operator registy.read.operator.privileged registy.read.person registy.read.address registy.read.contact registy.read.pilot registy.read.pilot.privileged registy.read:address.privileged registy.read.aircraft registy.read.aircraft.privileged registy.read.authorization registy.read.activity | May need unthrottled privileges |
-| Law Enforcement "Standard" | Police | <b>D</b> | A regular employee in law enforcement at a local level (e.g. on patrol). | registy.read.operator registy.read.operator.privileged registy.read.person registy.read.contact registy.read.pilot registy.read.pilot.privileged registy.read.address.privileged registy.read.aircraft registy.read.aircraft.privileged registy.read.authorization registy.read.activity |--- |
-| Law Enforcement "Enhanced" | Police | <b>D</b> | A employee in law enforcement at a regional level (e.g. national investigation agency, head ). | registy.read.operator registy.read.operator.privileged registy.read.person registy.read.contact registy.read.pilot registy.read.pilot.privileged registy.read.aircraft registy.read.aircraft.privielged registy.read.authorization registy.read.activity registy.read.unthrottled | May need unthrottled privileged |
+| Role Name | Applicable Interested Party | Entity ID | Description |  Notes |
+| --- | --- | --- | --- |  --- |
+| Drone Pilot | Private USS Operator | <b>B</b> | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment.  |
+| USS Administrator | USS Service provider |<b>B</b> |  A administrator within a USS, they can be the contact person between the regulator and USS. |
+| Regulator Employee | ANSP or CAA | <b>A</b>,<b>B</b> | A regular employee in a regulator or ANSP who needs see flights and view data in the registry (but not authorize them). | --- |
+| Regulator Manager | ANSP or CAA | <b>A</b>,<b>B</b> | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry.  | May need unthrottled privileges |
+| Law Enforcement "Standard" | Police | <b>D</b> | A regular employee in law enforcement at a local level (e.g. on patrol). | --- |
+| Law Enforcement "Enhanced" | Police | <b>D</b> | A employee in law enforcement at a regional level (e.g. national investigation agency, head ). | May need unthrottled privileged |
 
 ## References
 
@@ -140,6 +139,7 @@ Below are roles listed as they are developed in the registry. In the coming time
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.8 | 19-March-2020 | Dr. Hrishikesh Ballal | Updated scopes away from table based scopes to end point based scopes |
 | 0.7 | 1-March-2020 | Dr. Hrishikesh Ballal | Updated permissions to registry. prefix |
 | 0.6 | 4-February-2020 | Dr. Hrishikesh Ballal | Removing write calls in endpoints to make it consistent with API |
 | 0.5 | 6-December-2019 | Dr. Hrishikesh Ballal | Added assessment of endpoints to NIST recommendations |
