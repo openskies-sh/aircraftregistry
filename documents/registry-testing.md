@@ -70,10 +70,9 @@ These are significant yearly flights in the region. We will now extrapolate the 
 
 |Broadcast Remote ID | - | - | 
 | ------- |-------------| -------------|
-| Average flight time: <br>Average broadcast number of broadcasts per flight: <br> |-------------| -------------|
-| ------------- |-------------| -------------|
-| Bluetooth 4.0: Average packet size:  |Bluetooth 5.0: Average packet size:  | WiFI|
-| ------------- |-------------| -------------|
+| Average flight time: <br>Average broadcast number of broadcasts per flight: <br> | - | - |
+| Bluetooth 4.0: <br> Average packet size:  |Bluetooth 5.0 Average packet size:  | WiFI |
+
 
 | Network Remote ID |-------------| -------------|
 | ------------- |-------------| -------------|
