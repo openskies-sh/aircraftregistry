@@ -64,7 +64,7 @@ TCL demonstrators are not meant to be a reflection of a real world "fully active
 
 ## Flight projectsions and network load
 
-| Assuming a 5% increase in demand in urgent deliveries, the right hand side chart shows the projected increase in the two city regions of interest <br> <img src="https://i.imgur.com/itZqIjO.png" width="400"> 
+Assuming a 5% increase in demand in urgent deliveries, the right hand side chart shows the projected increase in the two city regions of interest <br> <img src="https://i.imgur.com/itZqIjO.png" width="400"> 
 
 These are significant yearly flights in the region. We will now extrapolate the network load for brodcast and network remote ID per the published ASTM standard. The standard talks about broadcast ID over Bluetooth 4.0, 5.0 and WiFi and network Remote ID via the DSS. 
 
