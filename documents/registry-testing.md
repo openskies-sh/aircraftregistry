@@ -68,20 +68,20 @@ Assuming a 5% increase in demand in urgent deliveries, the right hand side chart
 
 These are significant yearly flights in the region. We will now extrapolate the network load for brodcast and network remote ID per the published ASTM standard. The standard talks about broadcast ID over Bluetooth 4.0, 5.0 and WiFi and network Remote ID via the DSS. 
 
-|Broadcast Remote ID | - |
-| ------- |-------------| -------------|
-| Average flight time: <br>Average broadcast number of broadcasts per flight: <br> | - |
+|Broadcast Remote ID |  |
+| ------- |-------------| 
+| Average flight time: <br>Average broadcast number of broadcasts per flight: <br> |  |
 
-| ------- |-------------| -------------|
-| Bluetooth 4.0:   |Bluetooth 5.0 Average packet size:  | WiFI |
+### Broadcast Remote ID bandwidth
+| Bluetooth 4.0:   |Bluetooth 5.0| WiFI |
 | ------- |-------------| -------------|
 | Average packet size | Average packet size | Average packet size  | 
 
-| Network Remote ID |-------------| -------------|
-| ------------- |-------------| -------------|
-| Average flight time: <br>Average number of network RID requests per flight: <br> |-------------| -------------|
-| Bluetooth 4.0: Average packet size:  |Bluetooth 5.0: Average packet size:  | WiFI|
-| ------------- |-------------| -------------|
+### Network Remote ID bandwidth
+| Network Remote ID |
+| ------------- |
+| Average flight time: <br>Average number of network RID requests per flight: <br> |
+
 ## Registry Load testing 
 
 At this initial stage, we will just test the read throughput, no write calls will be made to the registry. For more background, please review the article by [Airbus Altiscope](https://medium.com/altiscope/introducing-altiscope-creating-blueprints-for-the-sky-9eaf931e2a60), we will assume the following:
