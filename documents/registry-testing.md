@@ -68,11 +68,14 @@ Assuming a 5% increase in demand in urgent deliveries, the right hand side chart
 
 These are significant yearly flights in the region. We will now extrapolate the network load for brodcast and network remote ID per the published ASTM standard. The standard talks about broadcast ID over Bluetooth 4.0, 5.0 and WiFi and network Remote ID via the DSS. 
 
-|Broadcast Remote ID | - | - | 
+|Broadcast Remote ID | - |
 | ------- |-------------| -------------|
-| Average flight time: <br>Average broadcast number of broadcasts per flight: <br> | - | - |
-| Bluetooth 4.0: <br> Average packet size:  |Bluetooth 5.0 Average packet size:  | WiFI |
+| Average flight time: <br>Average broadcast number of broadcasts per flight: <br> | - |
 
+| ------- |-------------| -------------|
+| Bluetooth 4.0:   |Bluetooth 5.0 Average packet size:  | WiFI |
+| ------- |-------------| -------------|
+| Average packet size | Average packet size | Average packet size  | 
 
 | Network Remote ID |-------------| -------------|
 | ------------- |-------------| -------------|
