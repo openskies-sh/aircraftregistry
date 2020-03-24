@@ -50,8 +50,6 @@ The TCL tests are just a demonstration of core technical capability but can be a
   
 <br>From the document, below is a image of the study area that is 406m in density with > 10 flights.
 
-
-
 TCL demonstrators are not meant to be a reflection of a real world "fully active" use. In addition to Reno, there were tests in the  Corpus Christi area. We can extrapolate this using data about Reno by making some assumptions. 
 
 | Location | Area | 
@@ -64,7 +62,25 @@ TCL demonstrators are not meant to be a reflection of a real world "fully active
 | <img src="https://i.imgur.com/i8Cpz0C.png" height="400"> | <img src="https://i.imgur.com/886vL6s.png" height="400"> |
 | For the entire Reno, NV area, we get the following: 5% of the people are interested in urgen delivery (12,550 people in the city), they order urgent delivery twice a week (12550 x 2 packages x 2 days) = 50,200 flights (back and forth). This means that every week there will be potentially **50,200 flights per week** in the area. For the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 50,200 flights and 40 hours to fly them = **1255 flights per hour**  | For Corpus Christi, TX area, we get the following: 5% of the people are interested in urgen delivery (16328 people in the city), they order urgent delivery twice a week (16328 x 2 packages x 2 days) = 65310 flights (back and forth). This means that every week there will be potentially **65,310 flights per week** in the area. For the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 65,310 flights and 40 hours to fly them = **1633 flights per hour** | 
 
-## Simulation details
+## Flight projectsions and network load
+
+| ------------- |:-------------:| 
+| Assuming a 5% increase in demand in urgent deliveries, the right hand side chart shows the projected increase in the two city regions of interest | <img src="https://i.imgur.com/itZqIjO.png" width="400"> |  
+
+These are significant yearly flights in the region. We will now extrapolate the network load for brodcast and network remote ID per the published ASTM standard. The standard talks about broadcast ID over Bluetooth 4.0, 5.0 and WiFi and network Remote ID via the DSS. 
+
+| Broadcast Remote ID |-------------| -------------|
+| Average flight time: <br>Average broadcast number of broadcasts per flight: <br> |-------------| -------------|
+| ------------- |-------------| -------------|
+| Bluetooth 4.0: Average packet size:  |Bluetooth 5.0: Average packet size:  | WiFI|
+| ------------- |-------------| -------------|
+
+| Network Remote ID |-------------| -------------|
+| ------------- |-------------| -------------|
+| Average flight time: <br>Average number of network RID requests per flight: <br> |-------------| -------------|
+| Bluetooth 4.0: Average packet size:  |Bluetooth 5.0: Average packet size:  | WiFI|
+| ------------- |-------------| -------------|
+## Registry Load testing 
 
 At this initial stage, we will just test the read throughput, no write calls will be made to the registry. For more background, please review the article by [Airbus Altiscope](https://medium.com/altiscope/introducing-altiscope-creating-blueprints-for-the-sky-9eaf931e2a60), we will assume the following:
 
