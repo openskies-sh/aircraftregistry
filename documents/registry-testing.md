@@ -10,7 +10,11 @@
   - [Goals](#goals)
   - [Scenarios](#scenarios)
     - [Extrapolating real world scenarios from TCL demos](#extrapolating-real-world-scenarios-from-tcl-demos)
-  - [Simulation details for all of Reno, NV](#simulation-details-for-all-of-reno-nv)
+  - [Flight projections and network load](#flight-projections-and-network-load)
+    - [Broadcast Remote ID bandwidth](#broadcast-remote-id-bandwidth)
+    - [Network Remote ID bandwidth](#network-remote-id-bandwidth)
+    - [WiFi Aware range](#wifi-aware-range)
+  - [Registry Load testing](#registry-load-testing)
   - [Results](#results)
   - [Appendix](#appendix)
   - [Acknowledgements](#acknowledgements)
@@ -60,29 +64,40 @@ TCL demonstrators are not meant to be a reflection of a real world "fully active
 | Assume that the urgent package delivery market with the following assumptions: 5% of the people are interested in urgent delivery (22 people in the area, they order urgent delivery twice a week (22 x 2 packages x 2 days) = **88 flights (back and forth)** | Assume that the urgent package delivery market with the following assumptions: 5% of the people are interested in urgent delivery (18 people in the area), they order urgent delivery twice a week (18 x 2 packages x 2 days) = **72 flights (back and forth)** | 
 | Reno City has a population of 250,998 and a area of 274.2 km<sup>2</sup> (Source: [Wikipedia](https://en.wikipedia.org/wiki/Reno,_Nevada)). | Corpus Christi Metro Area has a population of 326,554 and a area of 1,304 km<sup>2</sup> (Source: [Wikipedia](https://en.wikipedia.org/wiki/Corpus_Christi,_Texas))|
 | <img src="https://i.imgur.com/i8Cpz0C.png" height="400"> | <img src="https://i.imgur.com/886vL6s.png" height="400"> |
-| For the entire Reno, NV area, we get the following: 5% of the people are interested in urgen delivery (12,550 people in the city), they order urgent delivery twice a week (12550 x 2 packages x 2 days) = 50,200 flights (back and forth). This means that every week there will be potentially **50,200 flights per week** in the area. For the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 50,200 flights and 40 hours to fly them = **1255 flights per hour**  | For Corpus Christi, TX area, we get the following: 5% of the people are interested in urgen delivery (16328 people in the city), they order urgent delivery twice a week (16328 x 2 packages x 2 days) = 65310 flights (back and forth). This means that every week there will be potentially **65,310 flights per week** in the area. For the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 65,310 flights and 40 hours to fly them = **1633 flights per hour** | 
+| For the entire Reno, NV area, we get the following: 5% of the people are interested in urgent delivery (12,550 people in the city), they order urgent delivery twice a week (12550 x 2 packages x 2 days) = 50,200 flights (back and forth). This means that every week there will be potentially **50,200 flights per week** in the area. For the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 50,200 flights and 40 hours to fly them = **1255 flights per hour**  | For Corpus Christi, TX area, we get the following: 5% of the people are interested in urgent delivery (16328 people in the city), they order urgent delivery twice a week (16328 x 2 packages x 2 days) = 65310 flights (back and forth). This means that every week there will be potentially **65,310 flights per week** in the area. For the sake of simplicity let us asssume that they will be during working hours and not on weekends: so 65,310 flights and 40 hours to fly them = **1633 flights per hour** |
 
-## Flight projectsions and network load
+## Flight projections and network load
 
 Assuming a 5% increase in demand in urgent deliveries, the right hand side chart shows the projected increase in the two city regions of interest <br> <img src="https://i.imgur.com/itZqIjO.png" width="400"> 
 
-These are significant yearly flights in the region. We will now extrapolate the network load for brodcast and network remote ID per the published ASTM standard. The standard talks about broadcast ID over Bluetooth 4.0, 5.0 and WiFi and network Remote ID via the DSS. 
-
-|Broadcast Remote ID |  |
-| ------- |-------------| 
-| Average flight time: <br>Average broadcast number of broadcasts per flight: <br> |  |
+These are significant yearly flights in the region. We will now extrapolate the network load for brodcast and network remote ID per the published ASTM standard. The standard talks about broadcast ID over Bluetooth 4.0, 5.0 and WiFi and network Remote ID via the DSS.
 
 ### Broadcast Remote ID bandwidth
-| Bluetooth 4.0:   |Bluetooth 5.0| WiFI |
-| ------- |-------------| -------------|
-| Average packet size | Average packet size | Average packet size  | 
+
+In this section, we develop projections of broadcast Remote ID messages, the ASTM spec says that the UAS can use either Wifi or Bluetooth 4.0 or Bluetooth 5.0 to transmit the information as part of WiFi Aware for e.g. advertisement messages.
+
+|Broadcast Remote ID |  |
+| ------------- |-------------|
+| Average flight return time (Assuming average speed of 35 km/hr and average distance of 10 km) | __34 mins__ |
+| Number of broadcast Remote ID messages per flight  | __2040__ (1 per second)  |
+| Minimum Mandatory fields (Basic ID Message + Location / Vector Message) | __50 bytes__ |
+| Maximum data message size (uncompressed) if all fields used e.g. Authentication System Message and Operator ID | __150 bytes__ |
 
 ### Network Remote ID bandwidth
-| Network Remote ID |
-| ------------- |
-| Average flight time: <br>Average number of network RID requests per flight: <br> |
 
-## Registry Load testing 
+Assuming a average flight time of 34 minutes, one flight will emit 2040 messages with a minimum of 2040 * 50 = **102,000 bytes** and maximum 2040 * 150 = **306,000 bytes** per return flight.
+
+| Reno, Nevada | Corpus Christi, Texas|
+| ------------- |-------------|
+| Flight density from above: 1255 flights / hour and a average flight time of 34 minutes we can assume that almost half the flights are in the air at any given time. This leads to the following bandwidth calculations: Assuming 630 flights * 102,000 bytes = 64260000 bytes or **64.26 MB / second** minimum in the airspace and a maximum of 630 flights * 306,000 bytes = 192780000 bytes or **192.78 MB / second** throughout the entire region.   | Similarly, for Corpus Christi the 1633 flights / hour and a average flight time of 34 minutes we can assume that almost half the flights are in the air at any given time. This leads to the following bandwidth calculations: Assuming 820 flights * 102,000 bytes = 83640000 bytes or **83.64 MB / second** minimum in the airspace and a maximum of 820 flights * 306,000 bytes = 250920000 bytes or **250.78 MB / second** throughout the entire region. |
+
+### WiFi Aware range
+
+Typically the range of a WiFi signal is about 125-150 ft. or 38 - 45 meters. For the sake of simplicity we assume 40 meters. A drone flying at 35 km / hour (9.7 m/s) will cover 40 meters in rougly 4 seconds.
+
+With almost 1255 flights / hour and almost half of them in the air at any time, at the most trafficed locations in the city (e.g. downtown) will have the most number of flights in the air. For the sake of simplicity we can assume that 3% of flights will be flying through downtown. This means that the receiver should be able to process **37 broadcast messages every second** in the Reno area.
+
+## Registry Load testing
 
 At this initial stage, we will just test the read throughput, no write calls will be made to the registry. For more background, please review the article by [Airbus Altiscope](https://medium.com/altiscope/introducing-altiscope-creating-blueprints-for-the-sky-9eaf931e2a60), we will assume the following:
 
