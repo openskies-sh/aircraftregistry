@@ -11,8 +11,8 @@
   - [Scenarios](#scenarios)
     - [Extrapolating real world scenarios from TCL demos](#extrapolating-real-world-scenarios-from-tcl-demos)
   - [Flight projections and network load](#flight-projections-and-network-load)
+    - [Broadcast Remote ID](#broadcast-remote-id)
     - [Broadcast Remote ID bandwidth](#broadcast-remote-id-bandwidth)
-    - [Network Remote ID bandwidth](#network-remote-id-bandwidth)
     - [WiFi Aware range](#wifi-aware-range)
   - [Registry Load testing](#registry-load-testing)
   - [Results](#results)
@@ -72,7 +72,7 @@ Assuming a 5% increase in demand in urgent deliveries, the right hand side chart
 
 These are significant yearly flights in the region. We will now extrapolate the network load for brodcast and network remote ID per the published ASTM standard. The standard talks about broadcast ID over Bluetooth 4.0, 5.0 and WiFi and network Remote ID via the DSS.
 
-### Broadcast Remote ID bandwidth
+### Broadcast Remote ID
 
 In this section, we develop projections of broadcast Remote ID messages, the ASTM spec says that the UAS can use either Wifi or Bluetooth 4.0 or Bluetooth 5.0 to transmit the information as part of WiFi Aware for e.g. advertisement messages.
 
@@ -83,7 +83,7 @@ In this section, we develop projections of broadcast Remote ID messages, the AST
 | Minimum Mandatory fields (Basic ID Message + Location / Vector Message) | __50 bytes__ |
 | Maximum data message size (uncompressed) if all fields used e.g. Authentication System Message and Operator ID | __150 bytes__ |
 
-### Network Remote ID bandwidth
+### Broadcast Remote ID bandwidth
 
 Assuming a average flight time of 34 minutes, one flight will emit 2040 messages with a minimum of 2040 * 50 = **102,000 bytes** and maximum 2040 * 150 = **306,000 bytes** per return flight.
 
