@@ -195,7 +195,7 @@ class AircraftDetailPrivileged(mixins.RetrieveModelMixin,
         return Response(serializer.data)
 
 
-@method_decorator(requires_scopes(['regsitry.read.operator_detail.privileged']), name='dispatch')
+@method_decorator(requires_scopes(['registry.read.operator_detail.privileged']), name='dispatch')
 class OperatorDetailPrivileged(mixins.RetrieveModelMixin,
                                generics.GenericAPIView):
     """
