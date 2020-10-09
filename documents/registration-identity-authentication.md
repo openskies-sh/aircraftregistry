@@ -1,6 +1,6 @@
 # Registry Identity and Authentication
 
-This document details the technical implementation of identity and authentication for the registry. We detail the roles, privilages and the permissions required to access data in the registry. The goal of this document is to propose standard roles and privilages associated with API end points to ensure registry interoperability using standardized queries and resposes.
+This document details the technical implementation of identity and authentication for the registry. We detail the roles, privileges and the permissions required to access data in the registry. The goal of this document is to propose standard roles and privileges associated with API end points to ensure registry interoperability using standardized queries and responses.
 
 ## Identity / Login method
 
@@ -12,15 +12,14 @@ For a broader application of querying multiple registries (registry broker) and 
 
 ## Comment
 
-Security is a vast and deep topic, for the purpose of this document, we are not advocating a specific security mechanism or technology. At this time (October-2019) it is unclear which security technology or mechanism is the most suitable for unmanned aviation. In the community there is a debate about whether OAUTH that powers major internet sites is good enough or "aviation grade". It is clear that security in aviation is a open topic that needs more research and more importantly testing.
+Security is a vast and deep topic, for the purpose of this document, we are not advocating a specific security mechanism or technology. As the security landscape evolves, there is need to be flexible, at this time, it is unclear which security technology or mechanism is the most suitable for unmanned aviation. In the community there is a debate about whether OAUTH that powers major internet sites is good enough or "aviation grade". It is clear that security in aviation is a open topic that needs more research and more importantly testing.
 
-However, it is the opinion of the author that being stuck in the technology mechanism prevents us from moving forward. We are more interested in developing the API, the scopes, identities and  roles and permissions and assume that any current or future technology can be used to communicate and transmit this information. For the sake of performance testing, we are using Auth0.com a commercial service and also building our own fork of the popular [ory/hydra](https://github.com/openskies-sh/hydra) server that is OpenID and OpenID Connect compatible.
+However, it is the opinion of the author that being stuck in the technology mechanism prevents us from moving forward. We are more interested in developing the API, the scopes, identities and  roles and permissions and assume that any current or future technology can be used to communicate and transmit this information. For the sake of performance testing, we are using Auth0.com a commercial service and also have built our own OAUTH compatible Identity and Authentication Server: [Flight Passport](https://www.github.com/openskies-sh/flight_passport)
 
-We are not advocating any of these products or technologies but the goal is to have security and identity backend that can be changed / upgraded as this field evolves and there is a consensus on the appropriate technology for aviation.
 
 ## Registry tables and Scopes
 
-The registry backend specifies a set of [tables](https://github.com/openskies-sh/aircraftregistry/blob/master/registry/models.py) for a database to hold data about the People, Operators and Equipment. However, in the API the data in these tables is aggregated and we have endpoint based scopes. 
+The registry backend specifies a set of [tables](https://github.com/openskies-sh/aircraftregistry/blob/master/registry/models.py) for a database to hold data about the People, Operators and Equipment. However, in the API the data in these tables is aggregated and we have endpoint based scopes.
 
 - `privileged` scopes are for privileged endpoints and interested parties.
 - `unthrottled` scopes are for specific endpoints and roles (see below).
@@ -29,7 +28,7 @@ The registry backend specifies a set of [tables](https://github.com/openskies-sh
 | --- |  --- |
 | Person |   All information about a person, it could be a contact, pilot etc. PII Information is in this capacity |
 | Address |  All information about addresses, PII information  |
-| Activity |   All information about acitivites undertaken by a operator |
+| Activity |   All information about activities undertaken by a operator |
 | Authorization | All information about authorization for the operator |
 | Operator  |  All information related to a operators in the registry|
 | Contact |  All information about a contact. PII Information. |
@@ -52,7 +51,7 @@ In the context of Digital Identity we use the following definitions:
 
 ## Information Security Assessment
 
-The registry by its nature will store personally identifiable information (PII) and the database will come under the local or national privacy and data protection laws. In many cases, this means that the data has to be stored in different servers and / or relevant security and isolation procedures must be followed. At a API level however, we propose different privilages, roles and scope that enable the interested party making the query to access this information.
+The registry by its nature will store personally identifiable information (PII) and the database will come under the local or national privacy and data protection laws. In many cases, this means that the data has to be stored in different servers and / or relevant security and isolation procedures must be followed. At a API level however, we propose different privileges, roles and scope that enable the interested party making the query to access this information.
 
 For the purpose of testing the registry, we have reviewed two specific documents / publications from National Institute of Standards and Technology (NIST). [1][2][3]
 
@@ -76,7 +75,7 @@ In the [API Specification](https://aircraftregistry.herokuapp.com/api/v1/), we h
 
 ## Payload and scopes
 
-In this section we will describe the payload that will be used to query the registry. Below is a decrypted JWT token (sent as a Bearer Token with the request) to demonstrate the details of the token. Here the `scope` is the most important parameter since it details the privilages allocated to the role. For more information please see [Flight Passport](https://www.github.com/openskiesh-sh/flight-passport).
+In this section we will describe the payload that will be used to query the registry. Below is a decrypted JWT token (sent as a Bearer Token with the request) to demonstrate the details of the token. Here the `scope` is the most important parameter since it details the privileges allocated to the role. For more information please see [Flight Passport](https://www.github.com/openskiesh-sh/flight-passport).
 
 ``` JSON
 {
@@ -102,7 +101,7 @@ The list below details the registry endpoints as depicted in the API blue print 
 
 | [End point](https://droneregistry.herokuapp.com/api/v1/) | Request Type  | Scopes required | Notes |
 | --- | --- | --- | --- |
-| [/operators](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) | GET | registy.read.operator | PII Information  |
+| [/operators](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-all-operators-get) | GET | registry.read.operator | PII Information  |
 | [/operators/{operatorid}](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-single-operator-details-get) | GET | registry.read.operator_detail  |- |
 | [/operators/{operatorid}/privileged](https://aircraftregistry.herokuapp.com/api/v1/#operator-api-privilaged-single-operator-details-get) | GET | registry.read.operator_detail.privileged | Some calls may need to be unthrottled |
 | [/contacts](https://aircraftregistry.herokuapp.com/api/v1/#contact-api-all-contacts-get) | GET | registry.read.contact | - |
@@ -120,7 +119,7 @@ Below are roles listed as they are developed in the registry. In the coming time
 
 | Role Name | Applicable Interested Party | Entity ID | Description |  Notes |
 | --- | --- | --- | --- |  --- |
-| Drone Pilot | Private USS Operator | <b>B</b> | A pilot who is associated with a operator and has a drone and is trained and licenced to fly it. They may own multiple equipment.  |
+| Drone Pilot | Private USS Operator | <b>B</b> | A pilot who is associated with a operator and has a drone and is trained and licensed to fly it. They may own multiple equipment.  |
 | USS Administrator | USS Service provider |<b>B</b> |  A administrator within a USS, they can be the contact person between the regulator and USS. |
 | Regulator Employee | ANSP or CAA | <b>A</b>,<b>B</b> | A regular employee in a regulator or ANSP who needs see flights and view data in the registry (but not authorize them). | --- |
 | Regulator Manager | ANSP or CAA | <b>A</b>,<b>B</b> | A regular employee in a regulator or ANSP who needs to authorize flights and view data in the registry.  | May need unthrottled privileges |
@@ -139,6 +138,7 @@ Below are roles listed as they are developed in the registry. In the coming time
 
 | Version | Date | Author | Change comments |
 | --- | --- | --- | --- |
+| 0.9 | 9-October-2020 | Dr. Hrishikesh Ballal | Updated endpoints and registration API scopes |
 | 0.8 | 19-March-2020 | Dr. Hrishikesh Ballal | Updated scopes away from table based scopes to end point based scopes |
 | 0.7 | 1-March-2020 | Dr. Hrishikesh Ballal | Updated permissions to registry. prefix |
 | 0.6 | 4-February-2020 | Dr. Hrishikesh Ballal | Removing write calls in endpoints to make it consistent with API |
